@@ -1,0 +1,30 @@
+{
+  "Header": {
+    "MobileMenu": {
+      "SheetDescription": "Menu",
+      "MobileMenu": "Menu mobilne",
+      "ToggleMenu": "Przełącz menu"
+    },
+    "ModeToggle": {
+      "lightLabel": "Jasny",
+      "darkLabel": "Ciemny",
+      "systemLabel": "System",
+      "toggleTheme": "Przełącz motyw"
+    },
+    "LanguageToggle": {
+      "changeLanguage": "Zmień język",
+      "english": "Angielski",
+      "polski": "Polski",
+      "ukrainian": "Ukraiński"
+    }
+  },
+  "Components": {
+    "Nav": {
+      "home": "Strona główna",
+      "about": "O nas",
+      "contacts": "Kontakt",
+      "concerts": "Koncerty",
+      "backToHome": "Powrót do strony głównej"
+    }
+  }
+}

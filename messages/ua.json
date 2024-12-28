@@ -1,0 +1,30 @@
+{
+  "Header": {
+    "MobileMenu": {
+      "SheetDescription": "Меню",
+      "MobileMenu": "Мобільне меню",
+      "ToggleMenu": "Перемкнути меню"
+    },
+    "ModeToggle": {
+      "lightLabel": "Світла",
+      "darkLabel": "Темна",
+      "systemLabel": "Система",
+      "toggleTheme": "Перемкнути тему"
+    },
+    "LanguageToggle": {
+      "changeLanguage": "Змінити мову",
+      "english": "Англійська",
+      "polski": "Польська",
+      "ukrainian": "Українська"
+    }
+  },
+  "Components": {
+    "Nav": {
+      "home": "Головна",
+      "about": "Про нас",
+      "contacts": "Контакти",
+      "concerts": "Концерти",
+      "backToHome": "Повернутися на головну сторінку"
+    }
+  }
+}
