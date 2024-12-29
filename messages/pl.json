@@ -24,6 +24,17 @@
     "subHeader": "Koncerty",
     "noConcerts": "W tej chwili nie ma zaplanowanych koncertów."
   },
+  "footer": {
+    "reachOut": "/ Skontaktuj się",
+    "findUs": "/ Znajdź nas",
+    "nav": "/ Nawigacja",
+    "address": {
+      "line1": "Gdzieś w Gdańsku",
+      "line2": "Polska"
+    },
+    "social": "/ Społecznościowe",
+    "copyright": "©2025 HANNA ROCK BAND"
+  },
   "Components": {
     "Nav": {
       "home": "Strona główna",

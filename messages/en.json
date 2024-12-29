@@ -25,6 +25,17 @@
     "noConcerts": "There are no scheduled concerts at the moment."
   },
   "Components": {
+    "footer": {
+      "reachOut": "/ Reach out",
+      "findUs": "/ Find us",
+      "nav": "/ Nav",
+      "address": {
+        "line1": "Somewhere in Gdansk",
+        "line2": "Poland"
+      },
+      "social": "/ Social",
+      "copyright": "©2025 HANNA ROCK BAND"
+    },
     "Nav": {
       "home": "Home",
       "about": "About",

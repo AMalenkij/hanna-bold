@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import Footer from "./footer";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -48,6 +49,13 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <Header />
             {children}
+            <span className="px-6 font-black text-[24vw]">HANNA</span>
+            <div
+              className="relative h-[500px]"
+              style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
+            >
+              <Footer />
+            </div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
