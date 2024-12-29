@@ -18,6 +18,12 @@
       "ukrainian": "Ukrainian"
     }
   },
+  "Concerts": {
+    "futures": "Futures",
+    "past": "Past",
+    "subHeader": "Concerts",
+    "noConcerts": "There are no scheduled concerts at the moment."
+  },
   "Components": {
     "Nav": {
       "home": "Home",
