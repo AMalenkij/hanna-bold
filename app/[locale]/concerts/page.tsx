@@ -1,3 +1,4 @@
+import { getConcertsAction } from "@/actions/getConcertsAction";
 import SubHeader from "@/components/subHeader";
 import {
   Accordion,
@@ -6,56 +7,28 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import ConcertImg from "@/public/img/concert_hero.jpg";
-import { prisma } from "@/utils/prisma";
 import splitTimestamp from "@/utils/splitTimestamp";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import ConcertCard from "./concertCard";
-
+import { DeleteConcertButton } from "./deleteConcertButton";
+import { EditConcertButton } from "./editConcertButton";
+import { ConcertFormDialog } from "./concertFormDialog";
+import { AddConcertButton } from "./addConcertButton";
 export default async function Concerts() {
-  const today = new Date();
-  const futureConcertsCount = await prisma.concert.count({
-    where: {
-      date: {
-        gte: today,
-      },
-    },
-  });
+  const {
+    futureConcerts,
+    pastConcerts,
+    futureConcertsCount,
+    pastConcertsCount,
+    totalConcerts,
+  } = await getConcertsAction();
 
-  const futureConcerts = await prisma.concert.findMany({
-    where: {
-      date: {
-        gte: today,
-      },
-    },
-    orderBy: {
-      date: "asc",
-    },
-  });
-
-  const pastConcertsCount = await prisma.concert.count({
-    where: {
-      date: {
-        lt: today,
-      },
-    },
-  });
-
-  const pastConcerts = await prisma.concert.findMany({
-    where: {
-      date: {
-        lt: today,
-      },
-    },
-    orderBy: {
-      date: "asc",
-    },
-  });
-  const totalConcerts = futureConcertsCount + pastConcertsCount;
   const t = await getTranslations("Concerts");
 
   return (
     <div className="mx-auto">
+      <ConcertFormDialog />
       <Image
         className="-z-20 relative w-full bg-cover"
         alt="Concert Photo"
@@ -67,6 +40,7 @@ export default async function Concerts() {
         counter={totalConcerts}
         variant="withСounter"
       />
+      <AddConcertButton />
       <Accordion
         type="single"
         className="w-full px-6"
@@ -90,7 +64,11 @@ export default async function Concerts() {
                   city={concert.city}
                   venueName={concert.venueName}
                   address={concert.address}
-                />
+                  link={concert.link}
+                >
+                  <DeleteConcertButton concert={concert} />
+                  <EditConcertButton concert={concert} />
+                </ConcertCard>
               ))
             ) : (
               <p className="ml-3 text-lg">{t("noConcerts")}</p>
@@ -113,7 +91,11 @@ export default async function Concerts() {
                 city={concert.city}
                 venueName={concert.venueName}
                 address={concert.address}
-              />
+                link={concert.link}
+              >
+                <DeleteConcertButton concert={concert} />
+                <EditConcertButton concert={concert} />
+              </ConcertCard>
             ))}
           </AccordionContent>
         </AccordionItem>

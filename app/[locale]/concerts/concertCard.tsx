@@ -1,15 +1,4 @@
-interface ConcertCardProps {
-  timestamptz: {
-    date: string;
-    month: string;
-    year: string;
-    time: string;
-  };
-  title: string;
-  city: string;
-  venueName: string;
-  address: string;
-}
+import type { ConcertCardProps } from "./types";
 
 export default function ConcertCard({
   timestamptz: { date, month, year, time },
@@ -17,6 +6,7 @@ export default function ConcertCard({
   city,
   venueName,
   address,
+  children,
 }: ConcertCardProps) {
   return (
     <>
@@ -40,6 +30,7 @@ export default function ConcertCard({
             <div>{venueName}</div>
             <div>{address}</div>
           </div>
+          <div>{children}</div>
         </div>
       </div>
       <div className="invisible mx-auto mt-2 mb-4 h-1 w-24 rounded-xl border-gradient bg-accent group-hover:visible" />
