@@ -1,3 +1,4 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Logo from "@/components/logo";
 import NavMenu from "@/components/navMenu";
 import { Button } from "@/components/ui/button";
@@ -39,6 +40,12 @@ export default function Header() {
               ukrainianLabel={tLanguageToggle("ukrainian")}
               changeLanguageLabel={tLanguageToggle("changeLanguage")}
             />
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
         </nav>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import "@/app/globals.css";
 import { Montserrat } from "next/font/google";
 import Header from "./header/header";
@@ -36,31 +37,35 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <head />
-      <body
-        className={`${montserrat.className} bg-black text-stone-50 antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+    <ClerkProvider>
+      <html lang={locale} suppressHydrationWarning>
+        <head />
+        <body
+          className={`${montserrat.className} bg-black text-stone-50 antialiased`}
         >
-          <NextIntlClientProvider messages={messages}>
-            <Header />
-            {children}
-            <Toaster />
-            <span className="px-6 font-black text-[24vw]">HANNA</span>
-            <div
-              className="relative h-[500px]"
-              style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
-            >
-              <Footer />
-            </div>
-          </NextIntlClientProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextIntlClientProvider messages={messages}>
+              <Header />
+              {children}
+              <Toaster />
+              <span className="px-6 font-black text-[24vw]">HANNA</span>
+              <div
+                className="relative h-[500px]"
+                style={{
+                  clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
+                }}
+              >
+                <Footer />
+              </div>
+            </NextIntlClientProvider>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

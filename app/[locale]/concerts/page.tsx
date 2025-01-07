@@ -10,11 +10,13 @@ import ConcertImg from "@/public/img/concert_hero.jpg";
 import splitTimestamp from "@/utils/splitTimestamp";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
+import { AddConcertButton } from "./addConcertButton";
 import ConcertCard from "./concertCard";
+import { ConcertFormDialog } from "./concertFormDialog";
 import { DeleteConcertButton } from "./deleteConcertButton";
 import { EditConcertButton } from "./editConcertButton";
-import { ConcertFormDialog } from "./concertFormDialog";
-import { AddConcertButton } from "./addConcertButton";
+import ProtectPage from "../../../components/protectPage";
+
 export default async function Concerts() {
   const {
     futureConcerts,
@@ -28,19 +30,23 @@ export default async function Concerts() {
 
   return (
     <div className="mx-auto">
-      <ConcertFormDialog />
       <Image
         className="-z-20 relative w-full bg-cover"
         alt="Concert Photo"
         src={ConcertImg}
       />
+      <ProtectPage>
+        <ConcertFormDialog />
+      </ProtectPage>
       <div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
       <SubHeader
         title={t("subHeader")}
         counter={totalConcerts}
         variant="withСounter"
       />
-      <AddConcertButton />
+      <ProtectPage>
+        <AddConcertButton />
+      </ProtectPage>
       <Accordion
         type="single"
         className="w-full px-6"
@@ -66,8 +72,10 @@ export default async function Concerts() {
                   address={concert.address}
                   link={concert.link}
                 >
-                  <DeleteConcertButton concert={concert} />
-                  <EditConcertButton concert={concert} />
+                  <ProtectPage>
+                    <DeleteConcertButton concert={concert} />
+                    <EditConcertButton concert={concert} />
+                  </ProtectPage>
                 </ConcertCard>
               ))
             ) : (
@@ -93,8 +101,10 @@ export default async function Concerts() {
                 address={concert.address}
                 link={concert.link}
               >
-                <DeleteConcertButton concert={concert} />
-                <EditConcertButton concert={concert} />
+                <ProtectPage>
+                  <DeleteConcertButton concert={concert} />
+                  <EditConcertButton concert={concert} />
+                </ProtectPage>
               </ConcertCard>
             ))}
           </AccordionContent>
