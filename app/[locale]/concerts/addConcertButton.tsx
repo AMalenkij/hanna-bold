@@ -13,7 +13,7 @@ export function AddConcertButton() {
     <Button
       onClick={openCreateDialog}
       variant="link"
-      className="flex items-center gap-2"
+      className="ml-2 flex items-center gap-2"
     >
       <Plus />
       Add Concert
