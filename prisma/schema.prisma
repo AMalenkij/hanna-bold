@@ -1,0 +1,51 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Concert {
+  id    String   @id @default(auto()) @map("_id") @db.ObjectId
+  title String // Название концерта
+  date  DateTime // Дата и время концерта
+
+  city      String // Город (например, "Gdańsk")
+  venueName String // Название площадки (например, "Plama GAK")
+  address   String // Полный адрес (например, "Pilotów 11, 80-460 Gdańsk")
+
+  link        String? // Ссылка (например, на билеты)
+  isPublished Boolean @default(false)
+
+  @@map("concerts")
+}
+
+model Posts {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  // Многоязычные заголовки
+  title_en String
+  title_uk String
+  title_pl String
+
+  // Многоязычные интро
+  intro_en String
+  intro_uk String
+  intro_pl String
+
+  // Многоязычный контент
+  content_en String
+  content_uk String
+  content_pl String
+
+  // Служебные поля
+  slug         String  @unique
+  photo        String?
+  is_published Boolean @default(false)
+
+  // Временные метки
+  created_at DateTime @default(now())
+
+  @@map("posts")
+}
