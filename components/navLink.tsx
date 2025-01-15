@@ -23,7 +23,7 @@ export default function NavLink({
   }
 
   return (
-    <Button variant="link" size="sm" className={className}>
+    <Button asChild variant="link" size="sm" className={className}>
       <Link href={href}>{label}</Link>
     </Button>
   );
