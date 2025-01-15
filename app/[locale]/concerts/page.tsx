@@ -15,7 +15,7 @@ import ConcertCard from "./concertCard";
 import { ConcertFormDialog } from "./concertFormDialog";
 import { DeleteConcertButton } from "./deleteConcertButton";
 import { EditConcertButton } from "./editConcertButton";
-import ProtectPage from "../../../components/protectPage";
+import ProtectPage from "@/components/protectPage";
 
 export default async function Concerts() {
   const {
