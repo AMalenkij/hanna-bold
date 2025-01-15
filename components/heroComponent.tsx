@@ -49,18 +49,18 @@ const HeroComponent: FC<HeroComponentProps> = ({
 						willChange: 'transform', // Optimize performance for animations
 						backgroundImage: `url(${HeroImg.src})`,
 					}}
-					className="absolute inset-0 bg-cover bg-center -z-20 bg-fixed"
+					className="-z-20 absolute inset-0 bg-center bg-cover bg-fixed"
 				/>
 				{/* Red layer over background */}
-				<div className="absolute inset-0 -z-10 bg-red-700 mix-blend-multiply" />
+				<div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
 
 				{/* Content */}
-				<h1 className="font-semibold text-stone-50 text-[150px] mt-10">
+				<h1 className="mt-10 font-semibold text-[150px] text-stone-50">
 					{heading}
 				</h1>
-				<div className="absolute z-10 bottom-0 px-4">
-					<p className="text-stone-200 text-lg mb-4">/ {date}</p>
-					<p className="text-stone-400 text-xl mb-6">{announcement}</p>
+				<div className="absolute bottom-0 z-10 px-4">
+					<p className="mb-4 text-lg text-stone-200">/ {date}</p>
+					<p className="mb-6 text-stone-400 text-xl">{announcement}</p>
 					<Button variant="link">{buttonLabel}</Button>
 				</div>
 			</div>
