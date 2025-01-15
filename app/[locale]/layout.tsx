@@ -10,6 +10,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Footer from "./footer";
 import { Toaster } from "@/components/ui/toaster";
+import { BaseDialog } from "./baseDialog";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default async function LocaleLayout({
               <Header />
               {children}
               <Toaster />
+              <BaseDialog />
               <span className="px-6 font-black text-[24vw]">HANNA</span>
               <div
                 className="relative h-[500px]"
