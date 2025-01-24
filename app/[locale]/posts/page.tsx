@@ -1,25 +1,24 @@
-import getPaginatedPosts from "@/utils/getPaginatedPosts";
-import { Pagination } from "./pagination";
-import NewsCard from "@/components/newsCard";
-import splitTimestamp from "@/utils/splitTimestamp";
 import HeroCard from "@/components/heroCard";
+import NewsCard from "@/components/newsCard";
 import SubHeader from "@/components/subHeader";
-import { DeleteButton } from "./delButton";
-import { FormDialog } from "./formDialog";
-import { AddButton } from "./addButton";
+import getPaginatedPosts from "@/utils/getPaginatedPosts";
+import splitTimestamp from "@/utils/splitTimestamp";
+import { CreatePostButton } from "./createPostButton";
+import { DeletePostButton } from "./deletePostButton";
 import { EditPostButton } from "./editPostButton";
+import { Pagination } from "./pagination";
+import ProtectPage from "@/components/protectPage";
 
-export default async function Posts({
-  searchParams,
-  params,
-}: {
-  searchParams: { page?: string; locale?: string };
-}) {
-  // Используем await для searchParams
-  const pageParam = await searchParams.page;
+interface PostsProps {
+  searchParams: { page?: string; locale: "en" | "uk" | "pl" };
+  params: { locale: "en" | "uk" | "pl" };
+}
+
+export default async function Posts({ searchParams, params }: PostsProps) {
+  const pageParam = searchParams.page;
   const page = pageParam ? Number.parseInt(pageParam) : 1;
 
-  const { locale } = await params;
+  const { locale } = params;
 
   const { posts, pagination } = await getPaginatedPosts({
     page,
@@ -48,13 +47,15 @@ export default async function Posts({
               imageUrl={post.photo}
               slug={post.slug}
             />
-            <DeleteButton
-              id={post.id}
-              title={post[`title_${locale}`]}
-              model="posts"
-            />
-            <AddButton model="posts" />
-            <EditPostButton post={post} />
+            <ProtectPage>
+              <DeletePostButton
+                id={post.id}
+                title={post[`title_${locale}`]}
+                model="posts"
+              />
+              <CreatePostButton model="posts" />
+              <EditPostButton model={post} />
+            </ProtectPage>
           </div>
         ))}
       </div>
