@@ -2,21 +2,24 @@
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { PencilLine } from "lucide-react";
-import { EditDialogContent } from "./editDialogContent";
-import type { Posts as PrismaPost } from "@prisma/client";
+import { Plus } from "lucide-react";
+import { CreateDialogContent } from "./createDialogContent";
+interface AddButtonProps {
+  model: ValidModels;
+}
+type ValidModels = "concerts" | "posts";
 
-export function EditPostButton({ model }: PrismaPost) {
+export function CreatePostButton({ model }: AddButtonProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">
-          <PencilLine />
-          Change
+          <Plus />
+          Add
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
-        <EditDialogContent model={model} />
+        <CreateDialogContent model={model} />
       </DialogContent>
     </Dialog>
   );
