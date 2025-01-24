@@ -1,5 +1,5 @@
 import type { UseFormReturn } from "react-hook-form";
-import * as z from "zod";
+import type * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import { postFormSchema } from "./postSchema";
+import type { postFormSchema } from "./postSchema";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface PostFormProps {
@@ -262,7 +262,7 @@ export function PostForm({
           )}
         />
 
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit">
           {isSubmitting ? submittingButtonText : submitButtonText}
         </Button>
       </form>
