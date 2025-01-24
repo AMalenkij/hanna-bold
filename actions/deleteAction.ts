@@ -1,22 +1,17 @@
 "use server";
+
 import { prisma } from "@/utils/prisma";
+import { revalidatePath } from "next/cache";
 
-type ValidModels = "concerts" | "posts";
-
-export async function deleteAction(id: string, model: ValidModels) {
+export async function deleteAction(id: string) {
   try {
-    const prismaModel = prisma[model];
-
-    await prismaModel.delete({
+    await prisma.posts.delete({
       where: { id },
     });
-
+    revalidatePath("/posts"); // Adjust path as needed
     return { success: true };
   } catch (error) {
-    console.error(`Failed to delete ${model}:`, error);
-    return {
-      success: false,
-      error: `Failed to delete ${model}`,
-    };
+    console.error("Failed to delete posts:", error);
+    return { success: false, error: "Failed to delete posts" };
   }
 }

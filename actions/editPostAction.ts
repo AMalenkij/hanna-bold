@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function editPostAction(id: string, formData: FormData) {
+export async function EditPostAction(id: string, formData: FormData) {
   try {
     const post = await prisma.posts.update({
       where: { id },
