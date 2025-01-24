@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
-import { ClerkProvider } from "@clerk/nextjs";
 import "@/app/globals.css";
-import { Montserrat } from "next/font/google";
-import Header from "./header/header";
-import { ThemeProvider } from "@/providers/themeProvider";
+import { Toaster } from "@/components/ui/toaster";
 import { routing } from "@/i18n/routing";
+import { ThemeProvider } from "@/providers/themeProvider";
+import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import { Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 import Footer from "./footer";
-import { Toaster } from "@/components/ui/toaster";
-import { BaseDialog } from "./baseDialog";
+import Header from "./header/header";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -29,7 +28,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const { locale } = await params;
+  const { locale } = params;
   // Validate locale
   if (!routing.locales.includes(locale as any)) {
     notFound();
@@ -54,7 +53,6 @@ export default async function LocaleLayout({
               <Header />
               {children}
               <Toaster />
-              <BaseDialog />
               <span className="px-6 font-black text-[24vw]">HANNA</span>
               <div
                 className="relative h-[500px]"
