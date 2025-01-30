@@ -10,6 +10,7 @@ import { Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 import Footer from "./footer";
 import Header from "./header/header";
+import type { Locale } from "@/types/common";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -26,11 +27,14 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Locale };
 }) {
-  const { locale } = params;
-  // Validate locale
-  if (!routing.locales.includes(locale as any)) {
+  // Асинхронное получение параметров
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+
+  // Проверка локали после await
+  if (!routing.locales.includes(locale)) {
     notFound();
   }
 
