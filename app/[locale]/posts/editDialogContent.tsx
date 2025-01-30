@@ -1,29 +1,29 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
-import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { postFormSchema } from "./postSchema";
-import { PostForm } from "./postForm";
-import type * as z from "zod";
 import { EditPostAction } from "@/actions/editPostAction";
+import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import type * as z from "zod";
+import { PostForm } from "./postForm";
+import { postFormSchema, type PostFormValues } from "./postSchema";
 
 interface EditDialogContentProps {
   model: {
     id: string;
     title_en: string;
     title_pl: string;
-    title_uk: string;
+    title_ua: string;
     intro_en: string;
     intro_pl: string;
-    intro_uk: string;
+    intro_ua: string;
     content_en: string;
     content_pl: string;
-    content_uk: string;
+    content_ua: string;
     slug: string;
-    photo: string;
+    photo: string | null;
     is_published: boolean;
   };
 }
@@ -33,58 +33,57 @@ export function EditDialogContent({ model }: EditDialogContentProps) {
   const { toast } = useToast();
   const router = useRouter();
 
-  const form = useForm({
+  const form = useForm<PostFormValues>({
     resolver: zodResolver(postFormSchema),
     defaultValues: {
       title_en: "",
-      intro_en: "",
-      content_en: "",
+      title_ua: "",
       title_pl: "",
+      intro_en: "",
+      intro_ua: "",
       intro_pl: "",
+      content_en: "",
+      content_ua: "",
       content_pl: "",
-      title_uk: "",
-      intro_uk: "",
-      content_uk: "",
       slug: "",
-      photo: "",
+      photo: undefined,
       is_published: false,
     },
   });
 
   useEffect(() => {
     form.reset({
-      // Multilingual titles
-      title_en: model.title_en || "",
-      title_uk: model.title_uk || "",
-      title_pl: model.title_pl || "",
-      // Multilingual intros
-      intro_en: model.intro_en || "",
-      intro_uk: model.intro_uk || "",
-      intro_pl: model.intro_pl || "",
-      // Multilingual content
-      content_en: model.content_en || "",
-      content_uk: model.content_uk || "",
-      content_pl: model.content_pl || "",
-      // Other fields
-      slug: model.slug || "",
-      photo: model.photo || "",
-      is_published: model.is_published || false,
+      title_en: model.title_en,
+      title_ua: model.title_ua,
+      title_pl: model.title_pl,
+      intro_en: model.intro_en,
+      intro_ua: model.intro_ua,
+      intro_pl: model.intro_pl,
+      content_en: model.content_en,
+      content_ua: model.content_ua,
+      content_pl: model.content_pl,
+      slug: model.slug,
+      photo: model.photo ?? undefined,
+      is_published: model.is_published,
     });
   }, [model, form]);
 
-  const onSubmit = async (values: z.infer<typeof postFormSchema>) => {
+  const onSubmit = async (values: PostFormValues) => {
     setIsSubmitting(true);
     const formData = new FormData();
     formData.append("id", model.id);
-    Object.entries(values).forEach(([key, value]) => {
-      formData.append(key, value?.toString() || "");
-    });
+
+    for (const [key, value] of Object.entries(values)) {
+      if (value !== undefined && value !== null) {
+        formData.append(key, value.toString());
+      }
+    }
 
     try {
       const result = await EditPostAction(model.id, formData);
       if (result.success) {
         toast({
-          title: `Post updated`,
+          title: "Post updated",
           description: "The post has been successfully updated.",
         });
         router.refresh();

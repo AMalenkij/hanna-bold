@@ -26,17 +26,17 @@ model Posts {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
   // Многоязычные заголовки
   title_en String
-  title_uk String
+  title_ua String
   title_pl String
 
   // Многоязычные интро
   intro_en String
-  intro_uk String
+  intro_ua String
   intro_pl String
 
   // Многоязычный контент
   content_en String
-  content_uk String
+  content_ua String
   content_pl String
 
   // Служебные поля

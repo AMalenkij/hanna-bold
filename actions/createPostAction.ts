@@ -10,17 +10,17 @@ export async function createPostAction(formData: FormData) {
       data: {
         // Multilingual titles
         title_en: formData.get("title_en") as string,
-        title_uk: formData.get("title_uk") as string,
+        title_ua: formData.get("title_ua") as string,
         title_pl: formData.get("title_pl") as string,
 
         // Multilingual intros
         intro_en: formData.get("intro_en") as string,
-        intro_uk: formData.get("intro_uk") as string,
+        intro_ua: formData.get("intro_ua") as string,
         intro_pl: formData.get("intro_pl") as string,
 
         // Multilingual content
         content_en: formData.get("content_en") as string,
-        content_uk: formData.get("content_uk") as string,
+        content_ua: formData.get("content_ua") as string,
         content_pl: formData.get("content_pl") as string,
 
         // Slug
