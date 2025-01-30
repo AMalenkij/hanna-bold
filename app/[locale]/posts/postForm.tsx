@@ -1,5 +1,3 @@
-import type { UseFormReturn } from "react-hook-form";
-import type * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,10 +8,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
-import type { postFormSchema } from "./postSchema";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import dynamic from "next/dynamic";
+import type { UseFormReturn } from "react-hook-form";
+import type * as z from "zod";
+import type { postFormSchema } from "./postSchema";
 
 interface PostFormProps {
   form: UseFormReturn<z.infer<typeof postFormSchema>>;
@@ -23,6 +24,12 @@ interface PostFormProps {
   submittingButtonText: string;
 }
 
+// Динамический импорт TiptapEditor для клиентской стороны
+const TiptapEditor = dynamic(() => import("@/components/tiptapEditor"), {
+  ssr: false,
+  loading: () => <div className="h-[200px] animate-pulse rounded-lg border" />,
+});
+
 export function PostForm({
   form,
   onSubmit,
@@ -30,20 +37,6 @@ export function PostForm({
   submitButtonText,
   submittingButtonText,
 }: PostFormProps) {
-  // Автогенерация slug при изменении заголовка
-  // const generateSlug = (title: string) => {
-  //   return title
-  //     .toLowerCase()
-  //     .replace(/[^a-z0-9]+/g, "-")
-  //     .replace(/^-+|-+$/g, "")
-  //     .trim();
-  // };
-
-  // const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   form.setValue("title_en", e.target.value);
-  //   form.setValue("slug", generateSlug(e.target.value));
-  // };
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -62,11 +55,7 @@ export function PostForm({
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Post title"
-                      {...field}
-                      // onChange={handleTitleChange}
-                    />
+                    <Input placeholder="Post title" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -98,10 +87,9 @@ export function PostForm({
                 <FormItem>
                   <FormLabel>Content</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Post content"
-                      className="h-48"
-                      {...field}
+                    <TiptapEditor
+                      content={field.value}
+                      onChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />
@@ -148,10 +136,9 @@ export function PostForm({
                 <FormItem>
                   <FormLabel>Zawartość</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Zawartość posta"
-                      className="h-48"
-                      {...field}
+                    <TiptapEditor
+                      content={field.value}
+                      onChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />
@@ -163,7 +150,7 @@ export function PostForm({
           <TabsContent value="ua">
             <FormField
               control={form.control}
-              name="title_uk"
+              name="title_ua"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Заголовок</FormLabel>
@@ -176,7 +163,7 @@ export function PostForm({
             />
             <FormField
               control={form.control}
-              name="intro_uk"
+              name="intro_ua"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Вступ</FormLabel>
@@ -193,15 +180,14 @@ export function PostForm({
             />
             <FormField
               control={form.control}
-              name="content_uk"
+              name="content_ua"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Контент</FormLabel>
                   <FormControl>
-                    <Textarea
-                      placeholder="Контент публікації"
-                      className="h-48"
-                      {...field}
+                    <TiptapEditor
+                      content={field.value}
+                      onChange={field.onChange}
                     />
                   </FormControl>
                   <FormMessage />
@@ -218,12 +204,7 @@ export function PostForm({
             <FormItem>
               <FormLabel>Slug</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="post-slug"
-                  {...field}
-                  // readOnly
-                  // className="bg-muted"
-                />
+                <Input placeholder="post-slug" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -237,7 +218,11 @@ export function PostForm({
             <FormItem>
               <FormLabel>Photo URL (Optional)</FormLabel>
               <FormControl>
-                <Input placeholder="https://example.com/photo.jpg" {...field} />
+                <Input
+                  placeholder="https://example.com/photo.jpg"
+                  {...field}
+                  value={field.value ?? ""}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
