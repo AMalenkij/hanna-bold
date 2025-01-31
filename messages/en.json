@@ -29,6 +29,15 @@
     "subHeader": "Concerts",
     "noConcerts": "There are no scheduled concerts at the moment."
   },
+  "Posts": {
+    "readOn": "read on",
+    "title": "POST",
+    "sectionName": "What's going on",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Add",
+    "noPosts": "No posts found"
+  },
   "Components": {
     "footer": {
       "reachOut": "/ Reach out",

@@ -29,6 +29,15 @@
     "subHeader": "Koncerty",
     "noConcerts": "W tej chwili nie ma zaplanowanych koncertów."
   },
+  "Posts": {
+    "readOn": "czytaj dalej",
+    "title": "POST",
+    "sectionName": "Co się dzieje",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "create": "Dodaj",
+    "noPosts": "Brak postów"
+  },
   "Components": {
     "footer": {
       "reachOut": "/ Skontaktuj się",

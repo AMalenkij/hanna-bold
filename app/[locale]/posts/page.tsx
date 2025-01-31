@@ -10,13 +10,16 @@ import { ActionButton } from "./actionButton";
 import { EditDialogContent } from "./editDialogContent";
 import { DeleteDialogContent } from "./deleteDialogContent";
 import { CreateDialogContent } from "./createDialogContent";
+import { getTranslations } from "next-intl/server";
+
 interface PostsProps {
   searchParams: { page?: string; locale: Locale };
   params: { locale: Locale };
 }
 
 export default async function Posts({ searchParams, params }: PostsProps) {
-  // Исправление 1: Асинхронное получение параметров
+  const t = await getTranslations("Posts");
+
   const resolvedParams = await params;
   const resolvedSearchParams = await searchParams;
 
@@ -29,9 +32,8 @@ export default async function Posts({ searchParams, params }: PostsProps) {
     locale,
   });
 
-  //  Проверка наличия постов перед доступом к posts[0]
   if (!posts.length) {
-    return <div>No posts found</div>;
+    return <div>{t("noPosts")}</div>;
   }
 
   return (
@@ -41,10 +43,10 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         date={splitTimestamp(posts[0].created_at)}
         announcement={posts[0][`intro_${locale}`]}
         imgSrc={posts[0].photo ?? ""}
-        buttonLabel="read on"
+        buttonLabel={t("readOn")}
         linkScr={`posts/${posts[0].slug}`}
       />
-      <SubHeader title="POST" sectionName="What's going on" />
+      <SubHeader title={t("title")} sectionName={t("sectionName")} />
       <div className="grid grid-cols-2 gap-x-3 gap-y-10 px-4">
         {posts.map((post) => (
           <div key={post.id} className="relative">
@@ -56,7 +58,11 @@ export default async function Posts({ searchParams, params }: PostsProps) {
               imageUrl={post.photo ?? ""}
               slug={post.slug}
             />
-            <ActionButton actionType="delete" buttonLabel="Delete" icon={<X />}>
+            <ActionButton
+              actionType="delete"
+              buttonLabel={t("delete")}
+              icon={<X />}
+            >
               <DeleteDialogContent
                 id={post.id}
                 title={post[`title_${locale}`]}
@@ -65,12 +71,16 @@ export default async function Posts({ searchParams, params }: PostsProps) {
             </ActionButton>
             <ActionButton
               actionType="edit"
-              buttonLabel="Edit"
+              buttonLabel={t("edit")}
               icon={<PencilLine />}
             >
               <EditDialogContent model={post} />
             </ActionButton>
-            <ActionButton actionType="create" buttonLabel="Add" icon={<Plus />}>
+            <ActionButton
+              actionType="create"
+              buttonLabel={t("create")}
+              icon={<Plus />}
+            >
               <CreateDialogContent model="posts" />
             </ActionButton>
           </div>
