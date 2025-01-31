@@ -1,4 +1,9 @@
 {
+  "metadata": {
+    "title": "Hanna - Oficjalna Strona Zespołu Rockowego",
+    "description": "Oficjalna strona zespołu rockowego Hanna. Aktualności, koncerty, muzyka i merch. Dostępne po polsku, ukraińsku i angielsku.",
+    "keywords": "zespół rockowy, Hanna, muzyka, koncerty, Ukraina, Polska, daty tras"
+  },
   "Header": {
     "MobileMenu": {
       "SheetDescription": "Menu",
