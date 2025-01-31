@@ -36,7 +36,9 @@
     "delete": "Delete",
     "edit": "Edit",
     "create": "Add",
-    "noPosts": "No posts found"
+    "noPosts": "No posts found",
+    "prev": "Previous",
+    "next": "Next"
   },
   "Components": {
     "footer": {

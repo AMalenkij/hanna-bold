@@ -89,6 +89,8 @@ export default async function Posts({ searchParams, params }: PostsProps) {
       <Pagination
         currentPage={pagination.currentPage}
         totalPages={pagination.totalPages}
+        prevLabel={t("prev")}
+        nextLabel={t("next")}
       />
     </>
   );

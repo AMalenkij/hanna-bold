@@ -3,17 +3,22 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
+interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  prevLabel: string;
+  nextLabel: string;
+}
+
 export function Pagination({
   currentPage,
   totalPages,
-}: {
-  currentPage: number;
-  totalPages: number;
-}) {
+  prevLabel,
+  nextLabel,
+}: PaginationProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Исправление 3: Безопасное создание URLSearchParams
   const createPageURL = (pageNumber: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", pageNumber.toString());
@@ -27,7 +32,7 @@ export function Pagination({
           href={createPageURL(currentPage - 1)}
           className="rounded border px-4 py-2"
         >
-          Предыдущая
+          {prevLabel}
         </Link>
       )}
 
@@ -48,7 +53,7 @@ export function Pagination({
           href={createPageURL(currentPage + 1)}
           className="rounded border px-4 py-2"
         >
-          Следующая
+          {nextLabel}
         </Link>
       )}
     </div>
