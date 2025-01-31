@@ -1,9 +1,9 @@
 "use client";
 
 import {
-  ABOUT_ROUTE,
+  // ABOUT_ROUTE,
   CONCERTS,
-  CONTACTS_ROUTE,
+  // CONTACTS_ROUTE,
   HOME_ROUTE,
 } from "@/constants/routes";
 import { useTranslations } from "next-intl";
@@ -43,16 +43,16 @@ export default function NavMenu({ variant, className }: NavMenuProps) {
       href: CONCERTS,
       isActive: isActive(CONCERTS),
     },
-    {
-      label: tNavMenu("about"),
-      href: ABOUT_ROUTE,
-      isActive: isActive(ABOUT_ROUTE),
-    },
-    {
-      label: tNavMenu("contacts"),
-      href: CONTACTS_ROUTE,
-      isActive: isActive(CONTACTS_ROUTE),
-    },
+    // {
+    //   label: tNavMenu("about"),
+    //   href: ABOUT_ROUTE,
+    //   isActive: isActive(ABOUT_ROUTE),
+    // },
+    // {
+    //   label: tNavMenu("contacts"),
+    //   href: CONTACTS_ROUTE,
+    //   isActive: isActive(CONTACTS_ROUTE),
+    // },
   ];
 
   return (
