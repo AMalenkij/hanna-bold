@@ -28,13 +28,11 @@ export default function NewsCard({
             <img
               src={`https://hanna-s3.s3.amazonaws.com/static/${imageUrl}`}
               alt={title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover saturate-50 transition-all duration-500 hover:saturate-100"
             />
           </div>
           {/* Date */}
-          <div className="text-muted-foreground text-sm">
-            {`/ ${date.date} ${date.month} ${date.year} ${date.time}`}
-          </div>
+          <div className="text-muted-foreground text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
           {/* Title */}
           <h2 className="font-bold text-4xl leading-tight tracking-tight">
             {title}
