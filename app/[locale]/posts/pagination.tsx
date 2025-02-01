@@ -40,8 +40,8 @@ export function Pagination({
         <Link
           key={page}
           href={createPageURL(page)}
-          className={`rounded border px-4 py-2 ${
-            currentPage === page ? "bg-blue-500 text-white" : ""
+          className={`border px-4 py-2 ${
+            currentPage === page ? "bg-red-600 text-white" : ""
           }`}
         >
           {page}
@@ -51,7 +51,7 @@ export function Pagination({
       {currentPage < totalPages && (
         <Link
           href={createPageURL(currentPage + 1)}
-          className="rounded border px-4 py-2"
+          className="border px-4 py-2"
         >
           {nextLabel}
         </Link>
