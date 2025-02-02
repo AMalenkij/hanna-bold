@@ -43,7 +43,7 @@ export default async function LocaleLayout({
       <html lang={locale} suppressHydrationWarning>
         <head />
         <body
-          className={`${montserrat.className} bg-black text-stone-50 antialiased`}
+          className={`${montserrat.className} bg-background text-foreground antialiased`}
         >
           <ThemeProvider
             attribute="class"

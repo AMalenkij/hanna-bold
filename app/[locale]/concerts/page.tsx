@@ -38,7 +38,7 @@ export default async function Concerts() {
       <ProtectPage>
         <ConcertFormDialog />
       </ProtectPage>
-      <div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
+      <div className="-z-10 absolute inset-0 bg-red-600 mix-blend-multiply" />
       <SubHeader
         title={t("subHeader")}
         counter={totalConcerts}

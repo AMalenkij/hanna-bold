@@ -19,14 +19,14 @@ const SubHeader: FC<SubHeaderProps> = ({
     return (
       <section
         aria-labelledby={title}
-        className="mx-auto flex w-full items-center justify-between px-4 py-6 text-foreground"
+        className="mx-auto flex h-72 w-full items-center justify-between px-4 py-6 text-foreground"
       >
         <div className="space-y-1">
           <div className="flex gap-3">
-            <h1 className="font-semibold text-5xl uppercase tracking-tight">
+            <h1 className="font-semibold text-9xl uppercase tracking-tight">
               {title}
             </h1>
-            <div className="flex flex-col items-center justify-between">
+            <div className="flex flex-col items-center justify-between py-4">
               <p className="text-center font-semibold text-lg">[ {counter} ]</p>
               <TriangleIcon />
             </div>
@@ -38,13 +38,13 @@ const SubHeader: FC<SubHeaderProps> = ({
   return (
     <section
       aria-labelledby={title}
-      className="mx-auto flex w-full items-center justify-between px-4 py-6 text-foreground"
+      className="mx-auto flex h-72 w-full items-center justify-between px-4 py-6 text-foreground"
     >
       <div className="space-y-1">
         <p className="text-sm">/ {sectionName}</p>
-        <h1 className="font-bold text-6xl tracking-tight">{title}</h1>
+        <h1 className="font-bold text-9xl tracking-tight">{title}</h1>
       </div>
-      <ArrowIcon className="h-24 w-24 rotate-90" />
+      <ArrowIcon className="h-32 w-32 rotate-90" />
     </section>
   );
 };

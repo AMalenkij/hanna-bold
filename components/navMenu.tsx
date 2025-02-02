@@ -63,7 +63,7 @@ export default function NavMenu({ variant, className }: NavMenuProps) {
           href={item.href}
           label={item.label}
           isActive={item.isActive}
-          className={variant === "footer" ? "px-0" : "px-1 lg:px-2"}
+          variant={variant === "footer" ? "link" : "linkSecond"}
         />
       ))}
     </nav>

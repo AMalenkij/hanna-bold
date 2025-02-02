@@ -4,7 +4,7 @@ import { Link } from "@/i18n/routing";
 
 export default function Logo() {
   return (
-    <Link href={HOME_ROUTE} className="font-black text-[37px] text-primary">
+    <Link href={HOME_ROUTE} className="font-black text-[37px]">
       {COMPANY_NAME}
     </Link>
   );

@@ -6,24 +6,34 @@ interface NavLinkProps {
   label: string;
   isActive: boolean;
   className?: string;
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "linkSecond"
+    | "link"
+    | null
+    | undefined;
 }
 
 export default function NavLink({
   href,
   label,
   isActive,
-  className,
+  variant,
 }: NavLinkProps) {
   if (isActive) {
     return (
-      <Button variant="link" size="sm" className={className} disabled>
+      <Button variant="link" disabled>
         {label}
       </Button>
     );
   }
 
   return (
-    <Button asChild variant="link" size="sm" className={className}>
+    <Button asChild variant={variant}>
       <Link href={href}>{label}</Link>
     </Button>
   );

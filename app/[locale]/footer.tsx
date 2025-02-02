@@ -9,7 +9,7 @@ export default function Footer() {
   const t = useTranslations("Components.footer");
 
   return (
-    <footer className="fixed bottom-0 w-full bg-red-500 px-6 py-16 text-white">
+    <footer className="fixed bottom-0 w-full bg-red-500 px-6 py-16 text-background">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Reach out */}
@@ -55,7 +55,7 @@ export default function Footer() {
           {/* Nav */}
           <div className="space-y-4">
             <div className="text-sm opacity-80">{t("nav")}</div>
-            <NavMenu className="flex flex-col items-start" />
+            <NavMenu variant="footer" className="flex flex-col items-start" />
           </div>
         </div>
 
