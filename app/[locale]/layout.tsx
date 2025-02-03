@@ -59,7 +59,7 @@ export default async function LocaleLayout({
                 HANNA
               </span>
               <div
-                className="relative h-[500px]"
+                className="relative h-[800px] sm:h-[500px]"
                 style={{
                   clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
                 }}
