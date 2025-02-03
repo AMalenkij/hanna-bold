@@ -19,6 +19,7 @@ export async function updateConcertAction(id: string, formData: FormData) {
     });
     return { success: true, concert: updatedConcert };
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to update concert:", error);
     return { success: false, error: "Failed to update concert" };
   }

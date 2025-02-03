@@ -34,6 +34,7 @@ export async function createPostAction(formData: FormData) {
 
     return { success: true, post };
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to create post:", error);
     return { success: false, error: "Failed to create post" };
   }

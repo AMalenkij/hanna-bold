@@ -11,6 +11,7 @@ export async function deleteAction(id: string) {
     revalidatePath("/posts"); // Adjust path as needed
     return { success: true };
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to delete posts:", error);
     return { success: false, error: "Failed to delete posts" };
   }

@@ -18,6 +18,7 @@ export async function createConcertAction(formData: FormData) {
     });
     return { success: true, concert };
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to create concert:", error);
     return { success: false, error: "Failed to create concert" };
   }

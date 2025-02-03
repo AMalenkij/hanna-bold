@@ -9,6 +9,7 @@ export async function deleteConcertAction(id: string) {
     });
     return { success: true };
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to delete concert:", error);
     return { success: false, error: "Failed to delete concert" };
   }

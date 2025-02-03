@@ -35,6 +35,7 @@ export async function EditPostAction(id: string, formData: FormData) {
 
     return { success: true, post };
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to edit post:", error);
     return { success: false, error: "Failed to edit post" };
   }
