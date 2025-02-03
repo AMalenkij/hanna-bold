@@ -16,19 +16,6 @@ export interface ConcertCardProps {
   children: ReactNode;
 }
 
-export interface Concert {
-  id: string; // Уникальный идентификатор концерта (ObjectId)
-  title: string; // Название концерта
-  date: Date; // Дата и время концерта
-
-  city: string; // Город (например, "Gdańsk")
-  venueName: string; // Название площадки (например, "Plama GAK")
-  address: string; // Полный адрес (например, "Pilotów 11, 80-460 Gdańsk")
-
-  link?: string; // Опциональная ссылка (например, на билеты)
-  isPublished: boolean; // Флаг публикации концерта
-}
-
 export type FormMode = "create" | "edit" | "del";
 
 export const concertFormSchema = z.object({

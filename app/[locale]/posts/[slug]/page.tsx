@@ -4,14 +4,14 @@ import type { Locale } from "@/types/common";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
     locale: Locale;
-  };
+  }>;
 }
-// post[`title_${locale}`
 export default async function Detail({ params }: PageProps) {
   const { slug, locale } = await params;
+
   const { post } = await getPostByLocale({ slug, locale });
 
   if (!post) return notFound();

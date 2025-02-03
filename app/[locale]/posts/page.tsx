@@ -1,3 +1,4 @@
+import LenisProvider from "@/providers/LenisProvider";
 import HeroCard from "@/components/heroCard";
 import NewsCard from "@/components/newsCard";
 import SubHeader from "@/components/subHeader";
@@ -13,19 +14,16 @@ import { CreateDialogContent } from "./createDialogContent";
 import { getTranslations } from "next-intl/server";
 
 interface PostsProps {
-  searchParams: { page?: string; locale: Locale };
-  params: { locale: Locale };
+  searchParams: Promise<{ page: string }>;
+  params: Promise<{ locale: Locale }>;
 }
 
 export default async function Posts({ searchParams, params }: PostsProps) {
   const t = await getTranslations("Posts");
-
-  const resolvedParams = await params;
+  const { locale } = await params;
   const resolvedSearchParams = await searchParams;
-
   const pageParam = resolvedSearchParams.page;
   const page = pageParam ? Number.parseInt(pageParam) : 1;
-  const { locale } = resolvedParams;
 
   const { posts, pagination } = await getPaginatedPosts({
     page,
@@ -37,7 +35,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
   }
 
   return (
-    <>
+    <LenisProvider>
       <HeroCard
         heading={posts[0][`title_${locale}`]}
         date={splitTimestamp(posts[0].created_at)}
@@ -81,7 +79,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
               buttonLabel={t("create")}
               icon={<Plus />}
             >
-              <CreateDialogContent model="posts" />
+              <CreateDialogContent />
             </ActionButton>
           </div>
         ))}
@@ -92,6 +90,6 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         prevLabel={t("prev")}
         nextLabel={t("next")}
       />
-    </>
+    </LenisProvider>
   );
 }

@@ -43,10 +43,10 @@ const TiptapEditor = ({ content, onChange }: TiptapEditorProps) => {
     ],
     content,
     editorProps: {
-      handleKeyDown: (view, event) => {
+      handleKeyDown: (_view, event) => {
         if (event.key === "Enter" && !event.shiftKey) {
           event.preventDefault();
-          editor.commands.splitBlock();
+          editor?.commands.splitBlock();
           return true;
         }
         return false;
@@ -73,7 +73,7 @@ const TiptapEditor = ({ content, onChange }: TiptapEditorProps) => {
       return;
     }
 
-    // Добавляем протокол если отсутствует
+    // Add protocol if missing
     let finalUrl = url;
     if (!/^https?:\/\//i.test(url)) {
       finalUrl = `https://${url}`;
@@ -82,7 +82,7 @@ const TiptapEditor = ({ content, onChange }: TiptapEditorProps) => {
     editor?.chain().focus().setLink({ href: finalUrl }).run();
   }, [editor]);
 
-  const isActive = (name: string, attributes?: any) => {
+  const isActive = (name: string, attributes?: Record<string, unknown>) => {
     return editor?.isActive(name, attributes) ? "bg-accent" : "";
   };
 

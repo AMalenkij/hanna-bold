@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Concert } from "./types";
+import type { Concert } from "@prisma/client";
 
 type DialogMode = "create" | "edit" | "del";
 

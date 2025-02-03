@@ -1,17 +1,11 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useConcertFormStore } from "./concertStore";
-import type { Concert } from "./types";
+import type { Concert } from "@prisma/client";
 
-interface EditConcertButtonProps {
-  concert: Concert;
-}
-
-export function DeleteConcertButton({ concert }: EditConcertButtonProps) {
+export function DeleteConcertButton({ concert }: { concert: Concert }) {
   const openDialog = useConcertFormStore((state) => state.openDelDialog);
-
   return (
     <Button variant="link" onClick={() => openDialog(concert)}>
       <X />

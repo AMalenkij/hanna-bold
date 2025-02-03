@@ -53,7 +53,7 @@ export function ConcertFormDialog() {
     closeDialog();
   };
 
-  const dialogTitle = {
+  const dialogTitle: Record<"del" | "create" | "edit", string> = {
     del: "Delete Concert",
     create: "Add Concert",
     edit: "Edit Concert",

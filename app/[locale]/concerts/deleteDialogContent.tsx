@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { DialogFooter } from "@/components/ui/dialog";
-import type { Concert } from "./types";
+import type { Concert } from "@prisma/client";
 
 interface DeleteDialogContentProps {
   concert: Concert | null;
@@ -19,7 +19,7 @@ export function DeleteDialogContent({
   isDeleting,
 }: DeleteDialogContentProps) {
   const [isConfirmed, setIsConfirmed] = useState(false);
-
+  if (!concert) return null;
   return (
     <div className="py-4">
       <p className="mb-4">

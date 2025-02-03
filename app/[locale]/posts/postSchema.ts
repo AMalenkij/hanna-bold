@@ -15,7 +15,7 @@ export const postFormSchema = z.object({
   content_pl: z.string().min(1, "Content in Polish is required"),
 
   slug: z.string().min(1, "Slug is required"),
-  photo: z.string().nullish(), // Используем nullish вместо optional().nullable()
+  photo: z.string(),
   is_published: z.boolean().default(false),
 });
 
