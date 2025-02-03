@@ -1,75 +1,96 @@
-import HeroComponent from "@/components/heroComponent";
-import NewsCard from "@/components/newsCard";
-import NewsHeader from "@/components/newsHeader";
 import LenisProvider from "@/providers/LenisProvider";
-import HeroImg from "@/public/img/Hero.jpg";
-import NewsImg from "@/public/img/newsImg.jpg";
-import { prisma } from "@/utils/prisma";
+import HeroCard from "@/components/heroCard";
+import NewsCard from "@/components/newsCard";
+import SubHeader from "@/components/subHeader";
+import getPaginatedPosts from "@/utils/getPaginatedPosts";
+import splitTimestamp from "@/utils/splitTimestamp";
+import { Pagination } from "./posts/pagination";
+import type { Locale } from "@/types/common";
+import { X, Plus, PencilLine } from "lucide-react";
+import { ActionButton } from "./posts/actionButton";
+import { EditDialogContent } from "./posts/editDialogContent";
+import { DeleteDialogContent } from "./posts/deleteDialogContent";
+import { CreateDialogContent } from "./posts/createDialogContent";
+import { getTranslations } from "next-intl/server";
 
-const content = {
-  hero: {
-    heading: "Change in Band Lineup",
-    date: "2024.02.26",
-    announcement:
-      "With deep sadness, we announce that our talented drummer, Kir, has left our band due to relocating to another country. This is a tough moment for us as Kir was not only a professional but also a good friend.",
-    buttonLabel: "Read On",
-  },
-  newsSection: {
-    sectionName: "What's going on",
-    title: "News",
-    cards: [
-      {
-        date: "2024.02.26",
-        title: "Change in Band Lineup",
-        content:
-          "With deep sadness, we announce that our talented drummer, Kir, has left our band due to relocating to another country. This is a tough moment for us as Kir was not only a professional but also a good friend.",
-        imageUrl: HeroImg.src,
-      },
-      {
-        date: "2024.02.26",
-        title: "Recording New Tracks in Warsaw!",
-        content:
-          "Hey! We recently visited a studio in Warsaw, crafting some fresh tunes. It takes a bit of time, but we're putting our hearts into it to bring you something special.",
-        imageUrl: NewsImg.src,
-      },
-    ],
-  },
-};
+interface PostsProps {
+  searchParams: Promise<{ page: string }>;
+  params: Promise<{ locale: Locale }>;
+}
 
-export default async function Home() {
-  const posts = await prisma.posts.findMany({
-    where: {
-      is_published: true, // Условие на опубликованные посты
-    },
-    orderBy: {
-      created_at: "desc", // Сортировка от нового к старому
-    },
-    take: 4, // Ограничение на 4 записи
+export default async function Home({ searchParams, params }: PostsProps) {
+  // Исправление 1: Асинхронное получение параметров
+  const t = await getTranslations("Posts");
+
+  const { locale } = await params;
+  const resolvedSearchParams = await searchParams;
+  const pageParam = resolvedSearchParams?.page;
+  const page = pageParam ? Number.parseInt(pageParam) : 1;
+  const { posts, pagination } = await getPaginatedPosts({
+    page,
+    locale,
   });
+
+  if (!posts.length) {
+    return <div>{t("noPosts")}</div>;
+  }
 
   return (
     <LenisProvider>
-      <HeroComponent
-        heading={content.hero.heading}
-        date={content.hero.date}
-        announcement={content.hero.announcement}
-        buttonLabel={content.hero.buttonLabel}
+      <HeroCard
+        heading={posts[0][`title_${locale}`]}
+        date={splitTimestamp(posts[0].created_at)}
+        announcement={posts[0][`intro_${locale}`]}
+        imgSrc={posts[0].photo ?? ""}
+        buttonLabel={t("readOn")}
+        linkScr={`posts/${posts[0].slug}`}
       />
-      <NewsHeader
-        sectionName={content.newsSection.sectionName}
-        title={content.newsSection.title}
-      />
-      <div className="grid grid-cols-2 gap-3 px-4">
-        {posts.map((elm) => (
-          <NewsCard
-            key={elm.id}
-            date={elm.created_at}
-            title={elm.title_en}
-            content={elm.intro_en}
-            imageUrl={elm.photo}
-          />
+      <SubHeader title={t("title")} sectionName={t("sectionName")} />
+      <div className="grid grid-cols-2 gap-x-3 gap-y-10 px-4">
+        {posts.map((post) => (
+          <div key={post.id} className="relative">
+            <NewsCard
+              key={post.id}
+              date={splitTimestamp(post.created_at)}
+              title={post[`title_${locale}`]}
+              content={post[`intro_${locale}`]}
+              imageUrl={post.photo ?? ""}
+              slug={post.slug}
+            />
+            <ActionButton
+              actionType="delete"
+              buttonLabel={t("delete")}
+              icon={<X />}
+            >
+              <DeleteDialogContent
+                id={post.id}
+                title={post[`title_${locale}`]}
+                model="posts"
+              />
+            </ActionButton>
+            <ActionButton
+              actionType="edit"
+              buttonLabel={t("edit")}
+              icon={<PencilLine />}
+            >
+              <EditDialogContent model={post} />
+            </ActionButton>
+            <ActionButton
+              actionType="create"
+              buttonLabel={t("create")}
+              icon={<Plus />}
+            >
+              <CreateDialogContent />
+            </ActionButton>
+          </div>
         ))}
       </div>
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalPages={pagination.totalPages}
+        prevLabel={t("prev")}
+        nextLabel={t("next")}
+      />
     </LenisProvider>
   );
 }
