@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import type * as z from "zod";
 import { PostForm } from "./postForm";
 import { postFormSchema, type PostFormValues } from "./postSchema";
 
