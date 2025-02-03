@@ -1,27 +1,28 @@
-import { prisma } from "@/utils/prisma"
+import { prisma } from "@/utils/prisma";
+import type { Locale } from "@/types/common";
 
 export default async function getPostByLocale({
-	slug,
-	locale,
+  slug,
+  locale,
 }: {
-	slug: string
-	locale: "en" | "pl" | "uk"
+  slug: string;
+  locale: Locale;
 }) {
-	const post = await prisma.posts.findFirst({
-		where: {
-			slug: slug,
-			[`title_${locale}`]: { not: undefined },
-		},
-		select: {
-			id: true,
-			slug: true,
-			[`title_${locale}`]: true,
-			[`intro_${locale}`]: true,
-			[`content_${locale}`]: true,
-			photo: true,
-			created_at: true,
-		},
-	})
+  const post = await prisma.posts.findFirst({
+    where: {
+      slug: slug,
+      [`title_${locale}`]: { not: undefined },
+    },
+    select: {
+      id: true,
+      slug: true,
+      [`title_${locale}`]: true,
+      [`intro_${locale}`]: true,
+      [`content_${locale}`]: true,
+      photo: true,
+      created_at: true,
+    },
+  });
 
-	return { post }
+  return { post };
 }
