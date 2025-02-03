@@ -9,8 +9,9 @@ import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { postFormSchema } from "./postSchema";
 import { PostForm } from "./postForm";
 import { createPostAction } from "@/actions/createPostAction";
+import type * as z from "zod";
 
-export function CreateDialogContent({ model }) {
+export function CreateDialogContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
@@ -33,20 +34,20 @@ export function CreateDialogContent({ model }) {
     },
   });
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: z.infer<typeof postFormSchema>) => {
     setIsSubmitting(true);
     const formData = new FormData();
 
-    Object.entries(values).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(values)) {
       formData.append(key, value?.toString() || "");
-    });
+    }
 
     try {
       const result = await createPostAction(formData);
 
       if (result.success) {
         toast({
-          title: `Post created`,
+          title: "Post created",
           description: "The post has been successfully created.",
         });
 
