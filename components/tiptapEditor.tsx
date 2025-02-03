@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import Link from "@tiptap/extension-link";
+import { Link } from "@tiptap/extension-link";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import {
