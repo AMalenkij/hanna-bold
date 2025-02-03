@@ -1,38 +1,45 @@
 import { create } from "zustand";
-// import type { Concert } from "./types";
 
-// type DialogMode = "create" | "edit" | "del";
+interface Concert {
+  id: string;
+  title: string;
+  // другие свойства...
+}
 
-// interface FormStore {
-//   isOpen: boolean;
-//   mode: DialogMode;
-//   current: Concert | null;
-//   setCurrent: (data: Concert | null) => void;
-//   // openCreateDialog: () => void;
-//   // openEditDialog: (concert: Concert) => void;
-//   openDelDialog: (concert: Concert) => void;
-//   closeDialog: () => void;
-// }
+type DialogMode = "create" | "edit" | "del";
 
-export const useModelFormStore = create((set) => ({
+interface FormStore {
+  isOpen: boolean;
+  mode: DialogMode | null; // Учитывайте, что это может быть null
+  current: Concert | null;
+  setCurrent: (data: Concert | null) => void;
+  openCreateDialog: (data: Concert) => void;
+  openEditDialog: (data: Concert) => void;
+  openDelDialog: (data: Concert) => void;
+  closeDialog: () => void;
+}
+
+export const useModelFormStore = create<FormStore>((set) => ({
   isOpen: false,
-  mode: "",
+  mode: null,
   current: null,
-  setCurrent: (data: never) => set({ current: data }),
+  setCurrent: (data: Concert | null) => set({ current: data }),
 
-  openCreateDialog: (data: never) =>
+  openCreateDialog: (data: Concert) =>
     set({
       isOpen: true,
-      mode: "add",
+      mode: "create",
       current: data,
     }),
-  openEditDialog: (data) =>
+
+  openEditDialog: (data: Concert) =>
     set({
       isOpen: true,
       mode: "edit",
       current: data,
     }),
-  openDelDialog: (data: never) =>
+
+  openDelDialog: (data: Concert) =>
     set({
       isOpen: true,
       mode: "del",
@@ -42,6 +49,7 @@ export const useModelFormStore = create((set) => ({
   closeDialog: () =>
     set({
       isOpen: false,
+      mode: null,
       current: null,
     }),
 }));
