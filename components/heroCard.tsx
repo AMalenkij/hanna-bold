@@ -35,14 +35,12 @@ export default function HeroCard({
       {/* Red layer over background */}
       <div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
       {/* Content */}
-      <h1 className="pt-10 font-semibold text-[150px] text-stone-50">
+      <h1 className="pt-10 font-semibold text-[24vw] text-stone-50 sm:text-[10vw]">
         {heading}
       </h1>
       <div className="absolute bottom-0 z-10 px-6">
-        <p className="mb-4 text-lg text-stone-200">
-          {`/ ${date.date} ${date.month} ${date.year} ${date.time}`}
-        </p>
-        <p className="mb-6 w-[600px] text-primary text-xl">{announcement}</p>
+        <p className="mb-4 text-lg text-stone-200">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
+        <p className="mb-6 text-primary text-xl sm:w-[600px]">{announcement}</p>
 
         <Button
           asChild

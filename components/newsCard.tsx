@@ -32,13 +32,13 @@ export default function NewsCard({
             />
           </div>
           {/* Date */}
-          <div className="text-muted-foreground text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
+          <div className="text-muted-foreground text-xs sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
           {/* Title */}
-          <h2 className="font-bold text-4xl leading-tight tracking-tight">
+          <h2 className="font-bold text-2xl  sm:text-4xl leading-tight tracking-tight">
             {title}
           </h2>
           {/* Content */}
-          <p className="text-muted-foreground text-xl leading-relaxed">
+          <p className="text-muted-foreground sm:text-xl leading-relaxed">
             {content}
           </p>
         </div>

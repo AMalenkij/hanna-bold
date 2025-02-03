@@ -23,10 +23,10 @@ const SubHeader: FC<SubHeaderProps> = ({
       >
         <div className="space-y-1">
           <div className="flex gap-3">
-            <h1 className="font-semibold text-9xl uppercase tracking-tight">
+            <h1 className="font-semibold text-5xl uppercase tracking-tight sm:text-9xl">
               {title}
             </h1>
-            <div className="flex flex-col items-center justify-between py-4">
+            <div className="flex flex-col items-center justify-between sm:py-4">
               <p className="text-center font-semibold text-lg">[ {counter} ]</p>
               <TriangleIcon />
             </div>
