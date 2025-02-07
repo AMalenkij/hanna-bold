@@ -12,6 +12,7 @@ import { EditDialogContent } from "./posts/editDialogContent";
 import { DeleteDialogContent } from "./posts/deleteDialogContent";
 import { CreateDialogContent } from "./posts/createDialogContent";
 import { getTranslations } from "next-intl/server";
+import ProtectPage from "@/components/protectPage";
 
 interface PostsProps {
   searchParams: Promise<{ page: string }>;
@@ -19,7 +20,6 @@ interface PostsProps {
 }
 
 export default async function Home({ searchParams, params }: PostsProps) {
-  // Исправление 1: Асинхронное получение параметров
   const t = await getTranslations("Posts");
 
   const { locale } = await params;
@@ -57,31 +57,33 @@ export default async function Home({ searchParams, params }: PostsProps) {
               imageUrl={post.photo ?? ""}
               slug={post.slug}
             />
-            <ActionButton
-              actionType="delete"
-              buttonLabel={t("delete")}
-              icon={<X />}
-            >
-              <DeleteDialogContent
-                id={post.id}
-                title={post[`title_${locale}`]}
-                model="posts"
-              />
-            </ActionButton>
-            <ActionButton
-              actionType="edit"
-              buttonLabel={t("edit")}
-              icon={<PencilLine />}
-            >
-              <EditDialogContent model={post} />
-            </ActionButton>
-            <ActionButton
-              actionType="create"
-              buttonLabel={t("create")}
-              icon={<Plus />}
-            >
-              <CreateDialogContent />
-            </ActionButton>
+            <ProtectPage>
+              <ActionButton
+                actionType="delete"
+                buttonLabel={t("delete")}
+                icon={<X />}
+              >
+                <DeleteDialogContent
+                  id={post.id}
+                  title={post[`title_${locale}`]}
+                  model="posts"
+                />
+              </ActionButton>
+              <ActionButton
+                actionType="edit"
+                buttonLabel={t("edit")}
+                icon={<PencilLine />}
+              >
+                <EditDialogContent model={post} />
+              </ActionButton>
+              <ActionButton
+                actionType="create"
+                buttonLabel={t("create")}
+                icon={<Plus />}
+              >
+                <CreateDialogContent />
+              </ActionButton>
+            </ProtectPage>
           </div>
         ))}
       </div>
