@@ -38,14 +38,16 @@ export default function HeroCard({
       <h1 className="pt-10 font-semibold text-[24vw] text-stone-50 sm:text-[10vw]">
         {heading}
       </h1>
-      <div className="absolute bottom-0 z-10 px-6">
-        <p className="mb-4 text-lg text-stone-200">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
-        <p className="mb-6 text-primary text-xl sm:w-[600px]">{announcement}</p>
+      <div className="absolute bottom-0 z-10 px-6 ">
+        <p className="mb-4 text-lg text-stone-50">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
+        <p className="mb-6 border-stone-50 border-l-2 pl-2 text-stone-50 text-xl sm:w-[600px]">
+          {announcement}
+        </p>
 
         <Button
           asChild
           variant="link"
-          className="mb-6 border-foreground text-3xl uppercase"
+          className="mb-6 text-3xl text-stone-50 uppercase"
         >
           <Link href={linkScr}>{buttonLabel}</Link>
         </Button>

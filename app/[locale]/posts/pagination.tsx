@@ -41,7 +41,7 @@ export function Pagination({
           key={page}
           href={createPageURL(page)}
           className={`border px-4 py-2 ${
-            currentPage === page ? "bg-red-600 text-white" : ""
+            currentPage === page ? "bg-red-600 text-foreground" : ""
           }`}
         >
           {page}

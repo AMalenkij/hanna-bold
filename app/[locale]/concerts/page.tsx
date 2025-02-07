@@ -30,15 +30,17 @@ export default async function Concerts() {
 
   return (
     <div className="mx-auto">
-      <Image
-        className="-z-20 relative w-full bg-cover"
-        alt="Concert Photo"
-        src={ConcertImg}
-      />
+      <div className="relative">
+        <Image
+          className="-z-20 relative w-full bg-cover"
+          alt="Concert Photo"
+          src={ConcertImg}
+        />
+        <div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
+      </div>
       <ProtectPage>
         <ConcertFormDialog />
       </ProtectPage>
-      <div className="-z-10 absolute inset-0 bg-red-600 mix-blend-multiply" />
       <SubHeader
         title={t("subHeader")}
         counter={totalConcerts}
