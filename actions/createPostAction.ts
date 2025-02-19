@@ -10,7 +10,7 @@ export async function createPostAction(formData: FormData) {
     const file = formData.get("photo") as File;
     const slug = formData.get("slug") as string;
 
-    let photoUrl = null;
+    let photoUrl = "";
     if (file.size > 0) {
       photoUrl = await uploadImageToCloudinary(file, slug);
     }
