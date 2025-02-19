@@ -57,7 +57,6 @@ export default async function Posts({ searchParams, params }: PostsProps) {
               imageUrl={post.photo ?? ""}
               slug={post.slug}
             />
-
             <ProtectPage>
               <ActionButton
                 actionType="delete"
@@ -66,6 +65,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
               >
                 <DeleteDialogContent
                   id={post.id}
+                  slug={post.slug}
                   title={post[`title_${locale}`]}
                   model="posts"
                 />

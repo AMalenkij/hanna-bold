@@ -8,23 +8,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { PostForm } from "./postForm";
 import { postFormSchema, type PostFormValues } from "./postSchema";
+import type { Posts } from "@prisma/client";
 
 interface EditDialogContentProps {
-  model: {
-    id: string;
-    title_en: string;
-    title_pl: string;
-    title_ua: string;
-    intro_en: string;
-    intro_pl: string;
-    intro_ua: string;
-    content_en: string;
-    content_pl: string;
-    content_ua: string;
-    slug: string;
-    photo: string | null;
-    is_published: boolean;
-  };
+  model: Posts;
 }
 
 export function EditDialogContent({ model }: EditDialogContentProps) {
@@ -45,7 +32,7 @@ export function EditDialogContent({ model }: EditDialogContentProps) {
       content_ua: "",
       content_pl: "",
       slug: "",
-      photo: undefined,
+      photo: model.photo, // Передаем текущее фото
       is_published: false,
     },
   });
@@ -62,7 +49,7 @@ export function EditDialogContent({ model }: EditDialogContentProps) {
       content_ua: model.content_ua,
       content_pl: model.content_pl,
       slug: model.slug,
-      photo: model.photo ?? undefined,
+      photo: model.photo,
       is_published: model.is_published,
     });
   }, [model, form]);
@@ -70,10 +57,11 @@ export function EditDialogContent({ model }: EditDialogContentProps) {
   const onSubmit = async (values: PostFormValues) => {
     setIsSubmitting(true);
     const formData = new FormData();
-    formData.append("id", model.id);
 
     for (const [key, value] of Object.entries(values)) {
-      if (value !== undefined && value !== null) {
+      if (value instanceof File) {
+        formData.append(key, value);
+      } else {
         formData.append(key, value.toString());
       }
     }

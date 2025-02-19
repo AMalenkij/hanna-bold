@@ -41,7 +41,7 @@ model Posts {
 
   // Служебные поля
   slug         String  @unique
-  photo        String?
+  photo        String
   is_published Boolean @default(false)
 
   // Временные метки

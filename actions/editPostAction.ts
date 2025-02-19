@@ -1,11 +1,19 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
+import { uploadImageToCloudinary } from "./uploadImageToCloudinary";
 
 const prisma = new PrismaClient();
 
 export async function EditPostAction(id: string, formData: FormData) {
   try {
+    const file = formData.get("photo") as File;
+    const slug = formData.get("slug") as string;
+    let photoUrl = "";
+    if (file.size > 0) {
+      photoUrl = await uploadImageToCloudinary(file, slug);
+    }
+
     const post = await prisma.posts.update({
       where: { id },
       data: {
@@ -28,7 +36,8 @@ export async function EditPostAction(id: string, formData: FormData) {
         slug: formData.get("slug") as string,
 
         // Optional fields
-        photo: (formData.get("photo") as string) || null,
+        // photo: (formData.get("photo") as string) || null,
+        photo: photoUrl,
         is_published: formData.get("is_published") === "true",
       },
     });

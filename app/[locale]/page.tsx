@@ -65,6 +65,7 @@ export default async function Home({ searchParams, params }: PostsProps) {
               >
                 <DeleteDialogContent
                   id={post.id}
+                  slug={post.slug}
                   title={post[`title_${locale}`]}
                   model="posts"
                 />

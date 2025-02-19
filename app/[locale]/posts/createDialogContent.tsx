@@ -6,17 +6,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { postFormSchema } from "./postSchema";
+import { postFormSchema, type PostFormValues } from "./postSchema";
 import { PostForm } from "./postForm";
 import { createPostAction } from "@/actions/createPostAction";
-import type * as z from "zod";
 
 export function CreateDialogContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
-  const form = useForm({
+  // Use the PostFormValues type from your schema file
+  const form = useForm<PostFormValues>({
     resolver: zodResolver(postFormSchema),
     defaultValues: {
       title_en: "",
@@ -29,17 +29,21 @@ export function CreateDialogContent() {
       content_pl: "",
       content_ua: "",
       slug: "",
-      photo: "",
+      photo: "", // This will still be string initially
       is_published: false,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof postFormSchema>) => {
+  const onSubmit = async (values: PostFormValues) => {
     setIsSubmitting(true);
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(values)) {
-      formData.append(key, value?.toString() || "");
+      if (value instanceof File) {
+        formData.append(key, value);
+      } else {
+        formData.append(key, value.toString());
+      }
     }
 
     try {
