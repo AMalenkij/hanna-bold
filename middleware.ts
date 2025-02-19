@@ -1,32 +1,36 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { clerkMiddleware, auth as clerkAuth } from "@clerk/nextjs/server";
 import createMiddleware from "next-intl/middleware";
+import { NextResponse } from "next/server";
 
-// Ваши локали и маршруты
-import { routing } from "./i18n/routing";
-
-// Middleware для обработки локализации
-const intlMiddleware = createMiddleware(routing);
-
-// Определение защищенных маршрутов
-const isProtectedRoute = createRouteMatcher(["/protected/(.*)"]); // Укажите свои защищенные маршруты
-
-// Объединение Clerk и Intl middleware
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) {
-    // Проверяем авторизацию для защищённых маршрутов
-    await auth.protect();
-  }
-
-  // Передача запроса в next-intl middleware
-  return intlMiddleware(req);
+// Конфигурация i18n
+const intlMiddleware = createMiddleware({
+  locales: ["en", "ua", "pl"],
+  defaultLocale: "en",
 });
 
-// Конфигурация matcher для Next.js
+export default clerkMiddleware(async (_auth, req) => {
+  // Сначала обрабатываем локализацию
+  const intlResponse = intlMiddleware(req);
+  if (intlResponse) return intlResponse;
+
+  // Затем проверяем защищенные маршруты
+  const { pathname } = req.nextUrl;
+
+  // Защищенные маршруты
+  const protectedPaths = ["/api/sign-cloudinary-params"];
+
+  if (protectedPaths.some((path) => pathname.startsWith(path))) {
+    const authObject = await clerkAuth();
+
+    // Check if user is signed in and has the required role
+    if (!authObject.userId || !authObject.orgRole?.includes("admin")) {
+      return NextResponse.redirect(new URL("/sign-in", req.url));
+    }
+  }
+
+  return NextResponse.next();
+});
+
 export const config = {
-  matcher: [
-    "/",
-    "/(ua|pl|en)/:path*", // Ваши локализованные маршруты
-    "/protected/:path*", // Защищённые маршруты
-    "/api/(.*)", // Обработка API
-  ],
+  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(ua|pl|en)/:path*", "/api/(.*)"],
 };
