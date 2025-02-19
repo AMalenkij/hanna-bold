@@ -15,6 +15,7 @@ import dynamic from "next/dynamic";
 import type { UseFormReturn } from "react-hook-form";
 import type * as z from "zod";
 import type { postFormSchema } from "./postSchema";
+import { CldImage } from "next-cloudinary";
 
 interface PostFormProps {
   form: UseFormReturn<z.infer<typeof postFormSchema>>;
@@ -210,25 +211,40 @@ export function PostForm({
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="photo"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Photo URL (Optional)</FormLabel>
+              <FormLabel>Image</FormLabel>
+              {field.value && typeof field.value === "string" && (
+                <div className="mb-2">
+                  <CldImage
+                    className="rounded-lg shadow"
+                    width="128"
+                    height="970"
+                    src={field.value}
+                    sizes="20vw"
+                    alt="Current post image"
+                  />
+                </div>
+              )}
               <FormControl>
                 <Input
-                  placeholder="https://example.com/photo.jpg"
-                  {...field}
-                  value={field.value ?? ""}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      field.onChange(file);
+                    }
+                  }}
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-
         <FormField
           control={form.control}
           name="is_published"
