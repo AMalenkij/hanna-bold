@@ -15,7 +15,10 @@ export const postFormSchema = z.object({
   content_pl: z.string().min(1, "Content in Polish is required"),
 
   slug: z.string().min(1, "Slug is required"),
-  photo: z.string(),
+  photo: z.union([
+    z.instanceof(File, { message: "Image is required" }),
+    z.string(),
+  ]),
   is_published: z.boolean().default(false),
 });
 
