@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 
 interface HeroCardProps {
   heading: string;
@@ -26,9 +27,12 @@ export default function HeroCard({
   return (
     <div className="relative h-[75vh]">
       <div className="-z-20 absolute aspect-[16/9] h-[75vh] w-full overflow-hidden rounded-lg bg-cover">
-        <img
-          src={`https://hanna-s3.s3.amazonaws.com/static/${imgSrc}`}
+        <Image
+          src={imgSrc}
           alt={heading}
+          width={2900}
+          height={500}
+          unoptimized
           className="h-full w-full object-cover "
         />
       </div>

@@ -4,9 +4,13 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    unoptimized: true, // Полное отключение оптимизации Next.js
+    domains: ["res.cloudinary.com"], // Разрешаем загрузку с Cloudinary
+  },
   experimental: {
     serverActions: {
-      bodySizeLimit: "10mb",
+      bodySizeLimit: "14mb",
     },
   },
 };

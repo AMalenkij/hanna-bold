@@ -2,6 +2,7 @@ import getPostByLocale from "@/utils/getPostByLocale";
 import splitTimestamp from "@/utils/splitTimestamp";
 import type { Locale } from "@/types/common";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 interface PageProps {
   params: Promise<{
@@ -30,9 +31,12 @@ export default async function Detail({ params }: PageProps) {
       <h1 className="mt-10 font-semibold text-[150px] text-stone-50">
         {title}
       </h1>
-      <img
-        src={`https://hanna-s3.s3.amazonaws.com/static/${photo}`}
+      <Image
+        src={photo}
         alt={title}
+        width={2900}
+        height={500}
+        unoptimized
         className="max-h-screen w-full object-cover"
       />
       <div className="mt-36 flex w-full flex-col items-center justify-center">

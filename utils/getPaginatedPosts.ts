@@ -8,7 +8,7 @@ export default async function getPaginatedPosts(params: {
   locale: Locale;
   published?: boolean;
 }) {
-  const { page = 1, locale = "en", published = true } = params;
+  const { page = 1, published = true } = params;
 
   const pageSize = 4;
   const skip = (page - 1) * pageSize;
@@ -17,18 +17,7 @@ export default async function getPaginatedPosts(params: {
   const posts = await prisma.posts.findMany({
     where: {
       is_published: published,
-      // Используем корректное условие для проверки непустого поля
-      // [`title_${locale}`]: { not: undefined },
     },
-    // select: {
-    //   id: true,
-    //   [`title_${locale}`]: true,
-    //   [`intro_${locale}`]: true,
-    //   [`content_${locale}`]: true,
-    //   slug: true,
-    //   photo: true,
-    //   created_at: true,
-    // },
     orderBy: { created_at: "desc" },
     take: pageSize,
     skip: skip,
@@ -38,7 +27,6 @@ export default async function getPaginatedPosts(params: {
   const totalPosts = await prisma.posts.count({
     where: {
       is_published: published,
-      // [`title_${locale}`]: { not: undefined },
     },
   });
 
