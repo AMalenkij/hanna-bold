@@ -20,7 +20,7 @@ export default function Header() {
   const tLanguageToggle = useTranslations("Header.LanguageToggle");
   const tMobileMenu = useTranslations("Header.MobileMenu");
   return (
-    <div className="fixed top-0 right-0 left-0 z-50 px-4 mix-blend-difference text-white">
+    <div className="container fixed top-0 right-0 left-0 z-50 text-white mix-blend-difference">
       <div className="flex w-full items-center justify-between">
         <Logo />
         <nav className="hidden items-center space-x-2 md:flex">
@@ -79,6 +79,12 @@ export default function Header() {
               systemLabel={tModeToggle("systemLabel")}
               toggleTheme={tModeToggle("toggleTheme")}
             />
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </SheetContent>
         </Sheet>
       </div>

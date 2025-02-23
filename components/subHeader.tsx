@@ -19,7 +19,7 @@ const SubHeader: FC<SubHeaderProps> = ({
     return (
       <section
         aria-labelledby={title}
-        className="mx-auto flex h-72 w-full items-center justify-between px-4 py-6 text-foreground"
+        className="container flex w-full items-center justify-between py-6 text-foreground"
       >
         <div className="space-y-1">
           <div className="flex gap-3">
@@ -36,15 +36,16 @@ const SubHeader: FC<SubHeaderProps> = ({
     );
   }
   return (
-    <section
-      aria-labelledby={title}
-      className="mx-auto flex h-72 w-full items-center justify-between px-4 py-6 text-foreground"
-    >
+    <section aria-labelledby={title} className="container py-6 text-foreground">
       <div className="space-y-1">
         <p className="text-sm">/ {sectionName}</p>
-        <h1 className="font-bold text-9xl tracking-tight">{title}</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="font-bold text-7xl tracking-tight md:text-9xl">
+            {title}
+          </h1>
+          <ArrowIcon className="h-16 w-16 rotate-90 md:h-32 md:w-32" />
+        </div>
       </div>
-      <ArrowIcon className="h-32 w-32 rotate-90" />
     </section>
   );
 };

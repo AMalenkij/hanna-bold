@@ -46,7 +46,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         linkScr={`posts/${posts[0].slug}`}
       />
       <SubHeader title={t("title")} sectionName={t("sectionName")} />
-      <div className="grid grid-cols-2 gap-x-3 gap-y-10 px-4">
+      <div className="grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
         {posts.map((post) => (
           <div key={post.id} className="relative">
             <NewsCard

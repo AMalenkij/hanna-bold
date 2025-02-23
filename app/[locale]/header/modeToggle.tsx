@@ -61,7 +61,7 @@ export default function ModeToggle({
 
   if (variant === "accordion") {
     return (
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion type="single" collapsible className="mb-10 w-full">
         <AccordionItem value="theme">
           <AccordionTrigger>{toggleTheme}</AccordionTrigger>
           <AccordionContent>

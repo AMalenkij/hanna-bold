@@ -55,7 +55,7 @@ export default async function LocaleLayout({
               <Header />
               {children}
               <Toaster />
-              <span className="px-6 font-black text-[21vw] sm:text-[24vw]">
+              <span className="container font-black text-7xl sm:text-[24vw]">
                 HANNA
               </span>
               <div

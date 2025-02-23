@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-interface NewsCardProps {
+type NewsCardProps = {
   date: {
     date: string;
     month: string;
@@ -12,7 +12,7 @@ interface NewsCardProps {
   content: string;
   imageUrl: string;
   slug: string;
-}
+};
 
 export default function NewsCard({
   date,
@@ -36,7 +36,7 @@ export default function NewsCard({
             />
           </div>
           {/* Date */}
-          <div className="text-muted-foreground text-xs sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
+          <div className="text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
           {/* Title */}
           <h2 className="font-bold text-2xl leading-tight tracking-tight sm:text-4xl">
             {title}
