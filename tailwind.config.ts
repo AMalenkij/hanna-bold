@@ -9,6 +9,16 @@ export default {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: "0.5rem",
+        screens: {},
+      },
+      fontSize: {
+        "10xl": "10rem", // 160px
+        "11xl": "11rem", // 176px
+        "12xl": "12rem", // 192px
+      },
       keyframes: {
         "sheet-slide-in": {
           "0%": {
