@@ -28,7 +28,7 @@ export default async function Detail({ params }: PageProps) {
 
   return (
     <div>
-      <h1 className="mt-10 font-semibold text-[150px] text-stone-50">
+      <h1 className="mt-12 mb-10 font-semibold text-8xl md:text-12xl text-foreground">
         {title}
       </h1>
       <Image
@@ -40,8 +40,8 @@ export default async function Detail({ params }: PageProps) {
         className="max-h-screen w-full object-cover"
       />
       <div className="mt-36 flex w-full flex-col items-center justify-center">
-        <p className="mb-6 w-[600px] text-muted-foreground text-sm">{`/ ${date} ${month} ${year} ${time}`}</p>
-        <div className="w-[600px] prose-headings:font-semibold prose-a:text-blue-500 hover:prose-a:underline">
+        <p className="mb-6 w-full lg:w-[600px] text-muted-foreground text-sm">{`/ ${date} ${month} ${year} ${time}`}</p>
+        <div className="w-full lg:w-[600px] prose-headings:font-semibold prose-a:text-blue-500 hover:prose-a:underline">
           {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
