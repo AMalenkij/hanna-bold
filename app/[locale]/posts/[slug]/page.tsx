@@ -28,7 +28,7 @@ export default async function Detail({ params }: PageProps) {
 
   return (
     <div>
-      <h1 className="mt-12 mb-10 font-semibold text-8xl md:text-12xl text-foreground">
+      <h1 className="mt-12 mb-10 font-semibold text-7xl md:text-12xl text-foreground">
         {title}
       </h1>
       <Image
