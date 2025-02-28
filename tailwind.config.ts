@@ -18,6 +18,9 @@ export default {
         "10xl": "10rem", // 160px
         "11xl": "11rem", // 176px
         "12xl": "12rem", // 192px
+        "13xl": "13rem",
+        "14xl": "20rem",
+        "15xl": "30rem",
       },
       keyframes: {
         "sheet-slide-in": {
