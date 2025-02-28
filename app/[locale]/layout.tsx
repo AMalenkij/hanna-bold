@@ -10,6 +10,7 @@ import { notFound } from "next/navigation";
 import Footer from "./footer";
 import Header from "./header/header";
 import type { Locale } from "@/types/common";
+import LargeTitle from "@/components/largeTitle";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -55,9 +56,7 @@ export default async function LocaleLayout({
               <Header />
               {children}
               <Toaster />
-              <span className="container font-black text-7xl sm:text-[24vw]">
-                HANNA
-              </span>
+              <LargeTitle />
               <div
                 className="relative h-[800px] sm:h-[500px]"
                 style={{
