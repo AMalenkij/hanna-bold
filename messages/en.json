@@ -54,8 +54,7 @@
     },
     "Nav": {
       "home": "Home",
-      "about": "About",
-      "contacts": "Contacts",
+      "posts": "Posts",
       "concerts": "Concerts",
       "backToHome": "Return to the main page"
     }

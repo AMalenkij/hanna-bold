@@ -54,8 +54,7 @@
     },
     "Nav": {
       "home": "Strona główna",
-      "about": "O nas",
-      "contacts": "Kontakt",
+      "posts": "Aktualności",
       "concerts": "Koncerty",
       "backToHome": "Powrót do strony głównej"
     }
