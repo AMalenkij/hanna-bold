@@ -24,7 +24,7 @@ export default function NewsCard({
   return (
     <article className="mx-auto">
       <Link href={`posts/${slug}`}>
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Image */}
           <div className="aspect-[16/9] overflow-hidden rounded-lg">
             <Image
@@ -36,7 +36,7 @@ export default function NewsCard({
             />
           </div>
           {/* Date */}
-          <div className="text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
+          <div className="pb-3 text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
           {/* Title */}
           <h2 className="font-bold text-2xl leading-tight tracking-tight sm:text-4xl">
             {title}
