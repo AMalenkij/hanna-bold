@@ -10,7 +10,7 @@ export default function ConcertCard({
 }: ConcertCardProps) {
   return (
     <>
-      <div className="mx-auto mb-6 ml-3 flex items-center">
+      <div className="mx-auto flex items-center md:mb-6 md:ml-3">
         <div className="mr-3 grid gap-y-1 px-3 py-2 text-center lg:mr-0 lg:flex lg:w-72 lg:justify-between lg:gap-x-4 lg:gap-y-0 lg:px-3">
           <div className="text-5xl lg:w-20">{date}</div>
           <div className="grid-cols-2 gap-y-1 lg:w-20">
