@@ -27,8 +27,8 @@ export default async function Detail({ params }: PageProps) {
   const { date, month, year, time } = splitTimestamp(created_at);
 
   return (
-    <div>
-      <h1 className="mt-12 mb-10 font-semibold text-6xl text-foreground md:text-12xl">
+    <div className="container">
+      <h1 className="mt-20 mb-10 font-semibold text-6xl text-foreground md:text-12xl">
         {title}
       </h1>
       <Image

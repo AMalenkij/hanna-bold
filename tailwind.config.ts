@@ -17,10 +17,10 @@ export default {
       fontSize: {
         "10xl": "10rem", // 160px
         "11xl": "11rem", // 176px
-        "12xl": "12rem", // 192px
-        "13xl": "13rem",
+        "12xl": "13rem", // 192px
+        "13xl": "15rem",
         "14xl": "18rem",
-        "15xl": "30rem",
+        "15xl": "27rem",
       },
       keyframes: {
         "sheet-slide-in": {
