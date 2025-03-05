@@ -16,6 +16,7 @@ import { ConcertFormDialog } from "./concertFormDialog";
 import { DeleteConcertButton } from "./deleteConcertButton";
 import { EditConcertButton } from "./editConcertButton";
 import ProtectPage from "@/components/protectPage";
+import RedLayer from "@/components/redLayer";
 
 export default async function Concerts() {
   const {
@@ -38,7 +39,7 @@ export default async function Concerts() {
             src={ConcertImg}
           />
         </div>
-        <div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
+        <RedLayer />
       </div>
       <ProtectPage>
         <ConcertFormDialog />

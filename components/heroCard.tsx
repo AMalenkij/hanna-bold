@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
+import RedLayer from "./redLayer";
 
 interface HeroCardProps {
   heading: string;
@@ -36,8 +37,7 @@ export default function HeroCard({
           className="h-full w-full object-cover"
         />
       </div>
-      {/* Red layer over background */}
-      <div className="-z-10 absolute inset-0 bg-red-700 mix-blend-multiply" />
+      <RedLayer />
       <div className="container">
         {/* Content */}
         <h1 className="pt-10 font-semibold text-6xl text-stone-50 leading-snug md:text-12xl">
