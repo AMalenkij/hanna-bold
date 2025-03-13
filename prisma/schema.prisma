@@ -49,3 +49,15 @@ model Posts {
 
   @@map("posts")
 }
+
+model Video {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  link           String
+  title          String
+  description_ua String
+  description_en String
+  description_pl String
+  createdAt      DateTime @default(now())
+
+  @@map("video")
+}
