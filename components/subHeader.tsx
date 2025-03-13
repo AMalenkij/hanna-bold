@@ -2,12 +2,12 @@ import ArrowIcon from "@/public/svg/arrowIcon";
 import TriangleIcon from "@/public/svg/triangleIcon";
 import type { FC } from "react";
 
-interface SubHeaderProps {
+type SubHeaderProps = {
   sectionName?: string;
   title: string;
-  variant?: string;
-  counter?: number;
-}
+  variant?: "withСounter" | "withСounterNotIcon";
+  counter?: string | number;
+};
 
 const SubHeader: FC<SubHeaderProps> = ({
   sectionName,
@@ -15,20 +15,23 @@ const SubHeader: FC<SubHeaderProps> = ({
   counter,
   variant,
 }) => {
-  if (variant === "withСounter") {
+  if (variant === "withСounter" || variant === "withСounterNotIcon") {
     return (
       <section
         aria-labelledby={title}
-        className="container flex w-full items-center justify-between py-6 text-foreground"
+        className="flex w-full items-center justify-between py-6 text-foreground"
       >
         <div className="space-y-1">
+          {variant === "withСounterNotIcon" ? (
+            <p className="text-sm">/ {sectionName}</p>
+          ) : null}
           <div className="flex gap-3">
             <h1 className="font-semibold text-5xl uppercase tracking-tight sm:text-9xl">
               {title}
             </h1>
             <div className="flex flex-col items-center justify-between sm:py-4">
               <p className="text-center font-semibold text-lg">[ {counter} ]</p>
-              <TriangleIcon />
+              {variant === "withСounter" ? <TriangleIcon /> : null}
             </div>
           </div>
         </div>
