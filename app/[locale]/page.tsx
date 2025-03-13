@@ -1,52 +1,40 @@
+import About from "@/components/about";
+import Video from "@/components/videoGallery";
 import LenisProvider from "@/providers/LenisProvider";
-import HeroCard from "@/components/heroCard";
-import NewsCard from "@/components/newsCard";
 import SubHeader from "@/components/subHeader";
-import getPaginatedPosts from "@/utils/getPaginatedPosts";
-import splitTimestamp from "@/utils/splitTimestamp";
-import { Pagination } from "./posts/pagination";
-import type { Locale } from "@/types/common";
-import { X, Plus, PencilLine } from "lucide-react";
-import { ActionButton } from "./posts/actionButton";
-import { EditDialogContent } from "./posts/editDialogContent";
-import { DeleteDialogContent } from "./posts/deleteDialogContent";
-import { CreateDialogContent } from "./posts/createDialogContent";
 import { getTranslations } from "next-intl/server";
-import ProtectPage from "@/components/protectPage";
+import { PrismaClient } from "@prisma/client";
+import NewsCard from "@/components/newsCard";
+import splitTimestamp from "@/utils/splitTimestamp";
+import Hero from "@/components/hero";
+import type { Locale } from "@/types/common";
 
-interface PostsProps {
-  searchParams: Promise<{ page: string }>;
+interface Props {
   params: Promise<{ locale: Locale }>;
 }
+const prisma = new PrismaClient();
 
-export default async function Home({ searchParams, params }: PostsProps) {
+export default async function Home({ params }: Props) {
   const t = await getTranslations("Posts");
-
+  const tVideo = await getTranslations("VideoGallery");
   const { locale } = await params;
-  const resolvedSearchParams = await searchParams;
-  const pageParam = resolvedSearchParams?.page;
-  const page = pageParam ? Number.parseInt(pageParam) : 1;
-  const { posts, pagination } = await getPaginatedPosts({
-    page,
-    locale,
+
+  // Получаем посты
+  const posts = await prisma.posts.findMany({
+    where: {
+      is_published: true,
+    },
+    orderBy: { created_at: "desc" },
+    take: 4,
   });
-
-  if (!posts.length) {
-    return <div>{t("noPosts")}</div>;
-  }
-
+  const getVideoAction = await prisma.video.findMany({});
   return (
     <LenisProvider>
-      <HeroCard
-        heading={posts[0][`title_${locale}`]}
-        date={splitTimestamp(posts[0].created_at)}
-        announcement={posts[0][`intro_${locale}`]}
-        imgSrc={posts[0].photo ?? ""}
-        buttonLabel={t("readOn")}
-        linkScr={`posts/${posts[0].slug}`}
-      />
+      {/* HERO */}
+      <Hero />
+      {/* NEWS */}
       <SubHeader title={t("title")} sectionName={t("sectionName")} />
-      <div className="grid grid-cols-2 gap-x-3 gap-y-10 px-4">
+      <div className="mb-16 grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
         {posts.map((post) => (
           <div key={post.id} className="relative">
             <NewsCard
@@ -57,42 +45,23 @@ export default async function Home({ searchParams, params }: PostsProps) {
               imageUrl={post.photo ?? ""}
               slug={post.slug}
             />
-            <ProtectPage>
-              <ActionButton
-                actionType="delete"
-                buttonLabel={t("delete")}
-                icon={<X />}
-              >
-                <DeleteDialogContent
-                  id={post.id}
-                  slug={post.slug}
-                  title={post[`title_${locale}`]}
-                  model="posts"
-                />
-              </ActionButton>
-              <ActionButton
-                actionType="edit"
-                buttonLabel={t("edit")}
-                icon={<PencilLine />}
-              >
-                <EditDialogContent model={post} />
-              </ActionButton>
-              <ActionButton
-                actionType="create"
-                buttonLabel={t("create")}
-                icon={<Plus />}
-              >
-                <CreateDialogContent />
-              </ActionButton>
-            </ProtectPage>
           </div>
         ))}
       </div>
-      <Pagination
-        currentPage={pagination.currentPage}
-        totalPages={pagination.totalPages}
-        prevLabel={t("prev")}
-        nextLabel={t("next")}
+      {/* ABPUT */}
+      <About />
+      {/* VIDEO */}
+      <Video
+        videoData={getVideoAction}
+        locale={locale}
+        header={
+          <SubHeader
+            title={tVideo("title")}
+            sectionName={tVideo("subHeader")}
+            variant="withСounterNotIcon"
+            counter="04"
+          />
+        }
       />
     </LenisProvider>
   );

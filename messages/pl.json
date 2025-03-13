@@ -29,6 +29,18 @@
     "subHeader": "Koncerty",
     "noConcerts": "W tej chwili nie ma zaplanowanych koncertów."
   },
+  "About": {
+    "title": "O nas",
+    "sectionName": "Coś o nas",
+    "descriptionOne": "Zespół HANNA: polsko-ukraińska grupa muzyczna założona przez wokalistkę i kompozytorkę Hannę Tekuczewą. Zrzeszająca w swoich szeregach muzyków dwóch narodów.",
+    "descriptionSecond": "Tworzona przez nas muzyka przeplata melancholijne melodie, motywy etniczne, elektroniczne brzmienia – wszystko to podkreślone solidną dawką przesterowanych gitar, potężnym wokalem oraz tekstami pisanymi z głębin duszy.",
+    "descriptionThird": "Naszymi utworami chcemy przekazać piękną opowieść o mroku, szczęściu, miłości, powadze, ubraną w romantyczny i niepowtarzalny wschodnioeuropejski klimat, przy którym nikt nie przejdzie obojętnie.",
+    "imageAlt": "Zdjęcie zespołu Hanna"
+  },
+  "VideoGallery": {
+    "title": "Wideo",
+    "subHeader": "Posłuchaj. Zobacz. Poczuj"
+  },
   "Posts": {
     "readOn": "czytaj dalej",
     "title": "POST",

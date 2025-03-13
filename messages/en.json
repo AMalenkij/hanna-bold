@@ -29,6 +29,18 @@
     "subHeader": "Concerts",
     "noConcerts": "There are no scheduled concerts at the moment."
   },
+  "About": {
+    "title": "About",
+    "sectionName": "Something about us",
+    "descriptionOne": "Hi there! Let's introduce ourselves. We are Hanna, a Polish - Ukrainian  band  founded by singer-songwriter and  composer Hanna Tiekucheva.",
+    "descriptionSecond": "Musicians of two nations are united here.  Melancholic melodies, ethnic  motifs, and electronic sounds are blended in our music and this all is  emphasized by a solid dose of presto guitars, powerful vocals and lyrics that flow from the depths of our souls.",
+    "descriptionThird": "With our works we want to  convey a beautiful story of darkness, happiness, love, respect framed in a romantic and unique Eastern European atmosphere, no one will remain  indifferent.",
+    "imageAlt": "Photo of the band Hanna"
+  },
+  "VideoGallery": {
+    "title": "Video",
+    "subHeader": "Listen. Watch. Feel"
+  },
   "Posts": {
     "readOn": "read on",
     "title": "POST",
