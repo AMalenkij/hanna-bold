@@ -25,7 +25,7 @@ export default function LargeTitle({ className }: LargeTitleProps) {
       </div>
 
       {/* Mobile */}
-      <div className="group relative block pb-8 md:hidden">
+      <div className="group relative block pb-12 md:hidden">
         <div className="relative inline-block text-center">
           <p className="font-black text-13xl leading-none sm:text-14xl">
             {BAND_SHORT_NAME}
