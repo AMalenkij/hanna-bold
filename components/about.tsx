@@ -41,7 +41,7 @@ export default async function About() {
       />
       <div className="flex gap-x-12 py-10">
         <LogoIcon className="hidden max-w-96 lg:block" />
-        <div className="flex w-1/2 flex-col justify-start gap-y-12 text-2xl">
+        <div className="flex w-full flex-col justify-start gap-y-12 text-xl lg:w-1/2 lg:text-2xl">
           <p>{t("descriptionOne")}</p>
           <p>{t("descriptionSecond")}</p>
           <p>{t("descriptionThird")}</p>
