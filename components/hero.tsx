@@ -46,7 +46,7 @@ export default function ParallaxEffect() {
       {/* Red overlay that moves up as we scroll */}
       <div
         ref={overlayRef}
-        className="fixed top-0 left-0 z-10 flex h-screen w-full items-center justify-center bg-red-700 font-bold text-4xl text-white mix-blend-multiply"
+        className="sticky top-0 z-10 h-screen bg-red-700 mix-blend-multiply"
       />
       <LargeTitle className="container absolute bottom-1/2 z-20 text-stone-50" />
     </div>
