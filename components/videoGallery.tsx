@@ -18,16 +18,17 @@ export default function VideoGallery({
   header: ReactNode;
 }) {
   const [currentVideo, setCurrentVideo] = useState(videoData[0]);
-
+  const description = currentVideo[`description_${locale}`];
   return (
     <div className="container mb-28">
       {header}
       <div className="flex flex-col-reverse md:flex md:flex-row ">
         {/* Блок з описом */}
         <div className="pr-4 md:w-1/4">
-          <p className="sticky top-20 text-justify text-gray-600 italic transition-opacity duration-300">
-            {currentVideo[`description_${locale}`]}
-          </p>
+          <div className="prose sticky top-20 text-justify prose-h1:font-semibold prose-h1:text-lg text-gray-600 italic prose-h1:tracking-tight">
+            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+            <div dangerouslySetInnerHTML={{ __html: description }} />
+          </div>
         </div>
 
         <div className="md:w-3/4">
