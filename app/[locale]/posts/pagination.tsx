@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
-interface PaginationProps {
+type PaginationProps = {
   currentPage: number;
   totalPages: number;
   prevLabel: string;
   nextLabel: string;
-}
+};
 
 export function Pagination({
   currentPage,
@@ -26,36 +27,30 @@ export function Pagination({
   };
 
   return (
-    <div className="mt-4 flex justify-center space-x-2">
+    <nav className="mt-24 mb-14 flex justify-center space-x-2">
       {currentPage > 1 && (
-        <Link
-          href={createPageURL(currentPage - 1)}
-          className="rounded border px-4 py-2"
-        >
-          {prevLabel}
-        </Link>
+        <Button asChild variant="outline" size="lg">
+          <Link href={createPageURL(currentPage - 1)}>{prevLabel}</Link>
+        </Button>
       )}
 
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-        <Link
-          key={page}
-          href={createPageURL(page)}
-          className={`border px-4 py-2 ${
-            currentPage === page ? "bg-red-600 text-foreground" : ""
-          }`}
-        >
-          {page}
-        </Link>
-      ))}
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) =>
+        currentPage === page ? (
+          <Button size="lg" key={page} variant="destructive" disabled>
+            {page}
+          </Button>
+        ) : (
+          <Button asChild size="lg" key={page} variant="outline">
+            <Link href={createPageURL(page)}>{page}</Link>
+          </Button>
+        ),
+      )}
 
       {currentPage < totalPages && (
-        <Link
-          href={createPageURL(currentPage + 1)}
-          className="border px-4 py-2"
-        >
-          {nextLabel}
-        </Link>
+        <Button asChild variant="outline" size="lg">
+          <Link href={createPageURL(currentPage + 1)}>{nextLabel}</Link>
+        </Button>
       )}
-    </div>
+    </nav>
   );
 }
