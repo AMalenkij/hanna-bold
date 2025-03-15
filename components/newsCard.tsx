@@ -24,7 +24,7 @@ export default function NewsCard({
   return (
     <article className="mx-auto">
       <Link href={`posts/${slug}`}>
-        <div className="space-y-3">
+        <div className="space-y-1">
           {/* Image */}
           <div className="aspect-[16/9] overflow-hidden rounded-lg">
             <Image
