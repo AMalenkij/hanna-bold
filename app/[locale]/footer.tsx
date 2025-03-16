@@ -1,7 +1,7 @@
 import Link from "next/link";
 import NavMenu from "@/components/navMenu";
 import { SOCIAL_LINKS } from "@/constants/links";
-import { CONTACT_EMAIL } from "@/constants/setting";
+import { CONTACT_EMAIL, DESIGN, LINK_DESIGN } from "@/constants/setting";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
@@ -60,8 +60,9 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 border-white/20 border-t pt-8 text-sm opacity-80">
-          {t("copyright")}
+        <div className="mt-16 flex items-end justify-between border-white/20 border-t pt-8 text-sm opacity-80">
+          <p>{t("copyright")}</p>
+          <a href={LINK_DESIGN}>{DESIGN}</a>
         </div>
       </div>
     </footer>
