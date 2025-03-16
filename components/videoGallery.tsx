@@ -8,6 +8,7 @@ import "next-cloudinary/dist/cld-video-player.css";
 import type { Locale } from "@/types/common";
 import type { ReactNode } from "react";
 import { ProseContent } from "./proseContent";
+import { Button } from "./ui/button";
 
 export default function VideoGallery({
   videoData,
@@ -42,29 +43,25 @@ export default function VideoGallery({
           {/* Список відео */}
           <div className="mt-4 space-y-2">
             {videoData.map((video, index) => (
-              <div
+              <Button
                 key={video.id}
                 onClick={() => {
                   setCurrentVideo(video);
                 }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    setCurrentVideo(video);
-                  }
-                }}
-                className={`flex cursor-pointer items-center gap-x-3 py-3 pl-3 transition-colors ${
+                variant="link"
+                className={`flex w-full justify-start gap-x-2 py-3 pl-3 ${
                   currentVideo.id === video.id
                     ? "cursor-auto bg-red-500 text-stone-50"
-                    : "border-red-500 p-3 px-4 transition-transform duration-500 hover:border-l-4"
+                    : "border-red-500 p-3 px-4"
                 }`}
               >
                 {ZeroPadIndex(index + 1)}
-                <div
+                <span
                   className={`font-medium ${currentVideo.id === video.id ? "text-stone-50" : ""}`}
                 >
                   {video.title}
-                </div>
-              </div>
+                </span>
+              </Button>
             ))}
           </div>
         </div>
