@@ -41,7 +41,7 @@ export default function HeroCard({
       <RedLayer />
       <div className="container">
         {/* Content */}
-        <h1 className="pt-10 font-semibold text-6xl text-stone-50 leading-snug md:text-12xl">
+        <h1 className="pt-10 font-semibold text-6xl text-stone-50 leading-none md:text-12xl ">
           {heading}
         </h1>
         <div className="absolute bottom-0 z-10">
