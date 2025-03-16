@@ -7,10 +7,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import ZeroPadIndex from "@/utils/zeroPadIndex";
-import RedLayer from "./redLayer";
+// import RedLayer from "./redLayer";
 import LogoIcon from "@/public/svg/logoIcon";
 import { ClientCldImage } from "@/components/clientCldImage";
 
@@ -60,19 +59,19 @@ export default async function About() {
                 <span className=" absolute bottom-4 left-6 z-0 font-semibold text-7xl text-white">
                   {ZeroPadIndex(index + 1)}
                 </span>
-                <div className="group relative">
+                <div className="relative">
                   <ClientCldImage
                     width={475}
                     height={475}
                     src={`${item.photo}-post`}
                     alt="Description of my image"
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
-                    className="-z-20 relative aspect-square object-cover group-hover:bg-opacity-95"
+                    className="-z-20 relative aspect-square object-cover"
                   />
                   {/* Red layer over background - hidden on hover */}
-                  <div className="group-hover:hidden ">
+                  {/* <div className="group-hover:hidden ">
                     <RedLayer />
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </CarouselItem>
