@@ -1,6 +1,5 @@
 import { Button } from "./ui/button";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
 import RedLayer from "./redLayer";
 import { ClientCldImage } from "@/components/clientCldImage";
 
@@ -53,7 +52,7 @@ export default function HeroCard({
           <Button
             asChild
             variant="link"
-            className="mb-6 text-2xl text-stone-50 uppercase md:text-3xl"
+            className="mb-6 border-stone-50 text-2xl text-stone-50 uppercase md:text-3xl"
           >
             <Link href={linkScr}>{buttonLabel}</Link>
           </Button>
