@@ -60,7 +60,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 flex items-end justify-between border-white/20 border-t pt-8 text-sm opacity-80">
+        <div className="mt-16 flex flex-col items-end justify-between gap-y-6 border-white/20 border-t pt-8 text-sm lg:flex-row">
           <p>{t("copyright")}</p>
           <a href={LINK_DESIGN}>{DESIGN}</a>
         </div>
