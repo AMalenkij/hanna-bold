@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import RedLayer from "./redLayer";
+import { ClientCldImage } from "@/components/clientCldImage";
 
 interface HeroCardProps {
   heading: string;
@@ -28,12 +29,12 @@ export default function HeroCard({
   return (
     <div className="relative h-[75vh]">
       <div className="-z-20 absolute aspect-[16/9] h-[75vh] w-full overflow-hidden rounded-lg bg-cover">
-        <Image
-          src={imgSrc}
-          alt={heading}
-          width={2900}
-          height={500}
-          unoptimized
+        <ClientCldImage
+          width={1920} // Базовый размер для десктопов
+          height={960}
+          src={`${imgSrc}-post`}
+          alt="Description of my image"
+          sizes="100vw"
           className="h-full w-full object-cover"
         />
       </div>

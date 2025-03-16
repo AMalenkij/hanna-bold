@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ClientCldImage } from "@/components/clientCldImage";
 
 type NewsCardProps = {
   date: {
@@ -26,15 +27,13 @@ export default function NewsCard({
       <Link href={`posts/${slug}`}>
         <div className="space-y-1">
           {/* Image */}
-          <div className="aspect-[16/9] overflow-hidden rounded-lg">
-            <Image
-              src={imageUrl}
-              alt={title}
-              width={1900}
-              height={500}
-              unoptimized
-            />
-          </div>
+          <ClientCldImage
+            width={980}
+            height={490}
+            src={`${imageUrl}-post`}
+            alt="Description of my image"
+            sizes="(max-width: 767px) 100vw, 50vw"
+          />
           {/* Date */}
           <div className="pb-3 text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
           {/* Title */}

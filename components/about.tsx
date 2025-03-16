@@ -12,6 +12,8 @@ import { getTranslations } from "next-intl/server";
 import ZeroPadIndex from "@/utils/zeroPadIndex";
 import RedLayer from "./redLayer";
 import LogoIcon from "@/public/svg/logoIcon";
+import { ClientCldImage } from "@/components/clientCldImage";
+
 export default async function About() {
   const t = await getTranslations("About");
 
@@ -41,7 +43,7 @@ export default async function About() {
       />
       <div className="flex gap-x-12 py-10">
         <LogoIcon className="hidden max-w-96 lg:block" />
-        <div className="flex w-full flex-col justify-start gap-y-12 text-xl lg:w-1/2 lg:text-2xl">
+        <div className="flex w-full flex-col justify-start gap-y-8 text-xl lg:w-1/2 lg:text-2xl">
           <p>{t("descriptionOne")}</p>
           <p>{t("descriptionSecond")}</p>
           <p>{t("descriptionThird")}</p>
@@ -59,12 +61,12 @@ export default async function About() {
                   {ZeroPadIndex(index + 1)}
                 </span>
                 <div className="group relative">
-                  <Image
-                    src={item.photo}
-                    alt={t("imageAlt")}
-                    width={1900}
-                    height={500}
-                    unoptimized
+                  <ClientCldImage
+                    width={475}
+                    height={475}
+                    src={`${item.photo}-post`}
+                    alt="Description of my image"
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
                     className="-z-20 relative aspect-square object-cover group-hover:bg-opacity-95"
                   />
                   {/* Red layer over background - hidden on hover */}
