@@ -3,6 +3,7 @@ import splitTimestamp from "@/utils/splitTimestamp";
 import type { Locale } from "@/types/common";
 import { notFound } from "next/navigation";
 import { ClientCldImage } from "@/components/clientCldImage";
+import { ProseContent } from "@/components/proseContent";
 
 interface PageProps {
   params: Promise<{
@@ -41,10 +42,7 @@ export default async function Detail({ params }: PageProps) {
       />
       <div className="mt-36 flex w-full flex-col items-center justify-center">
         <p className="mb-6 w-full text-muted-foreground text-sm lg:w-[600px]">{`/ ${date} ${month} ${year} ${time}`}</p>
-        <div className="prose prose-lg w-full prose-headings:font-semibold prose-a:text-blue-500 hover:prose-a:underline lg:w-[600px]">
-          {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-        </div>
+        <ProseContent description={content} className="w-full lg:w-[600px]" />
       </div>
     </div>
   );

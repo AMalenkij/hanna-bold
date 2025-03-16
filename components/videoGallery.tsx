@@ -7,6 +7,7 @@ import { CldVideoPlayer } from "next-cloudinary";
 import "next-cloudinary/dist/cld-video-player.css";
 import type { Locale } from "@/types/common";
 import type { ReactNode } from "react";
+import { ProseContent } from "./proseContent";
 
 export default function VideoGallery({
   videoData,
@@ -25,10 +26,7 @@ export default function VideoGallery({
       <div className="flex flex-col-reverse md:flex md:flex-row ">
         {/* Блок з описом */}
         <div className="pr-4 md:w-1/4">
-          <div className="prose sticky top-20 prose-h1:font-semibold prose-h1:text-foreground prose-h1:text-lg prose-strong:text-foreground text-foreground italic prose-h1:not-italic">
-            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-            <div dangerouslySetInnerHTML={{ __html: description }} />
-          </div>
+          <ProseContent description={description} className="sticky top-20" />
         </div>
 
         <div className="md:w-3/4">
