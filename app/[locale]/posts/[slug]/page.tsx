@@ -1,30 +1,48 @@
-import getPostByLocale from "@/utils/getPostByLocale";
+import { getPostByLocale } from "@/utils/getPostByLocale";
 import splitTimestamp from "@/utils/splitTimestamp";
 import type { Locale } from "@/types/common";
 import { notFound } from "next/navigation";
 import { ClientCldImage } from "@/components/clientCldImage";
 import { ProseContent } from "@/components/proseContent";
+import { prisma } from "@/utils/prisma";
 
-interface PageProps {
+export const revalidate = 604800; // 7 day
+
+export async function generateStaticParams() {
+  const posts = await prisma.posts.findMany({
+    where: { is_published: true },
+    select: { slug: true },
+  });
+
+  const locales: Locale[] = ["en", "ua", "pl"];
+
+  return posts.flatMap((post) =>
+    locales.map((locale) => ({
+      slug: post.slug,
+      locale,
+    })),
+  );
+}
+
+type PageProps = {
   params: Promise<{
     slug: string;
     locale: Locale;
   }>;
-}
+};
+
 export default async function Detail({ params }: PageProps) {
   const { slug, locale } = await params;
 
   const { post } = await getPostByLocale({ slug, locale });
 
   if (!post) return notFound();
-  // Деструктуризация базовых полей
+
   const { created_at, photo } = post;
 
-  // Получение локализованных полей через прямое обращение
   const title = post[`title_${locale}`] as string;
   const content = post[`content_${locale}`] as string;
 
-  // Разбор даты
   const { date, month, year, time } = splitTimestamp(created_at);
 
   return (
@@ -33,7 +51,7 @@ export default async function Detail({ params }: PageProps) {
         {title}
       </h1>
       <ClientCldImage
-        width={1920} // Базовый размер для десктопов
+        width={1920}
         height={960}
         src={`${photo}-post`}
         alt={title}
