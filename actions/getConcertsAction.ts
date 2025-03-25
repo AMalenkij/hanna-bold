@@ -1,4 +1,5 @@
 import { prisma } from "@/utils/prisma";
+import { unstable_cache } from "next/cache";
 
 export const getConcertsAction = async () => {
   const today = new Date();
@@ -11,7 +12,7 @@ export const getConcertsAction = async () => {
       }),
       prisma.concert.findMany({
         where: { date: { lt: today } },
-        orderBy: { date: "desc" }, // Changed to desc for past concerts
+        orderBy: { date: "desc" },
       }),
       prisma.concert.count({
         where: { date: { gte: today } },
@@ -29,3 +30,5 @@ export const getConcertsAction = async () => {
     totalConcerts: futureConcertsCount + pastConcertsCount,
   };
 };
+
+export const getConcertsActionCached = unstable_cache(getConcertsAction);
