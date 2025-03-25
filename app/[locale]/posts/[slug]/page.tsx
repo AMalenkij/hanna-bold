@@ -1,4 +1,4 @@
-import { getPostByLocale } from "@/utils/getPostByLocale";
+import { getPostByLocaleAction } from "@/actions/getPostByLocaleAction";
 import splitTimestamp from "@/utils/splitTimestamp";
 import type { Locale } from "@/types/common";
 import { notFound } from "next/navigation";
@@ -34,7 +34,7 @@ type PageProps = {
 export default async function Detail({ params }: PageProps) {
   const { slug, locale } = await params;
 
-  const { post } = await getPostByLocale({ slug, locale });
+  const { post } = await getPostByLocaleAction({ slug, locale });
 
   if (!post) return notFound();
 

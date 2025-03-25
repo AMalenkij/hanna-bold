@@ -1,8 +1,8 @@
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/utils/prisma";
 import type { Locale } from "@/types/common";
-import { cache } from "react";
 
-export const getPostByLocale = cache(
+export const getPostByLocaleAction = unstable_cache(
   async ({ slug, locale }: { slug: string; locale: Locale }) => {
     const post = await prisma.posts.findFirst({
       where: {
@@ -19,7 +19,6 @@ export const getPostByLocale = cache(
         created_at: true,
       },
     });
-
     return { post };
   },
 );
