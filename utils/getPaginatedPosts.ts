@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import type { Locale } from "@/types/common";
+import { unstable_cache } from "next/cache";
 
 const prisma = new PrismaClient();
 
-export default async function getPaginatedPosts(params: {
+async function fetchPaginatedPosts(params: {
   page?: number;
   locale: Locale;
   published?: boolean;
@@ -13,7 +14,6 @@ export default async function getPaginatedPosts(params: {
   const pageSize = 4;
   const skip = (page - 1) * pageSize;
 
-  // Получаем посты
   const posts = await prisma.posts.findMany({
     where: {
       is_published: published,
@@ -23,7 +23,6 @@ export default async function getPaginatedPosts(params: {
     skip: skip,
   });
 
-  // Получаем общее количество постов
   const totalPosts = await prisma.posts.count({
     where: {
       is_published: published,
@@ -40,3 +39,5 @@ export default async function getPaginatedPosts(params: {
     },
   };
 }
+
+export const getPaginatedPosts = unstable_cache(fetchPaginatedPosts);

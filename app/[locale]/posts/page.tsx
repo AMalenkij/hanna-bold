@@ -2,7 +2,7 @@ import LenisProvider from "@/providers/LenisProvider";
 import HeroCard from "@/components/heroCard";
 import NewsCard from "@/components/newsCard";
 import SubHeader from "@/components/subHeader";
-import getPaginatedPosts from "@/utils/getPaginatedPosts";
+import { getPaginatedPosts } from "@/utils/getPaginatedPosts";
 import splitTimestamp from "@/utils/splitTimestamp";
 import { Pagination } from "./pagination";
 import type { Locale } from "@/types/common";
@@ -17,6 +17,12 @@ import ProtectPage from "@/components/protectPage";
 interface PostsProps {
   searchParams: Promise<{ page: string }>;
   params: Promise<{ locale: Locale }>;
+}
+
+export const revalidate = 604800; // 7 day
+
+export async function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ua" }, { locale: "pl" }];
 }
 
 export default async function Posts({ searchParams, params }: PostsProps) {
