@@ -24,26 +24,26 @@ export async function generateMetadata({
 
     icons: {
       icon: [
-        { url: "/favicon/favicon.ico", sizes: "48x48" },
-        { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "48x48" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
       ],
-      apple: [{ url: "/favicon/apple-icon.png", sizes: "180x180" }],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
       other: [
         {
           rel: "apple-touch-icon-precomposed",
-          url: "/favicon/web-app-manifest-192x192.png",
+          url: "/web-app-manifest-192x192.png",
           sizes: "192x192",
         },
         {
           rel: "icon",
-          url: "/favicon/web-app-manifest-512x512.png",
+          url: "/web-app-manifest-512x512.png",
           type: "image/png",
           sizes: "512x512",
         },
       ],
     },
 
-    manifest: "/favicon/manifest.json",
+    manifest: "/manifest.json",
 
     openGraph: {
       type: "website",
