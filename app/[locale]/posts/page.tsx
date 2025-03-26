@@ -47,7 +47,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         heading={posts[0][`title_${locale}`]}
         date={splitTimestamp(posts[0].created_at)}
         announcement={posts[0][`intro_${locale}`]}
-        imgSrc={posts[0].photo ?? ""}
+        imgSrc={posts[0].photo}
         buttonLabel={t("readOn")}
         linkScr={`posts/${posts[0].slug}`}
       />
@@ -60,7 +60,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
               date={splitTimestamp(post.created_at)}
               title={post[`title_${locale}`]}
               content={post[`intro_${locale}`]}
-              imageUrl={post.photo ?? ""}
+              imageUrl={post.photo}
               slug={post.slug}
             />
             <ProtectPage>
