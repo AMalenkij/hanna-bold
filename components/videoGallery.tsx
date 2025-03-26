@@ -27,7 +27,10 @@ export default function VideoGallery({
       <div className="flex flex-col-reverse md:flex md:flex-row ">
         {/* Блок з описом */}
         <div className="pr-4 md:w-1/4">
-          <ProseContent description={description} className="sticky top-20" />
+          <ProseContent
+            description={description}
+            className="mt-12 lg:sticky lg:top-20 lg:mt-0"
+          />
         </div>
 
         <div className="md:w-3/4">
