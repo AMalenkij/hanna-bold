@@ -1,5 +1,4 @@
 import AmazonMusicLogo from "@/public/svg/brands/amazonMusic";
-import DeezerLogo from "@/public/svg/brands/deezer";
 import FacebookLogo from "@/public/svg/brands/facebook";
 import InstagramLogo from "@/public/svg/brands/instagram";
 import SpotifyLogo from "@/public/svg/brands/spotify";
@@ -10,36 +9,31 @@ export const SOCIAL_LINKS = [
   {
     name: "Facebook",
     icon: FacebookLogo,
-    url: "https://www.facebook.com/LegalFox.GD",
+    url: "https://www.facebook.com/share/16DYQXBVRC/",
   },
   {
     name: "Instagram",
     icon: InstagramLogo,
-    url: "https://www.instagram.com/julia.legalfox/",
+    url: "https://www.instagram.com/hanna_band_gd/",
   },
   {
     name: "Spotify",
     icon: SpotifyLogo,
-    url: "https://open.spotify.com/",
+    url: "https://open.spotify.com/artist/5FSxropE2EflPf3pLSyMhs?si=PS46gJQcQDC9Oaw74dWdDA&nd=1",
   },
   {
     name: "Amazon Music",
     icon: AmazonMusicLogo,
-    url: "https://music.amazon.com/",
-  },
-  {
-    name: "Deezer",
-    icon: DeezerLogo,
-    url: "https://www.deezer.com/",
+    url: "https://music.amazon.com/albums/B0B6239WSZ",
   },
   {
     name: "YouTube Music",
     icon: YTMusicLogo,
-    url: "https://music.youtube.com/",
+    url: "https://music.youtube.com/channel/UC2XPZACCw5h0cPPiQK7wjZQ?feature=share",
   },
   {
     name: "YouTube",
     icon: YouTubeLogo,
-    url: "https://www.youtube.com/",
+    url: "https://youtube.com/@hannaband8359?si=pGdTdU4AzObqKWXa",
   },
 ];
