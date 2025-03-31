@@ -24,8 +24,13 @@ export async function generateMetadata({
 
     icons: {
       icon: [
-        { url: "/favicon.ico", sizes: "48x48" },
-        { url: "/favicon.svg", type: "image/svg+xml" },
+        {
+          rel: "icon",
+          url: "/favicon.svg",
+          type: "image/svg+xml",
+          sizes: "any",
+        },
+        { rel: "icon", url: "/favicon.ico", sizes: "48x48" },
       ],
       apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
       other: [
