@@ -15,7 +15,7 @@ import dynamic from "next/dynamic";
 import type { UseFormReturn } from "react-hook-form";
 import type * as z from "zod";
 import type { postFormSchema } from "./postSchema";
-import { CldImage } from "next-cloudinary";
+import { ClientCldImage } from "@/components/clientCldImage";
 
 interface PostFormProps {
   form: UseFormReturn<z.infer<typeof postFormSchema>>;
@@ -219,13 +219,13 @@ export function PostForm({
               <FormLabel>Image</FormLabel>
               {field.value && typeof field.value === "string" && (
                 <div className="mb-2">
-                  <CldImage
-                    className="rounded-lg shadow"
-                    width="128"
-                    height="970"
-                    src={field.value}
-                    sizes="20vw"
+                  <ClientCldImage
+                    width={128} // Базовый размер для десктопов
+                    height={128}
+                    src={`${field.value}-post`}
                     alt="Current post image"
+                    sizes="20vw"
+                    className="rounded-lg shadow"
                   />
                 </div>
               )}

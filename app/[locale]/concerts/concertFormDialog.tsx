@@ -75,7 +75,9 @@ export function ConcertFormDialog() {
     if (mode === "edit" && currentConcert) {
       form.reset({
         title: currentConcert.title,
-        date: currentConcert.date.toISOString().slice(0, 16),
+        date: currentConcert?.date
+          ? new Date(currentConcert.date).toISOString().slice(0, 16)
+          : "",
         city: currentConcert.city,
         venueName: currentConcert.venueName,
         address: currentConcert.address,

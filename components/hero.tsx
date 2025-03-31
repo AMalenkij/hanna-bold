@@ -38,8 +38,8 @@ export default function ParallaxEffect() {
       <Image
         src={HeroImg}
         alt="Hero background"
-        width={6000}
-        height={3000}
+        width={1920}
+        height={1080}
         priority
         className="-z-40 top-0 object-cover object-center"
         style={{
