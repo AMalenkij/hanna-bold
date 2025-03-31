@@ -1,19 +1,15 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Logo from "@/components/logo";
 import NavMenu from "@/components/navMenu";
-import { Button } from "@/components/ui/button";
 import {
-  Sheet,
-  SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
 import { useTranslations } from "next-intl";
 import LanguageToggle from "./languageToggle";
 import ModeToggle from "./modeToggle";
+import ClientSheet from "@/components/cleintSheet";
 
 export default function Header() {
   const tModeToggle = useTranslations("Header.ModeToggle");
@@ -49,44 +45,37 @@ export default function Header() {
           </div>
         </nav>
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button size="icon" className="flex md:hidden">
-              <Menu className="h-10 w-10" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent className="translate-custom-translate-rotate transform transition duration-custom-long ease-custom-cubic">
-            <SheetHeader>
-              <SheetTitle>
-                <Logo />
-              </SheetTitle>
-              <SheetDescription>
-                {tMobileMenu("SheetDescription")}
-              </SheetDescription>
-            </SheetHeader>
-            <NavMenu className="mb-16 flex flex-col items-start" />
-            <LanguageToggle
-              variant="accordion"
-              englishLabel={tLanguageToggle("english")}
-              polishLabel={tLanguageToggle("polski")}
-              ukrainianLabel={tLanguageToggle("ukrainian")}
-              changeLanguageLabel={tLanguageToggle("changeLanguage")}
-            />
-            <ModeToggle
-              variant="accordion"
-              lightLabel={tModeToggle("lightLabel")}
-              darkLabel={tModeToggle("darkLabel")}
-              systemLabel={tModeToggle("systemLabel")}
-              toggleTheme={tModeToggle("toggleTheme")}
-            />
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </SheetContent>
-        </Sheet>
+        <ClientSheet>
+          <SheetHeader>
+            <SheetTitle>
+              <Logo />
+            </SheetTitle>
+            <SheetDescription>
+              {tMobileMenu("SheetDescription")}
+            </SheetDescription>
+          </SheetHeader>
+          <NavMenu className="mb-16 flex flex-col items-start" />
+          <LanguageToggle
+            variant="accordion"
+            englishLabel={tLanguageToggle("english")}
+            polishLabel={tLanguageToggle("polski")}
+            ukrainianLabel={tLanguageToggle("ukrainian")}
+            changeLanguageLabel={tLanguageToggle("changeLanguage")}
+          />
+          <ModeToggle
+            variant="accordion"
+            lightLabel={tModeToggle("lightLabel")}
+            darkLabel={tModeToggle("darkLabel")}
+            systemLabel={tModeToggle("systemLabel")}
+            toggleTheme={tModeToggle("toggleTheme")}
+          />
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </ClientSheet>
       </div>
     </div>
   );
