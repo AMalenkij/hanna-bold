@@ -22,34 +22,6 @@ export async function generateMetadata({
     category: "Music",
     metadataBase: new URL("https://hanna.gdn"),
 
-    icons: {
-      icon: [
-        {
-          rel: "icon",
-          url: "/favicon.svg",
-          type: "image/svg+xml",
-          sizes: "any",
-        },
-        { rel: "icon", url: "/favicon.ico", sizes: "48x48" },
-      ],
-      apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
-      other: [
-        {
-          rel: "apple-touch-icon-precomposed",
-          url: "/web-app-manifest-192x192.png",
-          sizes: "192x192",
-        },
-        {
-          rel: "icon",
-          url: "/web-app-manifest-512x512.png",
-          type: "image/png",
-          sizes: "512x512",
-        },
-      ],
-    },
-
-    manifest: "/manifest.json",
-
     openGraph: {
       type: "website",
       locale: ogLocaleMap[locale],
