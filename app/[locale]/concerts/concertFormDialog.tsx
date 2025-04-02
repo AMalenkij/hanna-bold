@@ -1,6 +1,6 @@
 "use client";
 
-import { createConcertAction } from "@/actions/createConcerActiont";
+import { createConcertAction } from "@/actions/createConcertAction";
 import { deleteConcertAction } from "@/actions/deleteConcertAction";
 import { updateConcertAction } from "@/actions/updateConcertAction";
 import {
