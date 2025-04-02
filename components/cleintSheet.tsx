@@ -27,7 +27,7 @@ export default function ClientSheet({
           <Menu className="h-10 w-10" />
         </Button>
       </SheetTrigger>
-      <SheetContent className="translate-custom-translate-rotate transform transition duration-custom-long ease-custom-cubic">
+      <SheetContent className="translate-custom-translate-rotate transform transition duration-custom-long ease-custom-cubic text-stone-50">
         {children}
       </SheetContent>
     </Sheet>

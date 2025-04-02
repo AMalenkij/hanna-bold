@@ -54,7 +54,7 @@ export default function Header() {
               {tMobileMenu("SheetDescription")}
             </SheetDescription>
           </SheetHeader>
-          <NavMenu className="mb-16 flex flex-col items-start" />
+          <NavMenu className="mb-16 flex flex-col items-start " />
           <LanguageToggle
             variant="accordion"
             englishLabel={tLanguageToggle("english")}

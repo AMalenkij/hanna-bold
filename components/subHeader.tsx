@@ -6,7 +6,7 @@ type SubHeaderProps = {
   sectionName?: string;
   title: string;
   variant?: "withСounter" | "withСounterNotIcon";
-  counter?: string | number;
+  counter?: string | number | Promise<string | number>;
 };
 
 const SubHeader: FC<SubHeaderProps> = ({

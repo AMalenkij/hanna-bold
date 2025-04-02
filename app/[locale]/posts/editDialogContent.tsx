@@ -1,5 +1,5 @@
 "use client";
-import { EditPostAction } from "@/actions/editPostAction";
+import { editPostAction } from "@/actions/editPostAction";
 import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -67,7 +67,7 @@ export function EditDialogContent({ model }: EditDialogContentProps) {
     }
 
     try {
-      const result = await EditPostAction(model.id, formData);
+      const result = await editPostAction(model.id, formData);
       if (result.success) {
         toast({
           title: "Post updated",
