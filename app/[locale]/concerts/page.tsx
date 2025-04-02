@@ -1,4 +1,4 @@
-import { getConcertsActionCached } from "@/actions/getConcertsAction";
+import { getConcertsAction } from "@/actions/getConcertsAction";
 import SubHeader from "@/components/subHeader";
 import {
   Accordion,
@@ -25,7 +25,7 @@ export default async function Concerts() {
     futureConcertsCount,
     pastConcertsCount,
     totalConcerts,
-  } = await getConcertsActionCached();
+  } = await getConcertsAction();
 
   const t = await getTranslations("Concerts");
 
