@@ -1,4 +1,5 @@
 "use server";
+
 import { cloudinary } from "@/lib/cloudinary";
 
 export async function deleteImageFromCloudinary(slug: string) {

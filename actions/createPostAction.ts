@@ -2,6 +2,8 @@
 
 import { PrismaClient } from "@prisma/client";
 import { uploadImageToCloudinary } from "./uploadImageToCloudinary";
+import { revalidatePath } from "next/cache";
+import { POSTS, HOME_ROUTE } from "@/constants/routes";
 
 const prisma = new PrismaClient();
 
@@ -34,7 +36,8 @@ export async function createPostAction(formData: FormData) {
         is_published: formData.get("is_published") === "true",
       },
     });
-
+    revalidatePath(POSTS);
+    revalidatePath(HOME_ROUTE);
     return { success: true, post };
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: <explanation>

@@ -1,6 +1,8 @@
 "use server";
 
 import { PrismaClient } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { CONCERTS } from "@/constants/routes";
 
 const prisma = new PrismaClient();
 
@@ -16,6 +18,7 @@ export async function createConcertAction(formData: FormData) {
         link: (formData.get("link") as string) || null,
       },
     });
+    revalidatePath(CONCERTS);
     return { success: true, concert };
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: <explanation>

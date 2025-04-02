@@ -2,14 +2,14 @@
 
 import { prisma } from "@/utils/prisma";
 import { revalidatePath } from "next/cache";
-import { POSTS } from "@/constants/routes";
+import { CONCERTS } from "@/constants/routes";
 
 export async function deleteConcertAction(id: string) {
   try {
     await prisma.concert.delete({
       where: { id },
     });
-    revalidatePath(POSTS); // Adjust path as needed
+    revalidatePath(CONCERTS); // Adjust path as needed
     return { success: true };
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: <explanation>

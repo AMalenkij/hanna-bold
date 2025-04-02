@@ -2,10 +2,12 @@
 
 import { PrismaClient } from "@prisma/client";
 import { uploadImageToCloudinary } from "./uploadImageToCloudinary";
+import { revalidatePath } from "next/cache";
+import { POSTS, HOME_ROUTE } from "@/constants/routes";
 
 const prisma = new PrismaClient();
 
-export async function EditPostAction(id: string, formData: FormData) {
+export async function editPostAction(id: string, formData: FormData) {
   try {
     const file = formData.get("photo") as File;
     const slug = formData.get("slug") as string;
@@ -41,7 +43,8 @@ export async function EditPostAction(id: string, formData: FormData) {
         is_published: formData.get("is_published") === "true",
       },
     });
-
+    revalidatePath(POSTS);
+    revalidatePath(HOME_ROUTE);
     return { success: true, post };
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: <explanation>
