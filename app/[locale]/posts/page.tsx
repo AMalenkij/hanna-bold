@@ -2,7 +2,7 @@ import LenisProvider from "@/providers/LenisProvider";
 import HeroCard from "@/components/heroCard";
 import NewsCard from "@/components/newsCard";
 import SubHeader from "@/components/subHeader";
-import { getPaginatedPosts } from "@/utils/getPaginatedPosts";
+import getPaginatedPostsAction from "@/actions/getPaginatedPostsAction";
 import splitTimestamp from "@/utils/splitTimestamp";
 import { Pagination } from "./pagination";
 import type { Locale } from "@/types/common";
@@ -14,16 +14,10 @@ import { CreateDialogContent } from "./createDialogContent";
 import { getTranslations } from "next-intl/server";
 import ProtectPage from "@/components/protectPage";
 
-interface PostsProps {
+type PostsProps = {
   searchParams: Promise<{ page: string }>;
   params: Promise<{ locale: Locale }>;
-}
-
-export const revalidate = 604800; // 7 day
-
-export async function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "ua" }, { locale: "pl" }];
-}
+};
 
 export default async function Posts({ searchParams, params }: PostsProps) {
   const t = await getTranslations("Posts");
@@ -32,7 +26,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
   const pageParam = resolvedSearchParams.page;
   const page = pageParam ? Number.parseInt(pageParam) : 1;
 
-  const { posts, pagination } = await getPaginatedPosts({
+  const { posts, pagination } = await getPaginatedPostsAction({
     page,
     locale,
   });

@@ -6,8 +6,6 @@ import { ClientCldImage } from "@/components/clientCldImage";
 import { ProseContent } from "@/components/proseContent";
 import { prisma } from "@/utils/prisma";
 
-export const revalidate = 604800; // 7 day
-
 export async function generateStaticParams() {
   const posts = await prisma.posts.findMany({
     where: { is_published: true },

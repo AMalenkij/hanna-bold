@@ -3,45 +3,24 @@ import Video from "@/components/videoGallery";
 import LenisProvider from "@/providers/LenisProvider";
 import SubHeader from "@/components/subHeader";
 import { getTranslations } from "next-intl/server";
-import { PrismaClient } from "@prisma/client";
 import NewsCard from "@/components/newsCard";
 import splitTimestamp from "@/utils/splitTimestamp";
 import Hero from "@/components/hero";
 import type { Locale } from "@/types/common";
-import { cache } from "react";
-
-export const revalidate = 604800; // 7 day
-
-export async function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "ua" }, { locale: "pl" }];
-}
+import { getVideosAndCount } from "@/actions/getVideosAction";
+import { getPostsAction } from "@/actions/getPostsAction";
 
 type Props = {
   params: Promise<{ locale: Locale }>;
 };
-const prisma = new PrismaClient();
 
-const getCachedPosts = cache(async () => {
-  return prisma.posts.findMany({
-    where: {
-      is_published: true,
-    },
-    orderBy: { created_at: "desc" },
-    take: 4,
-  });
-});
-
-const getCachedVideos = cache(async () => {
-  return prisma.video.findMany({});
-});
+const { videos, count } = await getVideosAndCount();
+const posts = await getPostsAction();
 
 export default async function Home({ params }: Props) {
   const t = await getTranslations("Posts");
   const tVideo = await getTranslations("VideoGallery");
   const { locale } = await params;
-
-  const posts = await getCachedPosts();
-  const getVideoAction = await getCachedVideos();
 
   return (
     <LenisProvider>
@@ -57,7 +36,7 @@ export default async function Home({ params }: Props) {
               date={splitTimestamp(post.created_at)}
               title={post[`title_${locale}`]}
               content={post[`intro_${locale}`]}
-              imageUrl={post.photo ?? ""}
+              imageUrl={post.photo}
               slug={post.slug}
             />
           </div>
@@ -67,14 +46,14 @@ export default async function Home({ params }: Props) {
       <About />
       {/* VIDEO */}
       <Video
-        videoData={getVideoAction}
+        videoData={videos}
         locale={locale}
         header={
           <SubHeader
             title={tVideo("title")}
             sectionName={tVideo("subHeader")}
             variant="withСounterNotIcon"
-            counter="04"
+            counter={count}
           />
         }
       />
