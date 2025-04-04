@@ -28,7 +28,7 @@ export default async function About() {
         variant="withСounterNotIcon"
         counter={publishedCount}
       />
-      <div className="flex gap-x-12 py-10">
+      <div className="flex gap-x-12 pb-10">
         <LogoIcon className="hidden max-w-96 lg:block" />
         <div className="flex w-full flex-col justify-start gap-y-8 text-xl lg:w-1/2 lg:text-2xl">
           <p>{t("descriptionOne")}</p>
