@@ -51,7 +51,7 @@ export default async function About() {
                   <ClientCldImage
                     width={475}
                     height={475}
-                    src={`${item.photo}-post`}
+                    src={item.photo}
                     alt="Description of my image"
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
                     className="-z-20 relative aspect-square object-cover"

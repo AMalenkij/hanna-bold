@@ -222,7 +222,7 @@ export function PostForm({
                   <ClientCldImage
                     width={128} // Базовый размер для десктопов
                     height={128}
-                    src={`${field.value}-post`}
+                    src={field.value}
                     alt="Current post image"
                     sizes="20vw"
                     className="rounded-lg shadow"
@@ -263,7 +263,7 @@ export function PostForm({
           )}
         />
 
-        <Button type="submit">
+        <Button type="submit" variant="link">
           {isSubmitting ? submittingButtonText : submitButtonText}
         </Button>
       </form>

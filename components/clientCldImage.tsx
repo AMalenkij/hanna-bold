@@ -1,4 +1,3 @@
-// components/ClientCldImage.tsx
 "use client";
 
 import { CldImage } from "next-cloudinary";

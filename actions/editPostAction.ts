@@ -11,6 +11,7 @@ export async function editPostAction(id: string, formData: FormData) {
   try {
     const file = formData.get("photo") as File;
     const slug = formData.get("slug") as string;
+
     let photoUrl = "";
     if (file.size > 0) {
       photoUrl = await uploadImageToCloudinary(file, slug);
@@ -38,11 +39,11 @@ export async function editPostAction(id: string, formData: FormData) {
         slug: formData.get("slug") as string,
 
         // Optional fields
-        // photo: (formData.get("photo") as string) || null,
         photo: photoUrl,
         is_published: formData.get("is_published") === "true",
       },
     });
+
     revalidatePath(POSTS);
     revalidatePath(HOME_ROUTE);
     return { success: true, post };

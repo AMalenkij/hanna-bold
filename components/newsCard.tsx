@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ClientCldImage } from "@/components/clientCldImage";
 
 type NewsCardProps = {
@@ -30,7 +29,7 @@ export default function NewsCard({
           <ClientCldImage
             width={980}
             height={490}
-            src={`${imageUrl}-post`}
+            src={imageUrl}
             alt="Description of my image"
             sizes="(max-width: 767px) 100vw, 50vw"
             className="saturate-50 transition-all duration-1000 hover:saturate-100"

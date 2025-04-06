@@ -12,9 +12,9 @@ export async function createPostAction(formData: FormData) {
     const file = formData.get("photo") as File;
     const slug = formData.get("slug") as string;
 
-    let photoUrl = "";
+    let photoPublicId = "";
     if (file.size > 0) {
-      photoUrl = await uploadImageToCloudinary(file, slug);
+      photoPublicId = await uploadImageToCloudinary(file, slug);
     }
 
     const post = await prisma.posts.create({
@@ -32,16 +32,19 @@ export async function createPostAction(formData: FormData) {
         content_pl: formData.get("content_pl") as string,
 
         slug,
-        photo: photoUrl,
+        photo: photoPublicId, // Сохраняем только public_id
         is_published: formData.get("is_published") === "true",
       },
     });
+
     revalidatePath(POSTS);
     revalidatePath(HOME_ROUTE);
     return { success: true, post };
   } catch (error) {
-    // biome-ignore lint/suspicious/noConsole: <explanation>
     console.error("Failed to create post:", error);
-    return { success: false, error: "Failed to create post" };
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Failed to create post",
+    };
   }
 }

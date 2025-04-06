@@ -2,10 +2,10 @@
 
 import { cloudinary } from "@/lib/cloudinary";
 
-export async function deleteImageFromCloudinary(slug: string) {
+export async function deleteImageFromCloudinary(photo: string) {
   try {
     // Include the folder in the public_id
-    const publicId = `hanna/${slug}-post`;
+    const publicId = photo;
 
     const cloudinaryResponse = await cloudinary.uploader.destroy(publicId, {
       resource_type: "image",

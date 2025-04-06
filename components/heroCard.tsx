@@ -31,7 +31,7 @@ export default function HeroCard({
         <ClientCldImage
           width={1920} // Базовый размер для десктопов
           height={960}
-          src={`${imgSrc}-post`}
+          src={imgSrc}
           alt="Description of my image"
           sizes="100vw"
           className="h-full w-full object-cover"

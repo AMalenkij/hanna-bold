@@ -7,9 +7,9 @@ import splitTimestamp from "@/utils/splitTimestamp";
 import { Pagination } from "./pagination";
 import type { Locale } from "@/types/common";
 import { X, Plus, PencilLine } from "lucide-react";
-import { ActionButton } from "./actionButton";
+import { ActionButton } from "@/components/actionButton";
 import { EditDialogContent } from "./editDialogContent";
-import { DeleteDialogContent } from "./deleteDialogContent";
+import { DeleteDialogContent } from "@/components/deleteDialogContent";
 import { CreateDialogContent } from "./createDialogContent";
 import { getTranslations } from "next-intl/server";
 import ProtectPage from "@/components/protectPage";
@@ -65,7 +65,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
               >
                 <DeleteDialogContent
                   id={post.id}
-                  slug={post.slug}
+                  photo={post.photo}
                   title={post[`title_${locale}`]}
                   model="posts"
                 />

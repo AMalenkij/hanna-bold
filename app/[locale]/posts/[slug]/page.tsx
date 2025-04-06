@@ -51,7 +51,7 @@ export default async function Detail({ params }: PageProps) {
       <ClientCldImage
         width={1920}
         height={960}
-        src={`${photo}-post`}
+        src={photo}
         alt={title}
         sizes="100vw"
         className="max-h-screen w-full object-cover"
