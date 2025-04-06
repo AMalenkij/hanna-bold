@@ -116,7 +116,7 @@ export function ConcertForm({
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} variant="link">
           {isSubmitting ? submittingButtonText : submitButtonText}
         </Button>
       </form>

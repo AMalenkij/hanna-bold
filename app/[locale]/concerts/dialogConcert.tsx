@@ -1,14 +1,8 @@
 "use client";
 
 import { createConcertAction } from "@/actions/createConcertAction";
-import { deleteConcertAction } from "@/actions/deleteConcertAction";
 import { updateConcertAction } from "@/actions/updateConcertAction";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -16,45 +10,24 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 import { ConcertForm, concertFormSchema } from "./concertForm";
-import { useConcertFormStore } from "./concertStore";
-import { DeleteDialogContent } from "./deleteDialogContent";
+import type { Concert } from "@prisma/client";
 
-export function ConcertFormDialog() {
-  const { isOpen, mode, currentConcert, closeDialog } = useConcertFormStore();
+type Props =
+  | {
+      mode: "create";
+      currentConcert?: null;
+    }
+  | {
+      mode: "edit";
+      currentConcert: Concert;
+    };
+
+export function DialogConcert({ mode, currentConcert }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleDelete = async () => {
-    if (!currentConcert?.id) return;
-
-    setIsDeleting(true);
-    const result = await deleteConcertAction(currentConcert.id);
-    setIsDeleting(false);
-
-    if (result.success) {
-      toast({
-        title: "Concert deleted",
-        description: "The concert has been successfully deleted.",
-      });
-      closeDialog();
-      router.refresh();
-    } else {
-      toast({
-        title: "Error",
-        description: "Failed to delete the concert. Please try again.",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const handleDialogClose = () => {
-    closeDialog();
-  };
-
-  const dialogTitle: Record<"del" | "create" | "edit", string> = {
-    del: "Delete Concert",
+  const dialogTitle: Record<"create" | "edit", string> = {
     create: "Add Concert",
     edit: "Edit Concert",
   };
@@ -122,7 +95,6 @@ export function ConcertFormDialog() {
         if (mode === "create") {
           form.reset();
         }
-        closeDialog();
         router.refresh();
       } else {
         toast({
@@ -147,28 +119,17 @@ export function ConcertFormDialog() {
     mode === "create" ? "Creating..." : "Updating...";
 
   return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && handleDialogClose()}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{dialogTitle[mode]}</DialogTitle>
-        </DialogHeader>
-        {mode === "del" ? (
-          <DeleteDialogContent
-            concert={currentConcert}
-            onDelete={handleDelete}
-            onCancel={closeDialog}
-            isDeleting={isDeleting}
-          />
-        ) : (
-          <ConcertForm
-            form={form}
-            onSubmit={onSubmit}
-            isSubmitting={isSubmitting}
-            submitButtonText={submitButtonText}
-            submittingButtonText={submittingButtonText}
-          />
-        )}
-      </DialogContent>
-    </Dialog>
+    <>
+      <DialogHeader>
+        <DialogTitle>{dialogTitle[mode]}</DialogTitle>
+      </DialogHeader>
+      <ConcertForm
+        form={form}
+        onSubmit={onSubmit}
+        isSubmitting={isSubmitting}
+        submitButtonText={submitButtonText}
+        submittingButtonText={submittingButtonText}
+      />
+    </>
   );
 }

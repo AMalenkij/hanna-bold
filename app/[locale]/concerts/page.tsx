@@ -10,13 +10,13 @@ import ConcertImg from "@/public/img/concert_hero.jpg";
 import splitTimestamp from "@/utils/splitTimestamp";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { AddConcertButton } from "./addConcertButton";
 import ConcertCard from "./concertCard";
-import { ConcertFormDialog } from "./concertFormDialog";
-import { DeleteConcertButton } from "./deleteConcertButton";
-import { EditConcertButton } from "./editConcertButton";
 import ProtectPage from "@/components/protectPage";
 import RedLayer from "@/components/redLayer";
+import { PencilLine, Plus, X } from "lucide-react";
+import { DialogConcert } from "./dialogConcert";
+import { DeleteDialogContent } from "@/components/deleteDialogContent";
+import { ActionButton } from "@/components/actionButton";
 
 export default async function Concerts() {
   const {
@@ -41,16 +41,15 @@ export default async function Concerts() {
         </div>
         <RedLayer />
       </div>
-      <ProtectPage>
-        <ConcertFormDialog />
-      </ProtectPage>
       <SubHeader
         title={t("subHeader")}
         counter={totalConcerts}
         variant="withСounter"
       />
       <ProtectPage>
-        <AddConcertButton />
+        <ActionButton actionType="create" buttonLabel="create" icon={<Plus />}>
+          <DialogConcert mode="create" />
+        </ActionButton>
       </ProtectPage>
       <Accordion
         type="single"
@@ -78,8 +77,24 @@ export default async function Concerts() {
                   link={concert.link}
                 >
                   <ProtectPage>
-                    <DeleteConcertButton concert={concert} />
-                    <EditConcertButton concert={concert} />
+                    <ActionButton
+                      actionType="delete"
+                      buttonLabel="delete"
+                      icon={<X />}
+                    >
+                      <DeleteDialogContent
+                        id={concert.id}
+                        title={concert.title}
+                        model="concerts"
+                      />
+                    </ActionButton>
+                    <ActionButton
+                      actionType="edit"
+                      buttonLabel="edit"
+                      icon={<PencilLine />}
+                    >
+                      <DialogConcert mode="edit" currentConcert={concert} />
+                    </ActionButton>
                   </ProtectPage>
                 </ConcertCard>
               ))
@@ -107,8 +122,24 @@ export default async function Concerts() {
                 link={concert.link}
               >
                 <ProtectPage>
-                  <DeleteConcertButton concert={concert} />
-                  <EditConcertButton concert={concert} />
+                  <ActionButton
+                    actionType="delete"
+                    buttonLabel="delete"
+                    icon={<X />}
+                  >
+                    <DeleteDialogContent
+                      id={concert.id}
+                      title={concert.title}
+                      model="concerts"
+                    />
+                  </ActionButton>
+                  <ActionButton
+                    actionType="edit"
+                    buttonLabel="edit"
+                    icon={<PencilLine />}
+                  >
+                    <DialogConcert mode="edit" currentConcert={concert} />
+                  </ActionButton>
                 </ProtectPage>
               </ConcertCard>
             ))}
