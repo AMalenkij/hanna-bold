@@ -45,7 +45,7 @@ export default async function Detail({ params }: PageProps) {
 
   return (
     <div className="container">
-      <h1 className="mt-20 mb-10 font-semibold text-6xl text-foreground md:text-12xl">
+      <h1 className="mt-20 mb-10 font-semibold text-6xl text-foreground sm:text-7xl md:text-8xl lg:text-9xl xl:text-10xl 2xl:text-11xl">
         {title}
       </h1>
       <ClientCldImage
@@ -56,9 +56,11 @@ export default async function Detail({ params }: PageProps) {
         sizes="100vw"
         className="max-h-screen w-full object-cover"
       />
-      <div className="mt-36 flex w-full flex-col items-center justify-center">
-        <p className="mb-6 w-full text-muted-foreground text-sm lg:w-[600px]">{`/ ${date} ${month} ${year} ${time}`}</p>
-        <ProseContent description={content} className="w-full lg:w-[600px]" />
+      <div className="flex flex-col items-center">
+        <div className="mt-36 flex flex-col items-start md:w-9/12 lg:w-3/5">
+          <p className="mb-6 text-muted-foreground text-sm">{`/ ${date} ${month} ${year} ${time}`}</p>
+          <ProseContent description={content} />
+        </div>
       </div>
     </div>
   );
