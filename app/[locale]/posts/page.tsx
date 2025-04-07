@@ -19,6 +19,19 @@ type PostsProps = {
   params: Promise<{ locale: Locale }>;
 };
 
+export async function generateStaticParams() {
+  const { pagination } = await getPaginatedPostsAction({
+    page: 1,
+    locale: "en",
+  });
+
+  const paths = [];
+  for (let i = 1; i <= pagination.totalPages; i++) {
+    paths.push({ page: i.toString() });
+  }
+  return paths;
+}
+
 export default async function Posts({ searchParams, params }: PostsProps) {
   const t = await getTranslations("Posts");
   const { locale } = await params;
