@@ -4,7 +4,7 @@ import NewsCard from "@/components/newsCard";
 import SubHeader from "@/components/subHeader";
 import getPaginatedPostsAction from "@/actions/getPaginatedPostsAction";
 import splitTimestamp from "@/utils/splitTimestamp";
-import { Pagination } from "./pagination";
+import { PaginationComponent } from "./pagination";
 import type { Locale } from "@/types/common";
 import { X, Plus, PencilLine } from "lucide-react";
 import { ActionButton } from "@/components/actionButton";
@@ -31,9 +31,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
     locale,
   });
 
-  if (!posts.length) {
-    return <div>{t("noPosts")}</div>;
-  }
+  if (!posts.length) return <div>{t("noPosts")}</div>;
 
   return (
     <LenisProvider>
@@ -88,7 +86,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
           </div>
         ))}
       </div>
-      <Pagination
+      <PaginationComponent
         currentPage={pagination.currentPage}
         totalPages={pagination.totalPages}
         prevLabel={t("prev")}

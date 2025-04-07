@@ -1,8 +1,13 @@
 "use client";
-
-import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 type PaginationProps = {
   currentPage: number;
@@ -11,7 +16,7 @@ type PaginationProps = {
   nextLabel: string;
 };
 
-export function Pagination({
+export function PaginationComponent({
   currentPage,
   totalPages,
   prevLabel,
@@ -26,31 +31,44 @@ export function Pagination({
     return `${pathname}?${params.toString()}`;
   };
 
+  // Создаем массив страниц
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <nav className="mt-24 mb-14 flex justify-center space-x-2">
-      {currentPage > 1 && (
-        <Button asChild variant="outline" size="lg">
-          <Link href={createPageURL(currentPage - 1)}>{prevLabel}</Link>
-        </Button>
-      )}
+    <Pagination className="mt-24 mb-14">
+      <PaginationContent>
+        {currentPage > 1 && (
+          <PaginationItem>
+            <PaginationPrevious
+              href={createPageURL(currentPage - 1)}
+              label={prevLabel}
+            />
+          </PaginationItem>
+        )}
 
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) =>
-        currentPage === page ? (
-          <Button size="lg" key={page} variant="destructive" disabled>
-            {page}
-          </Button>
-        ) : (
-          <Button asChild size="lg" key={page} variant="outline">
-            <Link href={createPageURL(page)}>{page}</Link>
-          </Button>
-        ),
-      )}
+        {pageNumbers.map((page) => (
+          <PaginationItem key={page}>
+            <PaginationLink
+              href={createPageURL(page)}
+              isActive={currentPage === page}
+            >
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
 
-      {currentPage < totalPages && (
-        <Button asChild variant="outline" size="lg">
-          <Link href={createPageURL(currentPage + 1)}>{nextLabel}</Link>
-        </Button>
-      )}
-    </nav>
+        {currentPage < totalPages && (
+          <PaginationItem>
+            <PaginationNext
+              href={createPageURL(currentPage + 1)}
+              label={nextLabel}
+            />
+          </PaginationItem>
+        )}
+      </PaginationContent>
+    </Pagination>
   );
 }
