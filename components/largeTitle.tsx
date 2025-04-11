@@ -11,7 +11,12 @@ type LargeTitleProps = {
 
 export default function LargeTitle({ className }: LargeTitleProps) {
   return (
-    <div className={cn("flex flex-col items-center pb-6 2xl:pb-8", className)}>
+    <div
+      className={cn(
+        "flex select-none flex-col items-center pb-6 2xl:pb-8",
+        className,
+      )}
+    >
       {/* Desctop */}
       <div className="group relative hidden md:block">
         <div className="relative inline-block text-center">

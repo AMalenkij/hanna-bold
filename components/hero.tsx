@@ -50,7 +50,7 @@ export default function ParallaxEffect() {
       />
       {/* Red overlay that moves up as we scroll */}
       <div className="absolute top-0 z-10 h-screen w-full bg-red-700 mix-blend-multiply" />
-      <LargeTitle className="container absolute bottom-1/2 isolation-auto z-20 select-none text-stone-50" />
+      <LargeTitle className="container absolute bottom-1/2 isolation-auto z-20 text-stone-50" />
     </div>
   );
 }
