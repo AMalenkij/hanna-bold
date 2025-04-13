@@ -45,7 +45,8 @@ model Posts {
   is_published Boolean @default(false)
 
   // Временные метки
-  created_at DateTime @default(now())
+  created_at DateTime  @default(now())
+  Gallery    Gallery[]
 
   @@map("posts")
 }
@@ -60,4 +61,14 @@ model Video {
   createdAt      DateTime @default(now())
 
   @@map("video")
+}
+
+model Gallery {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  publicId  String // Cloudinary public_id
+  postId    String?  @db.ObjectId
+  post      Posts?   @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@map("gallery")
 }

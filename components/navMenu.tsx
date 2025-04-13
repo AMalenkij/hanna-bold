@@ -1,6 +1,6 @@
 "use client";
 
-import { CONCERTS, POSTS, HOME_ROUTE } from "@/constants/routes";
+import { CONCERTS, POSTS, HOME_ROUTE, GALLERY } from "@/constants/routes";
 import { useTranslations } from "next-intl";
 import { useParams, usePathname } from "next/navigation";
 import NavLink from "./navLink";
@@ -42,6 +42,11 @@ export default function NavMenu({ variant, className }: NavMenuProps) {
       label: tNavMenu("concerts"),
       href: CONCERTS,
       isActive: isActive(CONCERTS),
+    },
+    {
+      label: tNavMenu("gallery"),
+      href: GALLERY,
+      isActive: isActive(GALLERY),
     },
   ];
 
