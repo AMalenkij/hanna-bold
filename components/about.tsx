@@ -29,12 +29,12 @@ export default async function About() {
         counter={publishedCount}
       />
       <div className="flex gap-x-12 pb-10">
-        <LogoIcon className="hidden max-w-96 lg:block" />
-        <div className="flex w-full flex-col justify-start gap-y-8 text-xl lg:w-1/2 lg:text-2xl">
+        <div className="flex w-full flex-col justify-start gap-y-8 md:text-lg lg:text-xl lg:w-1/2 lg:text-2xl">
           <p>{t("descriptionOne")}</p>
           <p>{t("descriptionSecond")}</p>
           <p>{t("descriptionThird")}</p>
         </div>
+        <LogoIcon className="-mt-48 hidden h-full max-w-lg lg:block" />
       </div>
       <Carousel className="container w-full">
         <CarouselContent className="-ml-6">

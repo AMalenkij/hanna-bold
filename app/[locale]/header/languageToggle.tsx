@@ -60,7 +60,12 @@ export default function LanguageToggle({
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" disabled={isPending}>
+          <Button
+            variant="outline"
+            size="icon"
+            disabled={isPending}
+            className="text-stone-50"
+          >
             <div className="h-5 w-5 uppercase">{locale}</div>
             <span className="sr-only">{changeLanguageLabel}</span>
           </Button>
