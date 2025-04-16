@@ -25,6 +25,9 @@
         "noUnusedVariables": "error",
         "useExhaustiveDependencies": "error"
       },
+      "complexity": {
+        "noForEach": "off"
+      },
       "a11y": {
         "noSvgWithoutTitle": "warn"
       },
