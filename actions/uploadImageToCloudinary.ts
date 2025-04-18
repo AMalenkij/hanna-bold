@@ -2,7 +2,7 @@
 
 import { cloudinary } from "@/lib/cloudinary";
 
-export async function uploadImageToCloudinary(file: File, slug: string) {
+export async function uploadImageToCloudinary(file: File, name: string) {
   const arrayBuffer = await file.arrayBuffer();
   const buffer = Buffer.from(arrayBuffer);
 
@@ -11,12 +11,13 @@ export async function uploadImageToCloudinary(file: File, slug: string) {
     cloudinary.uploader
       .upload_stream(
         {
-          public_id: slug, // Структурируем public_id
-          upload_preset: "hanna-bold",
-          tags: ["posts"],
+          public_id: name, // Структурируем public_id
+          // upload_preset: "hanna-bold",
+          folder: "gallery",
+          tags: ["gallery"],
           overwrite: true,
           allowed_formats: ["jpg", "png", "webp"],
-          filename_override: slug,
+          filename_override: `${name}.jpg`,
         },
         (error, result) => {
           if (error || !result) {
@@ -25,7 +26,7 @@ export async function uploadImageToCloudinary(file: File, slug: string) {
             reject(error?.message || "Upload failed");
             return;
           }
-          resolve(result.public_id); // Возвращаем только public_id
+          resolve(result.public_id); // Возвращаем public_id
         },
       )
       .end(buffer);
