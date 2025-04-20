@@ -36,7 +36,7 @@ export default async function Posts({ searchParams, params }: PostsProps) {
   const t = await getTranslations("Posts");
   const { locale } = await params;
   const resolvedSearchParams = await searchParams;
-  const pageParam = resolvedSearchParams.page;
+  const pageParam = await resolvedSearchParams.page;
   const page = pageParam ? Number.parseInt(pageParam) : 1;
 
   const { posts, pagination } = await getPaginatedPostsAction({
@@ -61,7 +61,6 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         {posts.map((post) => (
           <div key={post.id} className="relative">
             <NewsCard
-              key={post.id}
               date={splitTimestamp(post.created_at)}
               title={post[`title_${locale}`]}
               content={post[`intro_${locale}`]}
