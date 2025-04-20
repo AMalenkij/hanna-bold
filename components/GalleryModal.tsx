@@ -20,7 +20,7 @@ export function GalleryModal({
   images,
   photoId,
 }: {
-  images: { photo: string }[];
+  images: { publicId: string }[];
   photoId?: string;
 }) {
   const router = useRouter();
@@ -30,9 +30,10 @@ export function GalleryModal({
 
   // Инициализация индекса
   const initialIndex = React.useMemo(
-    () => (photoId ? images.findIndex((img) => img.photo === photoId) : 0),
+    () => (photoId ? images.findIndex((img) => img.publicId === photoId) : 0),
     [photoId, images], // Пересчёт только при изменении этих значений
   );
+  // console.log(initialIndex);
 
   // Обработчик клика по миниатюре
   const onThumbClick = React.useCallback(
@@ -77,12 +78,12 @@ export function GalleryModal({
         {/* Основная карусель */}
         <Carousel setApi={setMainApi} opts={{ startIndex: initialIndex }}>
           <CarouselContent>
-            {images.map(({ photo }) => (
-              <CarouselItem key={photo}>
+            {images.map(({ publicId }) => (
+              <CarouselItem key={publicId}>
                 <ClientCldImage
                   width={1280}
                   height={853}
-                  src={photo}
+                  src={publicId}
                   alt="Gallery image"
                 />
               </CarouselItem>
@@ -95,7 +96,7 @@ export function GalleryModal({
           <div className="absolute top-4 left-4 flex gap-x-4">
             <Button variant="outline">
               <a
-                href={`https://res.cloudinary.com/djpoy5xco/image/upload/${images[selectedIndex].photo}.jpg`}
+                href={`https://res.cloudinary.com/djpoy5xco/image/upload/${images[selectedIndex].publicId}.jpg`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open full size in new tab"
@@ -108,8 +109,8 @@ export function GalleryModal({
               variant="outline"
               onClick={() => {
                 downloadPhoto(
-                  `https://res.cloudinary.com/djpoy5xco/image/upload/${images[selectedIndex].photo}.jpg`,
-                  `${images[selectedIndex].photo}.jpg`,
+                  `https://res.cloudinary.com/djpoy5xco/image/upload/${images[selectedIndex].publicId}.jpg`,
+                  `${images[selectedIndex].publicId}.jpg`,
                 );
               }}
             >
@@ -130,8 +131,8 @@ export function GalleryModal({
           }}
         >
           <CarouselContent className="absolute">
-            {images.map(({ photo }, index) => (
-              <CarouselItem key={photo} className="-pl-22 basis-1/6">
+            {images.map(({ publicId }, index) => (
+              <CarouselItem key={publicId} className="-pl-22 basis-1/6">
                 <button
                   type="button" // Добавлен явный тип
                   onClick={() => onThumbClick(index)}
@@ -144,7 +145,7 @@ export function GalleryModal({
                   <ClientCldImage
                     width={200}
                     height={133}
-                    src={photo}
+                    src={publicId}
                     alt={`Thumbnail ${index + 1}`}
                     className=" object-cover"
                   />
