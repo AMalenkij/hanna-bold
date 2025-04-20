@@ -7,7 +7,7 @@ import { PencilLine, Plus, X } from "lucide-react";
 import Link from "next/link";
 import { CreateDialogGallery } from "./createDialogGallery";
 import { DeleteDialogContent } from "./deleteDialogGallery";
-import { EditDialogGallery } from "./editDialogGallery";
+// import { EditDialogGallery } from "./editDialogGallery";
 import { Badge } from "@/components/ui/badge";
 import { getGalleryAction } from "@/actions/getGalleryAction";
 
