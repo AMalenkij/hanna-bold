@@ -14,7 +14,7 @@ import { getGalleryAction } from "@/actions/getGalleryAction";
 const Gallery = async ({
   searchParams,
 }: {
-  searchParams: { photoId?: string };
+  searchParams: Promise<{ photoId: string | undefined }>;
 }) => {
   const [images, posts, publishedCount] = await getGalleryAction();
 
