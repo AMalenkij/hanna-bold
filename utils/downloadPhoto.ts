@@ -1,25 +1,32 @@
 function forceDownload(blobUrl: string, filename: string) {
-  let a: any = document.createElement("a");
+  const a = document.createElement("a");
   a.download = filename;
   a.href = blobUrl;
   document.body.appendChild(a);
   a.click();
-  a.remove();
+  document.body.removeChild(a);
 }
 
-export default function downloadPhoto(url: string, filename: string) {
-  if (!filename) filename = url.split("\\").pop().split("/").pop();
-  console.log(filename);
+export default function downloadPhoto(url: string, filename?: string) {
+  const finalFilename =
+    filename || url.split(/[\\/]/).pop()?.replace(/\?.*/, "") || "download";
+
   fetch(url, {
     headers: new Headers({
       Origin: location.origin,
     }),
     mode: "cors",
   })
-    .then((response) => response.blob())
-    .then((blob) => {
-      let blobUrl = window.URL.createObjectURL(blob);
-      forceDownload(blobUrl, filename);
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(`HTTP error! status: ${response.status}`);
+      return response.blob();
     })
-    .catch((e) => console.error(e));
+    .then((blob) => {
+      const blobUrl = window.URL.createObjectURL(blob);
+      forceDownload(blobUrl, finalFilename);
+      // Освобождаем ресурс после загрузки
+      setTimeout(() => window.URL.revokeObjectURL(blobUrl), 100);
+    })
+    .catch((e) => console.error("Download error:", e));
 }
