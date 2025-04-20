@@ -7,7 +7,7 @@ export const galleryFormSchema = z.object({
     z.instanceof(File, { message: "Image is required" }),
     z.string(),
   ]),
-  // postId: z.string().optional(),
+  postId: z.string().optional().nullable(),
 });
 
 export type galleryFormValues = z.infer<typeof galleryFormSchema>;
