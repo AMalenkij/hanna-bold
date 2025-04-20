@@ -9,8 +9,9 @@ import { FormGallery } from "./formGallery";
 import { universalCreateAction } from "@/actions/universalCreateAction";
 import { uploadToCloudinaryStorage } from "@/actions/uploadToCloudinaryStorage";
 import { galleryFormSchema, type galleryFormValues } from "./galleryFormSchema";
+import type { PostPreview } from "@/actions/getGalleryAction";
 
-export function CreateDialogGallery() {
+export function CreateDialogGallery({ posts }: { posts: PostPreview[] }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const router = useRouter();
@@ -21,6 +22,7 @@ export function CreateDialogGallery() {
     defaultValues: {
       name: "",
       photo: "",
+      postId: null,
     },
   });
 
@@ -32,7 +34,7 @@ export function CreateDialogGallery() {
         throw new Error("Необходимо выбрать файл");
       }
 
-      const publicId = values.name || `gallery_${Date.now()}`;
+      const publicId = values.name;
       const uploadedPhotoPublicId = await uploadToCloudinaryStorage({
         file: values.photo,
         name: publicId,
@@ -43,6 +45,7 @@ export function CreateDialogGallery() {
         model: "gallery",
         data: {
           publicId: uploadedPhotoPublicId,
+          post: values.postId ? { connect: { id: values.postId } } : undefined,
         },
       });
 
@@ -80,6 +83,7 @@ export function CreateDialogGallery() {
         isSubmitting={isSubmitting}
         submitButtonText="Добавить"
         submittingButtonText="Добавление..."
+        posts={posts}
       />
     </>
   );
