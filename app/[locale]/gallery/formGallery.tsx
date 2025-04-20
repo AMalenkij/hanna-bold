@@ -2,6 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   Form,
   FormControl,
   FormField,
@@ -12,6 +19,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { ClientCldImage } from "@/components/clientCldImage";
 import { useRef } from "react";
+import type { UseFormReturn } from "react-hook-form";
+import type { galleryFormValues } from "./galleryFormSchema";
+
+type FormGalleryProps = {
+  form: UseFormReturn<galleryFormValues>;
+  onSubmit: (values: galleryFormValues) => Promise<void>;
+  isSubmitting: boolean;
+  submitButtonText: string;
+  submittingButtonText: string;
+  posts: {
+    id: string;
+    title_en: string;
+    photo: string;
+  }[];
+};
 
 export function FormGallery({
   form,
@@ -19,10 +41,9 @@ export function FormGallery({
   isSubmitting,
   submitButtonText,
   submittingButtonText,
-  // posts,
-}) {
-  // Create a reference to the file input
-  const fileInputRef = useRef(null);
+  posts,
+}: FormGalleryProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Function to trigger the file input dialog
   const handleBrowseClick = () => {
@@ -87,7 +108,6 @@ export function FormGallery({
                       }
                     }}
                   />
-
                   {/* Custom browse button */}
                   <Button
                     type="button"
@@ -110,6 +130,40 @@ export function FormGallery({
                   )}
                 </div>
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="postId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Привязать к посту</FormLabel>
+              <Select
+                onValueChange={field.onChange}
+                value={field.value || ""}
+                defaultValue={field.value || ""}
+              >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Выберите пост" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {posts?.map((post) => (
+                    <SelectItem
+                      key={`select_${post.id}`}
+                      value={post.id}
+                      // Добавляем проверку на фокус
+                      onFocus={(e) => e.stopPropagation()}
+                    >
+                      {post.title_en}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
