@@ -3,7 +3,7 @@ import { ClientCldImage } from "@/components/clientCldImage";
 import { GalleryModal } from "@/components/GalleryModal";
 import ProtectPage from "@/components/protectPage";
 import SubHeader from "@/components/subHeader";
-import { PencilLine, Plus, X } from "lucide-react";
+import { PencilLine, Plus, X, SquareAsterisk } from "lucide-react";
 import Link from "next/link";
 import { CreateDialogGallery } from "./createDialogGallery";
 import { DeleteDialogContent } from "./deleteDialogGallery";
@@ -27,6 +27,7 @@ const Gallery = async ({
         sectionName={"Photos our gallery"}
         variant="withСounterNotIcon"
         counter={publishedCount}
+        icon={SquareAsterisk}
       />
       <main className="mx-auto mt-20 max-w-[1960px]">
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-3">

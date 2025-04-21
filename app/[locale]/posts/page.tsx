@@ -6,7 +6,7 @@ import getPaginatedPostsAction from "@/actions/getPaginatedPostsAction";
 import splitTimestamp from "@/utils/splitTimestamp";
 import { PaginationComponent } from "./pagination";
 import type { Locale } from "@/types/common";
-import { X, Plus, PencilLine } from "lucide-react";
+import { X, Plus, PencilLine, TrendingUpDown } from "lucide-react";
 import { ActionButton } from "@/components/actionButton";
 import { EditDialogContent } from "./editDialogContent";
 import { DeleteDialogContent } from "@/components/deleteDialogContent";
@@ -56,7 +56,11 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         buttonLabel={t("readOn")}
         linkScr={`posts/${posts[0].slug}`}
       />
-      <SubHeader title={t("title")} sectionName={t("sectionName")} />
+      <SubHeader
+        title={t("title")}
+        sectionName={t("sectionName")}
+        icon={TrendingUpDown}
+      />
       <div className="grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
         {posts.map((post) => (
           <div key={post.id} className="relative">

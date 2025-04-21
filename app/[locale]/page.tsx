@@ -9,6 +9,7 @@ import Hero from "@/components/hero";
 import type { Locale } from "@/types/common";
 import { getVideosAndCount } from "@/actions/getVideosAction";
 import { getPostsAction } from "@/actions/getPostsAction";
+import { MoveDown } from "lucide-react";
 
 type Props = {
   params: Promise<{ locale: Locale }>;
@@ -27,8 +28,12 @@ export default async function Home({ params }: Props) {
       {/* HERO */}
       <Hero />
       {/* NEWS */}
-      <SubHeader title={t("title")} sectionName={t("sectionName")} />
-      <div className="mb-16 grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
+      <SubHeader
+        title={t("title")}
+        sectionName={t("sectionName")}
+        icon={MoveDown}
+      />
+      <div className="mb-24 grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
         {posts.map((post) => (
           <div key={post.id} className="relative">
             <NewsCard
