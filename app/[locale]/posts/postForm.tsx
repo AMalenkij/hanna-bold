@@ -225,7 +225,7 @@ export function PostForm({
                     src={field.value}
                     alt="Current post image"
                     sizes="20vw"
-                    className="rounded-lg shadow"
+                    className="rounded-lg"
                   />
                 </div>
               )}

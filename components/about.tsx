@@ -29,12 +29,12 @@ export default async function About() {
         counter={publishedCount}
       />
       <div className="flex gap-x-12 pb-10">
-        <div className="flex w-full flex-col justify-start gap-y-8 md:text-lg lg:text-xl lg:w-1/2 lg:text-2xl">
+        <div className="flex w-full flex-col justify-start gap-y-8 md:text-lg lg:w-1/2 lg:text-xl">
           <p>{t("descriptionOne")}</p>
           <p>{t("descriptionSecond")}</p>
           <p>{t("descriptionThird")}</p>
         </div>
-        <LogoIcon className="-mt-48 hidden h-full max-w-lg lg:block" />
+        <LogoIcon className="-mt-48 hidden h-full max-w-md lg:block" />
       </div>
       <Carousel className="container w-full">
         <CarouselContent className="-ml-6">
@@ -44,7 +44,7 @@ export default async function About() {
               className="pl-6 md:basis-1/3 lg:basis-1/4"
             >
               <div className="relative">
-                <span className=" absolute bottom-4 left-6 z-0 font-semibold text-7xl text-white">
+                <span className=" absolute bottom-4 left-6 z-0 font-normal text-7xl text-white">
                   {ZeroPadIndex(index + 1)}
                 </span>
                 <div className="relative">
