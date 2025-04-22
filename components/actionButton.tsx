@@ -19,7 +19,11 @@ export function ActionButton({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="link" data-action-type={actionType}>
+        <Button
+          variant="outline"
+          data-action-type={actionType}
+          className="text-stone-950 dark:text-stone-50 mr-4 p-1"
+        >
           {icon}
           {buttonLabel}
         </Button>

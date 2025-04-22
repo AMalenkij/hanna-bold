@@ -33,7 +33,7 @@ export default async function Home({ params }: Props) {
         sectionName={t("sectionName")}
         icon={MoveDown}
       />
-      <div className="mb-24 grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
+      <div className=" mb-8 grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2 lg:mb-24">
         {posts.map((post) => (
           <div key={post.id} className="relative">
             <NewsCard

@@ -32,7 +32,10 @@ const Gallery = async ({
       <main className="mx-auto mt-20 max-w-[1960px]">
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-3">
           {images.map(({ id, publicId, post }) => (
-            <div key={publicId} className="group relative mb-5 w-full">
+            <div
+              key={publicId}
+              className="group relative mb-5 w-full bg-red-300"
+            >
               <Link
                 href={`/gallery?photoId=${publicId}`}
                 scroll={false}
@@ -49,14 +52,14 @@ const Gallery = async ({
                 {post?.title_en && (
                   <Badge
                     variant="outline"
-                    className="absolute right-2 bottom-2 bg-black/60"
+                    className="absolute right-3 bottom-4 bg-stone-900/60 text-stone-50"
                   >
                     {post.title_en}
                   </Badge>
                 )}
               </Link>
               <ProtectPage>
-                <div className="absolute top-2 right-2 z-10 flex gap-2">
+                <div className="z-30 absolute flex bg-background/80 p-x-1 top-0">
                   <ActionButton
                     actionType="create"
                     buttonLabel="create"

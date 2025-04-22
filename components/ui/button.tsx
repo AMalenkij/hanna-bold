@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -11,14 +10,12 @@ const buttonVariants = cva(
       variant: {
         default: "text-stone-50",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 ",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "text-foreground hover:opacity-100 opacity-80 hover:font-bold",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        linkSecond:
-          "text-foreraund font-bold transition-all duration-300 underline-offset-4 hover:underline px-2",
-        link: "text-foreraund font-bold transition-all duration-300 hover:border-l-4 p-3 px-4 hover:font-extrabold",
+        link: "text-foreraund font-semibold transition-all duration-300 border-stone-50 hover:border-l-4 py-3 px-4 hover:-mr-1 hover:font-bold disabled:line-through disabled:decoration-red-600/60 disabled:decoration-4",
       },
       size: {
         default: "h-8",
@@ -52,6 +49,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
   },
 );
+
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
