@@ -52,6 +52,10 @@
     "prev": "Previous",
     "next": "Next"
   },
+  "Gallery": {
+    "title": "Gallery",
+    "subHeader": "Our loudest memories"
+  },
   "Components": {
     "footer": {
       "reachOut": "/ Reach out",

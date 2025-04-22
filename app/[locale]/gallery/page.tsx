@@ -10,6 +10,7 @@ import { DeleteDialogContent } from "./deleteDialogGallery";
 // import { EditDialogGallery } from "./editDialogGallery";
 import { Badge } from "@/components/ui/badge";
 import { getGalleryAction } from "@/actions/getGalleryAction";
+import { getTranslations } from "next-intl/server";
 
 const Gallery = async ({
   searchParams,
@@ -19,12 +20,13 @@ const Gallery = async ({
   const [images, posts, publishedCount] = await getGalleryAction();
 
   const { photoId } = await searchParams;
+  const t = await getTranslations("Gallery");
 
   return (
     <div className="container mt-14">
       <SubHeader
-        title={"GALLERY"}
-        sectionName={"Photos our gallery"}
+        title={t("title")}
+        sectionName={t("subHeader")}
         variant="withСounterNotIcon"
         counter={publishedCount}
         icon={SquareAsterisk}

@@ -52,6 +52,10 @@
     "title": "Відео",
     "subHeader": "Послухай. Подивись. Відчуй."
   },
+  "Gallery": {
+    "title": "Галерея",
+    "subHeader": "Наші найгучніші спогади"
+  },
   "Components": {
     "footer": {
       "reachOut": "/ Напишіть нам",

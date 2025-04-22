@@ -52,6 +52,10 @@
     "prev": "Poprzednia",
     "next": "Następna"
   },
+  "Gallery": {
+    "title": "Galeria",
+    "subHeader": "Nasze najgłośniejsze wspomnienia"
+  },
   "Components": {
     "footer": {
       "reachOut": "/ Skontaktuj się",
