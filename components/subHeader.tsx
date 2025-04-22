@@ -20,40 +20,56 @@ const SubHeader: FC<SubHeaderProps> = ({
     return (
       <section
         aria-labelledby={title}
-        className="flex w-full items-center justify-between py-6 text-foreground"
+        className="container flex w-full justify-between py-6 text-foreground"
       >
-        <div className="w-full space-y-1">
+        <div className="w-full space-y-1 ">
           {variant === "withСounterNotIcon" ? (
             <p className="text-sm">/ {sectionName}</p>
           ) : null}
-          <div className="flex w-full items-center justify-between">
-            <div className="flex gap-3">
-              <h1 className="font-normal text-5xl uppercase tracking-tight sm:text-9xl">
+          <div className="flex w-full justify-between">
+            <div className="flex">
+              <h1 className="font-normal text-6xl uppercase tracking-tight sm:text-7xl md:text-8xl">
                 {title}
               </h1>
 
-              <div className="flex flex-col items-center justify-between sm:py-3">
-                <p className="text-center font-medium text-lg">[ {counter} ]</p>
+              <div className="flex flex-col items-center gap-y-1 md:gap-y-3.5">
+                <p className="p-0.5 font-light text-lg sm:p-1 md:p-2">
+                  [ {counter} ]
+                </p>
                 {variant === "withСounter" ? (
-                  <Triangle strokeWidth={2} className="rotate-180" />
+                  <Triangle
+                    strokeWidth={2}
+                    className="invisible rotate-180 sm:visible"
+                  />
                 ) : null}
               </div>
             </div>
-            {Icon && <Icon className="h-28 w-28" strokeWidth={1} />}
+            {Icon && (
+              <Icon
+                className="invisible h-28 w-28 sm:visible sm:h-24 sm:w-24"
+                strokeWidth={1}
+              />
+            )}
           </div>
         </div>
       </section>
     );
   }
   return (
+    // POSTS
     <section aria-labelledby={title} className="container py-6 text-foreground">
       <div className="space-y-1">
-        <p className="text-sm">/ {sectionName}</p>
+        <p className="ml-2 text-sm md:ml-3.5 lg:ml-3.5 ">/ {sectionName}</p>
         <div className="flex items-center justify-between">
-          <h1 className="font-normal text-5xl tracking-tight md:text-9xl">
+          <h1 className="font-normal text-7xl uppercase tracking-tight sm:text-8xl md:text-9xl">
             {title}
           </h1>
-          {Icon && <Icon className="h-28 w-28" strokeWidth={1} />}
+          {Icon && (
+            <Icon
+              className="h-16 w-16 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+              strokeWidth={1}
+            />
+          )}
         </div>
       </div>
     </section>
