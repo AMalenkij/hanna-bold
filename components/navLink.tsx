@@ -23,17 +23,18 @@ export default function NavLink({
   label,
   isActive,
   variant,
+  className,
 }: NavLinkProps) {
   if (isActive) {
     return (
-      <Button variant="link" disabled>
+      <Button variant={variant} disabled className={className}>
         {label}
       </Button>
     );
   }
 
   return (
-    <Button asChild variant={variant}>
+    <Button asChild variant={variant} className={className}>
       <Link href={href}>{label}</Link>
     </Button>
   );

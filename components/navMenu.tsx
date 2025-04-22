@@ -58,7 +58,8 @@ export default function NavMenu({ variant, className }: NavMenuProps) {
           href={item.href}
           label={item.label}
           isActive={item.isActive}
-          variant={variant === "footer" ? "link" : "linkSecond"}
+          variant={"link"}
+          className={"boreder-stone-50 uppercase"}
         />
       ))}
     </nav>
