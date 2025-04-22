@@ -44,7 +44,7 @@ export default async function About() {
               className="pl-6 md:basis-1/3 lg:basis-1/4"
             >
               <div className="relative">
-                <span className=" absolute bottom-4 left-6 z-0 font-normal text-7xl text-white">
+                <span className=" absolute bottom-4 left-6 z-0 font-light text-6xl text-stone-100">
                   {ZeroPadIndex(index + 1)}
                 </span>
                 <div className="relative">
