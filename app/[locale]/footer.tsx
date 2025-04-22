@@ -9,8 +9,8 @@ export default function Footer() {
   const t = useTranslations("Components.footer");
 
   return (
-    <footer className="fixed bottom-0 w-full bg-red-500 px-6 py-16 text-background">
-      <div className="container mx-auto">
+    <footer className="fixed bottom-0 w-full bg-red-500 px-6 py-16">
+      <div className="container mx-auto text-stone-50">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4">
           {/* Reach out */}
           <div className="space-y-4">
@@ -44,7 +44,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="link" size="sm">
+                  <Button variant="link" size="sm" className="border-stone-50">
                     {name}
                   </Button>
                 </a>
