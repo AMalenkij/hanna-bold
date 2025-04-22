@@ -74,7 +74,7 @@ export function GalleryModal({
       onOpenChange={(open) => !open && router.push("/gallery")}
     >
       <DialogTitle className="sr-only">Photo</DialogTitle>
-      <DialogContent className="fixed top-[50%] left-[50%] z-50 w-full max-w-7xl border-0 bg-black/0 p-2 [&_button_svg]:h-10 [&_button_svg]:w-10">
+      <DialogContent className="fixed top-[50%] left-[50%] z-50 w-full max-w-7xl border-0 bg-black/30 p-2 [&_button_svg]:h-10 [&_button_svg]:w-10">
         {/* Основная карусель */}
         <Carousel setApi={setMainApi} opts={{ startIndex: initialIndex }}>
           <CarouselContent>
@@ -100,6 +100,7 @@ export function GalleryModal({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open full size in new tab"
+                className="text-stone-50"
               >
                 <ExternalLink />
                 <span className="sr-only">Open in new tab</span>
@@ -107,6 +108,7 @@ export function GalleryModal({
             </Button>
             <Button
               variant="outline"
+              className="text-stone-50"
               onClick={() => {
                 downloadPhoto(
                   `https://res.cloudinary.com/djpoy5xco/image/upload/${images[selectedIndex].publicId}.jpg`,

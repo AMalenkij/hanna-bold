@@ -157,7 +157,7 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="overflow-hidden flex flex-row">
+    <div ref={carouselRef} className="flex flex-row overflow-hidden">
       <div
         ref={ref}
         className={cn(
@@ -209,15 +209,15 @@ const CarouselPrevious = React.forwardRef<
         "",
         orientation === "horizontal"
           ? // ? "-left-12 top-1/2 -translate-y-1/2"
-            "ml-0"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+            "ml-0 text-stone-50"
+          : "-top-12 -translate-x-1/2 left-1/2 rotate-90",
         className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="h-10 w-10 " />
+      <ArrowLeft className="h-16 w-16" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -239,15 +239,15 @@ const CarouselNext = React.forwardRef<
         "",
         orientation === "horizontal"
           ? // ? "-right-12 top-1/2 -translate-y-1/2"
-            "bottom-0 right-0 ml-10 my-4"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+            "right-0 bottom-0 my-4 ml-10 text-stone-50"
+          : "-bottom-12 -translate-x-1/2 left-1/2 rotate-90",
         className,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="h-10 w-10" />
+      <ArrowRight className="h-16 w-16" />
       <span className="sr-only">Next slide</span>
     </Button>
   );
