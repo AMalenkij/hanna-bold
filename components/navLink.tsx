@@ -12,7 +12,6 @@ interface NavLinkProps {
     | "outline"
     | "secondary"
     | "ghost"
-    | "linkSecond"
     | "link"
     | null
     | undefined;

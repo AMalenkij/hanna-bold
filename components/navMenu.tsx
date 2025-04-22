@@ -12,7 +12,7 @@ interface NavMenuProps {
   className?: string;
 }
 
-export default function NavMenu({ variant, className }: NavMenuProps) {
+export default function NavMenu({ className }: NavMenuProps) {
   const tNavMenu = useTranslations("Components.Nav");
   const pathname = usePathname();
   const { locale } = useParams();
