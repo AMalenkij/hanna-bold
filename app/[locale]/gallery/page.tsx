@@ -32,10 +32,7 @@ const Gallery = async ({
       <main className="mx-auto mt-20 max-w-[1960px]">
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-3">
           {images.map(({ id, publicId, post }) => (
-            <div
-              key={publicId}
-              className="group relative mb-5 w-full bg-red-300"
-            >
+            <div key={publicId} className="group relative mb-5 w-full">
               <Link
                 href={`/gallery?photoId=${publicId}`}
                 scroll={false}
