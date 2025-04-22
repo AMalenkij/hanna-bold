@@ -23,7 +23,7 @@ const Gallery = async ({
   const t = await getTranslations("Gallery");
 
   return (
-    <div className="container mt-14">
+    <div className="container mx-auto mt-14">
       <SubHeader
         title={t("title")}
         sectionName={t("subHeader")}
@@ -31,7 +31,7 @@ const Gallery = async ({
         counter={publishedCount}
         icon={SquareAsterisk}
       />
-      <main className="mx-auto mt-20 max-w-[1960px]">
+      <main className="mt-20 w-full max-w-[1960px]">
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-3">
           {images.map(({ id, publicId, post }) => (
             <div key={publicId} className="group relative mb-5 w-full">

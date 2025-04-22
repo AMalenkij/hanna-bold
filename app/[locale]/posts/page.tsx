@@ -56,58 +56,60 @@ export default async function Posts({ searchParams, params }: PostsProps) {
         buttonLabel={t("readOn")}
         linkScr={`posts/${posts[0].slug}`}
       />
-      <SubHeader
-        title={t("title")}
-        sectionName={t("sectionName")}
-        icon={TrendingUpDown}
-      />
-      <div className="grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2">
-        {posts.map((post) => (
-          <div key={post.id} className="relative">
-            <NewsCard
-              date={splitTimestamp(post.created_at)}
-              title={post[`title_${locale}`]}
-              content={post[`intro_${locale}`]}
-              imageUrl={post.photo}
-              slug={post.slug}
-            />
-            <ProtectPage>
-              <ActionButton
-                actionType="delete"
-                buttonLabel={t("delete")}
-                icon={<X />}
-              >
-                <DeleteDialogContent
-                  id={post.id}
-                  photo={post.photo}
-                  title={post[`title_${locale}`]}
-                  model="posts"
-                />
-              </ActionButton>
-              <ActionButton
-                actionType="edit"
-                buttonLabel={t("edit")}
-                icon={<PencilLine />}
-              >
-                <EditDialogContent model={post} />
-              </ActionButton>
-              <ActionButton
-                actionType="create"
-                buttonLabel={t("create")}
-                icon={<Plus />}
-              >
-                <CreateDialogContent />
-              </ActionButton>
-            </ProtectPage>
-          </div>
-        ))}
+      <div className="container">
+        <SubHeader
+          title={t("title")}
+          sectionName={t("sectionName")}
+          icon={TrendingUpDown}
+        />
+        <div className="grid grid-cols-1 gap-x-3 gap-y-10 md:grid-cols-2">
+          {posts.map((post) => (
+            <div key={post.id} className="relative">
+              <NewsCard
+                date={splitTimestamp(post.created_at)}
+                title={post[`title_${locale}`]}
+                content={post[`intro_${locale}`]}
+                imageUrl={post.photo}
+                slug={post.slug}
+              />
+              <ProtectPage>
+                <ActionButton
+                  actionType="delete"
+                  buttonLabel={t("delete")}
+                  icon={<X />}
+                >
+                  <DeleteDialogContent
+                    id={post.id}
+                    photo={post.photo}
+                    title={post[`title_${locale}`]}
+                    model="posts"
+                  />
+                </ActionButton>
+                <ActionButton
+                  actionType="edit"
+                  buttonLabel={t("edit")}
+                  icon={<PencilLine />}
+                >
+                  <EditDialogContent model={post} />
+                </ActionButton>
+                <ActionButton
+                  actionType="create"
+                  buttonLabel={t("create")}
+                  icon={<Plus />}
+                >
+                  <CreateDialogContent />
+                </ActionButton>
+              </ProtectPage>
+            </div>
+          ))}
+        </div>
+        <PaginationComponent
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+          prevLabel={t("prev")}
+          nextLabel={t("next")}
+        />
       </div>
-      <PaginationComponent
-        currentPage={pagination.currentPage}
-        totalPages={pagination.totalPages}
-        prevLabel={t("prev")}
-        nextLabel={t("next")}
-      />
     </LenisProvider>
   );
 }

@@ -20,11 +20,11 @@ const SubHeader: FC<SubHeaderProps> = ({
     return (
       <section
         aria-labelledby={title}
-        className="container flex w-full justify-between py-6 text-foreground"
+        className="flex w-full justify-between py-6 text-foreground"
       >
         <div className="w-full space-y-1 ">
           {variant === "withСounterNotIcon" ? (
-            <p className="text-sm">/ {sectionName}</p>
+            <p className="text-sm md:ml-3.5 lg:ml-3.5">/ {sectionName}</p>
           ) : null}
           <div className="flex w-full justify-between">
             <div className="flex">
@@ -57,11 +57,11 @@ const SubHeader: FC<SubHeaderProps> = ({
   }
   return (
     // POSTS
-    <section aria-labelledby={title} className="container py-6 text-foreground">
+    <section aria-labelledby={title} className="-ml-1.5 py-6 text-foreground">
       <div className="space-y-1">
-        <p className="ml-2 text-sm md:ml-3.5 lg:ml-3.5 ">/ {sectionName}</p>
+        <p className="text-sm md:ml-3.5 lg:ml-3.5 ">/ {sectionName}</p>
         <div className="flex items-center justify-between">
-          <h1 className="font-normal text-7xl uppercase tracking-tight sm:text-8xl md:text-9xl">
+          <h1 className="-ml-1.5 font-normal text-7xl uppercase tracking-tight sm:text-8xl md:text-9xl">
             {title}
           </h1>
           {Icon && (

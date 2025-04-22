@@ -27,41 +27,43 @@ export default async function Home({ params }: Props) {
     <LenisProvider>
       {/* HERO */}
       <Hero />
-      {/* NEWS */}
-      <SubHeader
-        title={t("title")}
-        sectionName={t("sectionName")}
-        icon={MoveDown}
-      />
-      <div className=" mb-8 grid grid-cols-1 gap-x-3 gap-y-10 px-4 md:grid-cols-2 lg:mb-24">
-        {posts.map((post) => (
-          <div key={post.id} className="relative">
-            <NewsCard
-              key={post.id}
-              date={splitTimestamp(post.created_at)}
-              title={post[`title_${locale}`]}
-              content={post[`intro_${locale}`]}
-              imageUrl={post.photo}
-              slug={post.slug}
+      <div className="container">
+        {/* NEWS */}
+        <SubHeader
+          title={t("title")}
+          sectionName={t("sectionName")}
+          icon={MoveDown}
+        />
+        <div className=" mb-8 grid grid-cols-1 gap-x-3 gap-y-16 md:grid-cols-2 lg:mb-24">
+          {posts.map((post) => (
+            <div key={post.id} className="relative">
+              <NewsCard
+                key={post.id}
+                date={splitTimestamp(post.created_at)}
+                title={post[`title_${locale}`]}
+                content={post[`intro_${locale}`]}
+                imageUrl={post.photo}
+                slug={post.slug}
+              />
+            </div>
+          ))}
+        </div>
+        {/* ABOUT */}
+        <About />
+        {/* VIDEO */}
+        <Video
+          videoData={videos}
+          locale={locale}
+          header={
+            <SubHeader
+              title={tVideo("title")}
+              sectionName={tVideo("subHeader")}
+              variant="withСounterNotIcon"
+              counter={count}
             />
-          </div>
-        ))}
+          }
+        />
       </div>
-      {/* ABOUT */}
-      <About />
-      {/* VIDEO */}
-      <Video
-        videoData={videos}
-        locale={locale}
-        header={
-          <SubHeader
-            title={tVideo("title")}
-            sectionName={tVideo("subHeader")}
-            variant="withСounterNotIcon"
-            counter={count}
-          />
-        }
-      />
     </LenisProvider>
   );
 }

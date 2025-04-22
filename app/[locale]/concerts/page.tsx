@@ -41,7 +41,7 @@ export default async function Concerts() {
         </div>
         <RedLayer />
       </div>
-      <div className="container mx-auto">
+      <div className="container">
         <SubHeader
           title={t("subHeader")}
           counter={totalConcerts}
@@ -59,7 +59,7 @@ export default async function Concerts() {
         </ProtectPage>
         <Accordion
           type="single"
-          className="w-full px-6"
+          className="w-full"
           defaultValue="Futures"
           collapsible
         >

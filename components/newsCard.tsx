@@ -22,9 +22,9 @@ export default function NewsCard({
   slug,
 }: NewsCardProps) {
   return (
-    <article className="mx-auto">
+    <>
       <Link href={`posts/${slug}`}>
-        <div className="space-y-1">
+        <article className="space-y-1">
           {/* Image */}
           <ClientCldImage
             width={980}
@@ -44,8 +44,8 @@ export default function NewsCard({
           <p className="text-muted-foreground leading-relaxed sm:text-xl">
             {content}
           </p>
-        </div>
+        </article>
       </Link>
-    </article>
+    </>
   );
 }

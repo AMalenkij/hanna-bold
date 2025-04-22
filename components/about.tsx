@@ -21,7 +21,7 @@ export default async function About() {
   const publishedCount = await getPublishedPostsCount();
 
   return (
-    <div className="container">
+    <>
       <SubHeader
         title={t("title")}
         sectionName={t("sectionName")}
@@ -64,6 +64,6 @@ export default async function About() {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-    </div>
+    </>
   );
 }
