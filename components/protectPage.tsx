@@ -9,18 +9,18 @@ import { Protect } from "@clerk/nextjs";
 //   );
 // }
 
-import { useUser, useAuth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
-export default function protectPage(props: PropsWithChildren) {
-  const { user } = useUser();
-  const { has } = useAuth();
+export default async function protectPage(props: PropsWithChildren) {
+  const { userId, has } = await auth();
 
-  console.log("User metadata:", user?.publicMetadata);
-  console.log("Has org:admin role:", has({ role: "org:admin" }));
-  console.log("Has admin role:", has({ role: "admin" }));
+  // For debugging in server logs
+  console.log("User ID:", userId);
+  console.log("Has admin role (server):", has({ role: "admin" }));
+  console.log("Has org:admin role (server):", has({ role: "org:admin" }));
 
   return (
-    <Protect condition={(has) => has({ role: "org:admin" })}>
+    <Protect condition={(has) => has({ role: "admin" })}>
       {props.children}
     </Protect>
   );
