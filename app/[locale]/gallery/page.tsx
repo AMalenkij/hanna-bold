@@ -7,7 +7,7 @@ import { PencilLine, Plus, X, SquareAsterisk } from "lucide-react";
 import Link from "next/link";
 import { CreateDialogGallery } from "./createDialogGallery";
 import { DeleteDialogContent } from "./deleteDialogGallery";
-// import { EditDialogGallery } from "./editDialogGallery";
+import { EditDialogGallery } from "./editDialogGallery";
 import { Badge } from "@/components/ui/badge";
 import { getGalleryAction } from "@/actions/getGalleryAction";
 import { getTranslations } from "next-intl/server";
@@ -33,7 +33,7 @@ const Gallery = async ({
       />
       <main className="mt-20 w-full max-w-[1960px]">
         <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-3">
-          {images.map(({ id, publicId, post }) => (
+          {images.map(({ id, publicId, postId, post }) => (
             <div key={publicId} className="group relative mb-5 w-full">
               <Link
                 href={`/gallery?photoId=${publicId}`}
@@ -58,7 +58,7 @@ const Gallery = async ({
                 )}
               </Link>
               <ProtectPage>
-                <div className="z-30 absolute flex bg-background/80 p-x-1 top-0">
+                <div className="absolute top-0 z-30 flex bg-background/80 p-x-1">
                   <ActionButton
                     actionType="create"
                     buttonLabel="create"
@@ -82,14 +82,17 @@ const Gallery = async ({
                       cloudinaryType="image"
                     />
                   </ActionButton>
-                  {/* <ActionButton
-                  actionType="edit"
-                  buttonLabel="edit"
-                  icon={<PencilLine />}
-                  key={`edit-${id}`}
-                >
-                  <EditDialogGallery model={{ id, publicId }} />
-                </ActionButton> */}
+                  <ActionButton
+                    actionType="edit"
+                    buttonLabel="edit"
+                    icon={<PencilLine />}
+                    key={`edit-${id}`}
+                  >
+                    <EditDialogGallery
+                      model={{ id, publicId, postId }}
+                      posts={posts}
+                    />
+                  </ActionButton>
                 </div>
               </ProtectPage>
             </div>
