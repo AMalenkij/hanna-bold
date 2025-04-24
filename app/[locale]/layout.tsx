@@ -69,7 +69,7 @@ export default async function LocaleLayout({
               <Toaster />
               <LargeTitle />
               <div
-                className="relative h-[950px] md:h-[550px]"
+                className="relative h-[760px] md:h-[500px]"
                 style={{
                   clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)",
                 }}
