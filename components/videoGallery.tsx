@@ -9,6 +9,7 @@ import type { Locale } from "@/types/common";
 import type { ReactNode } from "react";
 import { ProseContent } from "./proseContent";
 import { Button } from "./ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 export default function VideoGallery({
   videoData,
@@ -52,18 +53,21 @@ export default function VideoGallery({
                   setCurrentVideo(video);
                 }}
                 variant="link"
-                className={`flex w-full justify-start gap-x-2 py-3 pl-3 ${
+                className={`flex w-full justify-between gap-x-2 py-3 ${
                   currentVideo.id === video.id
-                    ? "cursor-auto bg-red-500 text-stone-50"
+                    ? "cursor-auto bg-red-500 text-stone-50 hover:border-0"
                     : "border-red-500 p-3 px-4"
                 }`}
               >
-                {ZeroPadIndex(index + 1)}
-                <span
-                  className={`font-medium ${currentVideo.id === video.id ? "text-stone-50" : ""}`}
-                >
-                  {video.title}
-                </span>
+                <div>
+                  {ZeroPadIndex(index + 1)}
+                  <span
+                    className={`pl-2 font-medium ${currentVideo.id === video.id ? "text-stone-50" : ""}`}
+                  >
+                    {video.title}
+                  </span>
+                </div>
+                <ArrowUpRight className="h-7 w-7 text-background md:h-10 md:w-10" />
               </Button>
             ))}
           </div>

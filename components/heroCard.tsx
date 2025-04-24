@@ -2,6 +2,7 @@ import { Button } from "./ui/button";
 import { Link } from "@/i18n/routing";
 import RedLayer from "./redLayer";
 import { ClientCldImage } from "@/components/clientCldImage";
+import { ArrowUpRight } from "lucide-react";
 
 interface HeroCardProps {
   heading: string;
@@ -44,17 +45,19 @@ export default function HeroCard({
           {heading}
         </h1>
         <div className="absolute bottom-0 z-10">
-          <p className="mb-2 font-light text-stone-50 md:mb-4 md:font-normal md:text-lg">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
-          <p className="mb-3 border-stone-50 border-l-2 pl-2 text-stone-50 text-xl sm:w-[600px] md:mb-6">
+          <p className="mb-2 font-light text-sm text-stone-50 md:mb-4 md:font-normal md:text-lg">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
+          <p className="mb-3 border-stone-50 border-l-2 pl-2 text-stone-50 sm:w-[600px] md:mb-6 md:text-xl">
             {announcement}
           </p>
 
           <Button
             asChild
             variant="link"
-            className="mb-4 border-stone-50 text-2xl text-stone-50 uppercase md:mb-6 md:text-3xl"
+            className="mb-4 border-stone-50 text-stone-50 text-xl uppercase md:mb-6 md:text-2xl md:text-3xl"
           >
-            <Link href={linkScr}>{buttonLabel}</Link>
+            <Link href={linkScr}>
+              {buttonLabel} <ArrowUpRight className="h-7 w-7 md:h-10 md:w-10" />
+            </Link>
           </Button>
         </div>
       </div>

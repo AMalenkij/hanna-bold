@@ -45,7 +45,7 @@ export default async function Detail({ params }: PageProps) {
 
   return (
     <div className="container">
-      <h1 className="mt-20 mb-10 font-light text-6xl text-stone-50 leading-none sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-11xl">
+      <h1 className="mt-20 mb-10 font-light text-6xl text-foreground leading-none sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-11xl">
         {title}
       </h1>
       <ClientCldImage
