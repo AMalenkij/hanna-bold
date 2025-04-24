@@ -53,7 +53,7 @@ export default function HeroCard({
           <Button
             asChild
             variant="link"
-            className="mb-4 border-stone-50 text-stone-50 text-xl uppercase md:mb-6 md:text-2xl md:text-3xl"
+            className="mb-4 border-stone-50 text-stone-50 text-xl uppercase md:mb-6 md:text-2xl"
           >
             <Link href={linkScr}>
               {buttonLabel} <ArrowUpRight className="h-7 w-7 md:h-10 md:w-10" />

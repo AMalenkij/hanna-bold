@@ -31,21 +31,19 @@ type PageProps = {
 
 export default async function Detail({ params }: PageProps) {
   const { slug, locale } = await params;
-
   const { post } = await getPostByLocaleAction({ slug, locale });
 
   if (!post) return notFound();
 
   const { created_at, photo } = post;
+  const { date, month, year, time } = splitTimestamp(created_at);
 
   const title = post[`title_${locale}`] as string;
   const content = post[`content_${locale}`] as string;
 
-  const { date, month, year, time } = splitTimestamp(created_at);
-
   return (
-    <div className="container">
-      <h1 className="mt-20 mb-10 font-light text-6xl text-foreground leading-none sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-11xl">
+    <div className="">
+      <h1 className="container mt-20 mb-10 font-light text-6xl text-foreground leading-none sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-11xl">
         {title}
       </h1>
       <ClientCldImage
@@ -54,10 +52,10 @@ export default async function Detail({ params }: PageProps) {
         src={photo}
         alt={title}
         sizes="100vw"
-        className="max-h-screen w-full object-cover"
+        className="min-h-[30vh] w-full object-cover md:max-h-screen"
       />
-      <div className="flex flex-col items-center">
-        <div className="mt-36 flex flex-col items-start md:w-9/12 lg:w-3/5">
+      <div className="container flex flex-col items-center">
+        <div className="mt-20 flex flex-col items-start md:mt-36 md:w-9/12 lg:w-3/5">
           <p className="mb-6 text-muted-foreground text-sm">{`/ ${date} ${month} ${year} ${time}`}</p>
           <ProseContent description={content} />
         </div>

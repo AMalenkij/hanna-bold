@@ -26,14 +26,14 @@ const SubHeader: FC<SubHeaderProps> = ({
           {variant === "withСounterNotIcon" ? (
             <p className="text-sm md:ml-3.5 lg:ml-3.5">/ {sectionName}</p>
           ) : null}
-          <div className="flex w-full justify-between">
+          <div className="flex w-full items-center justify-between">
             <div className="flex">
               <h1 className="font-normal text-6xl uppercase tracking-tight sm:text-7xl md:text-9xl">
                 {title}
               </h1>
 
               <div className="invisible flex flex-col items-center gap-y-1 sm:visible md:gap-y-3.5">
-                <p className="p-0.5 font-light text-lg sm:p-1 md:p-2">
+                <p className="p-0.5 font-light text-lg sm:p-1 md:p-3.5">
                   [ {counter} ]
                 </p>
                 {variant === "withСounter" ? (
@@ -46,7 +46,7 @@ const SubHeader: FC<SubHeaderProps> = ({
             </div>
             {Icon && (
               <Icon
-                className="invisible h-28 w-28 sm:visible sm:h-24 sm:w-24"
+                className="invisible h-20 w-20 sm:visible md:h-32  md:w-32"
                 strokeWidth={1}
               />
             )}

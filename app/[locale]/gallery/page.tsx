@@ -23,7 +23,7 @@ const Gallery = async ({
   const t = await getTranslations("Gallery");
 
   return (
-    <div className="container mx-auto mt-14">
+    <div className="container mt-14">
       <SubHeader
         title={t("title")}
         sectionName={t("subHeader")}
