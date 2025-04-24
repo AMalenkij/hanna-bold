@@ -52,7 +52,7 @@ export default async function Detail({ params }: PageProps) {
         src={photo}
         alt={title}
         sizes="100vw"
-        className="min-h-[30vh] w-full object-cover md:max-h-screen"
+        className="min-h-[35vh] w-full object-cover md:max-h-screen"
       />
       <div className="container flex flex-col items-center">
         <div className="mt-20 flex flex-col items-start md:mt-36 md:w-9/12 lg:w-3/5">
