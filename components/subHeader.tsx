@@ -28,7 +28,7 @@ const SubHeader: FC<SubHeaderProps> = ({
           ) : null}
           <div className="flex w-full justify-between">
             <div className="flex">
-              <h1 className="font-normal text-6xl uppercase tracking-tight sm:text-7xl md:text-8xl">
+              <h1 className="font-normal text-6xl uppercase tracking-tight sm:text-7xl md:text-9xl">
                 {title}
               </h1>
 
