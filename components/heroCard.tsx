@@ -44,15 +44,15 @@ export default function HeroCard({
           {heading}
         </h1>
         <div className="absolute bottom-0 z-10">
-          <p className="mb-4 text-lg text-stone-50">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
-          <p className="mb-6 border-stone-50 border-l-2 pl-2 text-stone-50 text-xl sm:w-[600px]">
+          <p className="mb-2 font-light text-stone-50 md:mb-4 md:font-normal md:text-lg">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</p>
+          <p className="mb-3 border-stone-50 border-l-2 pl-2 text-stone-50 text-xl sm:w-[600px] md:mb-6">
             {announcement}
           </p>
 
           <Button
             asChild
             variant="link"
-            className="mb-6 border-stone-50 text-2xl text-stone-50 uppercase md:text-3xl"
+            className="mb-4 border-stone-50 text-2xl text-stone-50 uppercase md:mb-6 md:text-3xl"
           >
             <Link href={linkScr}>{buttonLabel}</Link>
           </Button>
