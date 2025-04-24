@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="container mx-auto text-stone-50">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-12">
           {/* Reach out */}
-          <div className="space-y-2 md:space-y-4">
+          <div className="space-y-1 md:space-y-4">
             <div className="text-sm opacity-80">{t("reachOut")}</div>
             <Link
               href="mailto:hannabandgd@gmail.com"
@@ -24,7 +24,7 @@ export default function Footer() {
           </div>
 
           {/* Find us */}
-          <div className="space-y-2 md:space-y-4">
+          <div className="space-y-1 md:space-y-4">
             <div className="text-sm opacity-80">{t("findUs")}</div>
             <address className="ml-3 not-italic">
               {t("address.line1")}
@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
 
           {/* Social */}
-          <div className="space-y-2 md:space-y-4">
+          <div className="space-y-1 md:space-y-4">
             <div className="text-sm opacity-80">{t("social")}</div>
             <nav className="flex flex-col" aria-label="Social media">
               {SOCIAL_LINKS.map(({ name, url }) => (
@@ -53,14 +53,14 @@ export default function Footer() {
           </div>
 
           {/* Nav */}
-          <div className="space-y-2 md:space-y-4">
+          <div className="space-y-1 md:space-y-4">
             <div className="text-sm opacity-80">{t("nav")}</div>
             <NavMenu variant="footer" className="flex flex-col items-start" />
           </div>
         </div>
 
         {/* Copyright */}
-        <div className="mt-6 flex flex-col items-end justify-between gap-y-3 border-white/20 border-t pt-8 text-sm md:mt-16 lg:flex-row">
+        <div className="mt-6 flex flex-col items-end justify-between gap-y-3 border-white/20 border-t pt-6 text-sm md:mt-16 md:pt-8 lg:flex-row">
           <p>{t("copyright")}</p>
           <a href={LINK_DESIGN}>{DESIGN}</a>
         </div>
