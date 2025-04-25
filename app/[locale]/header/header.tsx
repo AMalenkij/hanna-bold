@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl";
 import LanguageToggle from "./languageToggle";
 import ModeToggle from "./modeToggle";
 import ClientSheet from "@/components/cleintSheet";
+import { Button } from "@/components/ui/button";
 
 export default function Header() {
   const tModeToggle = useTranslations("Header.ModeToggle");
@@ -40,7 +41,9 @@ export default function Header() {
               changeLanguageLabel={tLanguageToggle("changeLanguage")}
             />
             <SignedOut>
-              <SignInButton />
+              <Button variant="link" asChild className="uppercase">
+                <SignInButton />
+              </Button>
             </SignedOut>
             <SignedIn>
               <UserButton />
@@ -73,11 +76,16 @@ export default function Header() {
             toggleTheme={tModeToggle("toggleTheme")}
           />
           <SignedOut>
-            <SignInButton />
+            <Button variant="link" asChild className="uppercase">
+              <SignInButton />
+            </Button>
           </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          {/* //don't work */}
+          {/* <SignedIn>
+            <Button variant="ghost" className="bg-green-600 fixed z-100">
+              <UserButton />
+            </Button>
+          </SignedIn> */}
         </ClientSheet>
       </div>
     </div>
