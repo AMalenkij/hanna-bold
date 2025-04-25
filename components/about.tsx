@@ -10,16 +10,11 @@ import { getTranslations } from "next-intl/server";
 import ZeroPadIndex from "@/utils/zeroPadIndex";
 import LogoIcon from "@/public/svg/logoIcon";
 import { ClientCldImage } from "@/components/clientCldImage";
-import {
-  getPublishedPostPhotos,
-  getPublishedPostsCount,
-} from "@/actions/getPublishedPostPhotos";
+import { getAboutAction } from "@/actions/getAboutAction";
 
 export default async function About() {
   const t = await getTranslations("About");
-  const img = await getPublishedPostPhotos();
-  const publishedCount = await getPublishedPostsCount();
-
+  const { images, publishedCount } = await getAboutAction();
   return (
     <>
       <SubHeader
@@ -38,9 +33,9 @@ export default async function About() {
       </div>
       <Carousel className="container w-full">
         <CarouselContent className="-ml-6">
-          {img.map((item, index) => (
+          {images.map((item, index) => (
             <CarouselItem
-              key={item.photo}
+              key={item.publicId}
               className="pl-6 md:basis-1/3 lg:basis-1/4"
             >
               <div className="relative">
@@ -51,7 +46,7 @@ export default async function About() {
                   <ClientCldImage
                     width={475}
                     height={475}
-                    src={item.photo}
+                    src={item.publicId}
                     alt="Description of my image"
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 25vw"
                     className="-z-20 relative aspect-square object-cover"
