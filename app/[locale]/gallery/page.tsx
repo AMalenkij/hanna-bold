@@ -46,7 +46,7 @@ const Gallery = async ({
                   src={publicId}
                   alt="Gallery image"
                   sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, (max-width: 1536px) 33vw, 25vw"
-                  className="transform rounded-lg brightness-90 transition will-change-auto group-hover:brightness-110"
+                  className="transform rounded-lg transition will-change-auto md:brightness-90 md:group-hover:brightness-110"
                 />
                 {post?.title_en && (
                   <Badge

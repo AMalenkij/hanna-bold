@@ -32,7 +32,7 @@ export default function NewsCard({
             src={imageUrl}
             alt="Description of my image"
             sizes="(max-width: 767px) 100vw, 50vw"
-            className="saturate-50 transition-all duration-1000 hover:saturate-100"
+            className="rounded-lg transition-all will-change-auto md:brightness-90 md:hover:brightness-110 "
           />
           {/* Date */}
           <div className="pb-3 text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
