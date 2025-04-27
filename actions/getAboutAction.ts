@@ -7,6 +7,7 @@ export async function getAboutAction() {
         publicId: true,
       },
       orderBy: { createdAt: "desc" },
+      take: 20,
     }),
     prisma.gallery.count(),
   ]);
