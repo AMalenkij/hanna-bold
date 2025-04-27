@@ -20,12 +20,14 @@ const montserrat = Montserrat({
 });
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
   params: { locale: Locale };
 }): Promise<Metadata> {
   const t = await getTranslations("Metadata");
   const OGLogo = "https://hanna.gdn/img/OGLogo.jpg";
+  const { locale } = await params;
+
   const ogLocaleMap = {
     ua: "uk_UA",
     en: "en_US",
@@ -88,7 +90,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: Locale };
 }) {
-  const { locale } = params;
+  const { locale } = await params;
 
   if (!routing.locales.includes(locale)) {
     notFound();
