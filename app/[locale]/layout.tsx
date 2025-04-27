@@ -11,11 +11,71 @@ import Footer from "./footer";
 import Header from "./header/header";
 import type { Locale } from "@/types/common";
 import LargeTitle from "@/components/largeTitle";
+import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 
 const montserrat = Montserrat({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"], // Добавлен кириллический subset
   display: "swap",
 });
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const t = await getTranslations("Metadata");
+  const OGLogo = "https://hanna.gdn/img/OGLogo.jpg";
+  const ogLocaleMap = {
+    ua: "uk_UA",
+    en: "en_US",
+    pl: "pl_PL",
+  };
+
+  return {
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords").split(", "),
+    authors: [{ name: "Hanna Malenka", url: "https://hanna.gdn" }],
+    category: "Music",
+    metadataBase: new URL("https://hanna.gdn"),
+    openGraph: {
+      type: "website",
+      locale: ogLocaleMap[locale],
+      url: "https://hanna.gdn",
+      siteName: "Hanna Rock Band",
+      title: t("title"),
+      description: t("description"),
+      images: {
+        url: OGLogo,
+        width: 1200,
+        height: 630,
+        alt: "Hanna Rock Band",
+      },
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: OGLogo,
+    },
+    alternates: {
+      canonical: "https://hanna.gdn",
+      languages: {
+        en: "https://hanna.gdn/en",
+        pl: "https://hanna.gdn/pl",
+        uk: "https://hanna.gdn/ua", // Соответствие между uk и ua
+      },
+      types: {
+        "application/rss+xml": "https://hanna.gdn/rss.xml",
+      },
+    },
+    other: {
+      "msapplication-TileColor": "#ffffff",
+      "theme-color": "#000000",
+    },
+  };
+}
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -28,11 +88,8 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: Locale };
 }) {
-  // Асинхронное получение параметров
-  const resolvedParams = await params;
-  const { locale } = resolvedParams;
+  const { locale } = params;
 
-  // Проверка локали после await
   if (!routing.locales.includes(locale)) {
     notFound();
   }
@@ -43,6 +100,10 @@ export default async function LocaleLayout({
     <ClerkProvider>
       <html lang={locale} suppressHydrationWarning>
         <head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          />
           <link
             rel="icon"
             type="image/png"
