@@ -24,7 +24,7 @@ export default async function About() {
         counter={publishedCount}
       />
       <div className="flex gap-x-12 pb-10">
-        <div className="flex w-full flex-col justify-start gap-y-8 md:text-lg lg:w-1/2 lg:text-xl">
+        <div className="flex w-full flex-col justify-start gap-y-8 lg:w-1/2 text-muted-foreground sm:text-xl">
           <p>{t("descriptionOne")}</p>
           <p>{t("descriptionSecond")}</p>
           <p>{t("descriptionThird")}</p>

@@ -35,15 +35,13 @@ export default function NewsCard({
             className="rounded-lg transition-all will-change-auto md:brightness-90 md:hover:brightness-110 "
           />
           {/* Date */}
-          <div className="pb-3 text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</div>
+          <time className="pb-3 text-muted-foreground text-xs uppercase sm:text-sm">{`/ ${date.date} ${date.month} ${date.year} ${date.time}`}</time>
           {/* Title */}
           <h2 className="font-medium text-2xl leading-tight tracking-tight sm:text-4xl">
             {title}
           </h2>
           {/* Content */}
-          <p className="text-muted-foreground leading-relaxed sm:text-xl">
-            {content}
-          </p>
+          <p className="text-muted-foreground sm:text-xl">{content}</p>
         </article>
       </Link>
     </>

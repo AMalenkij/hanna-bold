@@ -24,7 +24,9 @@ const SubHeader: FC<SubHeaderProps> = ({
       >
         <div className="w-full space-y-1 ">
           {variant === "withСounterNotIcon" ? (
-            <p className="text-sm md:ml-3.5 lg:ml-3.5">/ {sectionName}</p>
+            <p className="text-muted-foreground text-xs sm:text-sm md:ml-3.5 lg:ml-3.5">
+              / {sectionName}
+            </p>
           ) : null}
           <div className="flex w-full items-center justify-between">
             <div className="flex">
@@ -59,7 +61,9 @@ const SubHeader: FC<SubHeaderProps> = ({
     // POSTS
     <section aria-labelledby={title} className="-ml-1.5 py-12 text-foreground">
       <div className="space-y-1">
-        <p className="text-sm md:ml-3.5 lg:ml-3.5 ">/ {sectionName}</p>
+        <p className="text-muted-foreground text-xs sm:text-sm md:ml-3.5 lg:ml-3.5 ">
+          / {sectionName}
+        </p>
         <div className="flex items-center justify-between">
           <h1 className="-ml-1.5 font-normal text-7xl uppercase tracking-tight sm:text-8xl md:text-9xl">
             {title}

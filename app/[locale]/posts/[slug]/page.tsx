@@ -42,7 +42,7 @@ export default async function Detail({ params }: PageProps) {
   const content = post[`content_${locale}`] as string;
 
   return (
-    <div className="">
+    <article>
       <h1 className="container mt-20 mb-10 font-light text-6xl text-foreground leading-none sm:text-7xl md:text-8xl lg:text-9xl 2xl:text-11xl">
         {title}
       </h1>
@@ -56,10 +56,10 @@ export default async function Detail({ params }: PageProps) {
       />
       <div className="container flex flex-col items-center">
         <div className="mt-20 flex flex-col items-start md:mt-36 md:w-9/12 lg:w-3/5">
-          <p className="mb-6 text-muted-foreground text-sm">{`/ ${date} ${month} ${year} ${time}`}</p>
+          <time className="mb-6 text-muted-foreground text-sm">{`/ ${date} ${month} ${year} ${time}`}</time>
           <ProseContent description={content} />
         </div>
       </div>
-    </div>
+    </article>
   );
 }

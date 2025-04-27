@@ -13,7 +13,7 @@ export const ProseContent: FC<ProseContentProps> = ({
   return (
     <div
       className={cn(
-        "prose prose-h1:font-semibold prose-h1:text-foreground prose-h1:text-lg prose-strong:text-foreground text-foreground italic prose-h1:not-italic",
+        "prose prose-h1:font-semibold prose-h1:text-foreground prose-h1:text-lg prose-p:text-muted-foreground prose-strong:text-foreground text-foreground italic prose-h1:not-italic prose-p:sm:text-xl",
         className,
       )}
     >
