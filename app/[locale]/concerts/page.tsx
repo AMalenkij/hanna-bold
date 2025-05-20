@@ -32,7 +32,7 @@ export default async function Concerts() {
   return (
     <>
       <div className="relative h-[55vh]">
-        <div className="-z-20 absolute aspect-[16/9] h-[55vh] w-full overflow-hidden rounded-lg bg-cover">
+        <div className="-z-20 absolute aspect-[16/9] h-[55vh] w-full overflow-hidden bg-cover">
           <Image
             className="-z-20 relative h-full w-full bg-cover object-cover"
             alt="Concert Photo"

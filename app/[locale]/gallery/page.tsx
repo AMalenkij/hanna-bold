@@ -31,8 +31,8 @@ const Gallery = async ({
         counter={publishedCount}
         icon={SquareAsterisk}
       />
-      <main className="mt-20 w-full max-w-[1960px]">
-        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-3">
+      <main className="mt-20 w-full">
+        <div className="columns-1 gap-4 sm:columns-2 xl:columns-3 2xl:columns-4">
           {images.map(({ id, publicId, postId, post }) => (
             <div key={publicId} className="group relative mb-5 w-full">
               <Link
@@ -46,7 +46,7 @@ const Gallery = async ({
                   src={publicId}
                   alt="Gallery image"
                   sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, (max-width: 1536px) 33vw, 25vw"
-                  className="transform rounded-lg transition will-change-auto md:brightness-90 md:group-hover:brightness-110"
+                  className="transform transition will-change-auto md:brightness-90 md:group-hover:brightness-110"
                 />
                 {post?.title_en && (
                   <Badge
