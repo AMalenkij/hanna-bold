@@ -11,11 +11,14 @@ import LanguageToggle from "./languageToggle";
 import ModeToggle from "./modeToggle";
 import ClientSheet from "@/components/cleintSheet";
 import { Button } from "@/components/ui/button";
+import { SOCIAL_LINKS } from "@/constants/links";
 
 export default function Header() {
   const tModeToggle = useTranslations("Header.ModeToggle");
   const tLanguageToggle = useTranslations("Header.LanguageToggle");
   const tMobileMenu = useTranslations("Header.MobileMenu");
+  const t = useTranslations("Components.footer");
+
   return (
     <div className="container fixed top-0 right-0 left-0 z-20 text-stone-50 ">
       {/* Blurred overlay */}
@@ -60,7 +63,7 @@ export default function Header() {
               {tMobileMenu("SheetDescription")}
             </SheetDescription>
           </SheetHeader>
-          <NavMenu className="mb-16 flex flex-col items-start " />
+          {/* <NavMenu className="mb-16 flex flex-col items-start " /> */}
           <LanguageToggle
             variant="accordion"
             englishLabel={tLanguageToggle("english")}
@@ -75,6 +78,32 @@ export default function Header() {
             systemLabel={tModeToggle("systemLabel")}
             toggleTheme={tModeToggle("toggleTheme")}
           />
+
+          {/* Nav */}
+          <div className="mb-10 space-y-1 md:space-y-4">
+            <div className="text-sm opacity-80">{t("nav")}</div>
+            <NavMenu variant="footer" className="flex flex-col items-start" />
+          </div>
+
+          {/* Social */}
+          <div className="mb-10 space-y-1 md:space-y-4">
+            <div className="text-sm opacity-80">{t("social")}</div>
+            <nav className="flex flex-col" aria-label="Social media">
+              {SOCIAL_LINKS.map(({ name, url }) => (
+                <a
+                  key={name}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="link" size="sm" className="border-stone-50">
+                    {name}
+                  </Button>
+                </a>
+              ))}
+            </nav>
+          </div>
+
           <SignedOut>
             <Button variant="link" asChild className="uppercase">
               <SignInButton />
