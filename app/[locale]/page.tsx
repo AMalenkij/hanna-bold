@@ -1,15 +1,18 @@
-import About from "@/components/about";
-import Video from "@/components/videoGallery";
 import LenisProvider from "@/providers/LenisProvider";
-import SubHeader from "@/components/subHeader";
 import { getTranslations } from "next-intl/server";
-import NewsCard from "@/components/newsCard";
 import splitTimestamp from "@/utils/splitTimestamp";
 import Hero from "@/components/hero";
-import type { Locale } from "@/types/common";
 import { getVideosAndCount } from "@/actions/getVideosAction";
 import { getPostsAction } from "@/actions/getPostsAction";
 import { MoveDown } from "lucide-react";
+import { lazy } from "react";
+
+import type { Locale } from "@/types/common";
+
+const NewsCard = lazy(() => import("@/components/newsCard"));
+const Video = lazy(() => import("@/components/videoGallery"));
+const About = lazy(() => import("@/components/about"));
+const SubHeader = lazy(() => import("@/components/subHeader"));
 
 type Props = {
   params: Promise<{ locale: Locale }>;

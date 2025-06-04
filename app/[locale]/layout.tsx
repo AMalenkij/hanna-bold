@@ -7,12 +7,14 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
-import Footer from "./footer";
 import Header from "./header/header";
 import type { Locale } from "@/types/common";
-import LargeTitle from "@/components/largeTitle";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
+import { lazy } from "react";
+
+const Footer = lazy(() => import("./footer"));
+const LargeTitle = lazy(() => import("@/components/largeTitle"));
 
 const montserrat = Montserrat({
   subsets: ["latin", "cyrillic"], // Добавлен кириллический subset
