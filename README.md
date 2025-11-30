@@ -24,36 +24,23 @@ This is a modern, dynamic web application built with **Next.js 15** and **React 
 -   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 -   **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix UI)
 -   **Animations:** [Motion](https://motion.dev/) & [Lenis](https://lenis.studiofreight.com/) (Smooth Scrolling)
--   **Database & ORM:** [Prisma](https://www.prisma.io/)
+-   **Database & ORM:** [Prisma](https://www.prisma.io/) (MongoDB)
 -   **Authentication:** [Clerk](https://clerk.com/)
 -   **Internationalization:** [next-intl](https://next-intl-docs.vercel.app/)
 -   **CMS / Rich Text:** Tiptap
 -   **Media:** Cloudinary
 -   **Linting & Formatting:** [Biome](https://biomejs.dev/)
 
-## 🌍 Multi-language Support
 
-The site supports three languages:
+## 🎨 Features
 
-- 🇺🇦 **Ukrainian** (ua) — primary language
-- 🇬🇧 **English** (en)
-- 🇵🇱 **Polish** (pl)
+-   **Responsive Design** — optimized for all devices.
+-   **Multi-language Support** — supports Ukrainian (primary), English, and Polish.
+-   **Dark Theme** — supported via `next-themes`.
+-   **Smooth Animations** — using Motion (Framer Motion) and Lenis.
+-   **Image Optimization** — automatic optimization via Next.js Image and Cloudinary.
+-   **Gallery & Events** — interactive components for viewing photos and concert schedules.
 
-Translations are located in the `messages/` folder:
-- `messages/ua.json`
-- `messages/en.json`
-- `messages/pl.json`
----
-
-## 🎨 Design Features
-
-- **Responsive Design** — optimized for all devices
-- **Dark Theme** — support via `next-themes`
-- **Smooth Animations** — using Motion (Framer Motion)
-- **Image Optimization** — automatic optimization via Next.js Image
-- **Gallery** — interactive
-- **Carousel** — smooth event carousel
----
 
 ## � Project Structure
 
@@ -78,7 +65,7 @@ hanna-bold/
 
 ## 🗄️ Data Structure (Prisma / MongoDB)
 
-### Concert (concerts)
+### Concert (concerts) — concert information (date, venue, city).
 
 ```typescript
 Concert {
@@ -93,7 +80,7 @@ Concert {
 }
 ```
 
-### Posts (posts)
+### Posts (posts) - news and articles with multilingual fields (titles, content).
 
 ```typescript
 Posts {
@@ -119,7 +106,7 @@ Posts {
 }
 ```
 
-### Video (video)
+### Video (video) — video materials (YouTube/Vimeo).
 
 ```typescript
 Video {
@@ -133,7 +120,7 @@ Video {
 }
 ```
 
-### Gallery (gallery)
+### Gallery (gallery) — images related to posts or standalone.
 
 ```typescript
 Gallery {
@@ -143,6 +130,22 @@ Gallery {
   createdAt: DateTime
 }
 ```
+
+## 🌍 Multi-language Support
+
+The site supports three languages:
+
+- 🇺🇦 **Ukrainian** (ua) — primary language
+- 🇬🇧 **English** (en)
+- 🇵🇱 **Polish** (pl)
+
+Translations are located in the `messages/` folder:
+- `messages/ua.json`
+- `messages/en.json`
+- `messages/pl.json`
+---
+
+
 
 ### Entity Relationships
 
