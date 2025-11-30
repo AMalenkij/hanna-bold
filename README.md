@@ -150,9 +150,10 @@ Translations are located in the `messages/` folder:
 ### Entity Relationships
 
 -   `Posts` can have multiple `Gallery` items (one-to-many).
+
 ## 📝 License
 
-This project is private and belongs to the band HANNA.
+This project is private and belongs to the band **HANNA**.
 
 ---
 
