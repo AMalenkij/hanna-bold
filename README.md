@@ -8,9 +8,10 @@
 
 </div>
 
+
 **Hanna** is a rock band based in Gdańsk, Poland, with a Polish-Ukrainian lineup. This repository contains the source code for their official website.
 
-🌐 **Live Site**: [Hanna.gdn](https://hanna.gdn)
+🌐 **Live Site**: [hanna.gdn](https://hanna.gdn)
 
 ###  About the Project
 
@@ -74,8 +75,103 @@ hanna-bold/
 └── utils/                # Utility functions
 ```
 
+
+## 🗄️ Data Structure (Prisma / MongoDB)
+
+### Concert (concerts)
+
+```typescript
+Concert {
+  id: string          // ObjectId
+  title: string       // Concert title
+  date: DateTime      // Date and time
+  city: string        // City (e.g., "Gdańsk")
+  venueName: string   // Venue name (e.g., "Plama GAK")
+  address: string     // Full address
+  link?: string       // Optional link (e.g., for tickets)
+  isPublished: boolean // Publication status
+}
+```
+
+### Posts (posts)
+
+```typescript
+Posts {
+  id: string          // ObjectId
+  // Multilingual Titles
+  title_en: string
+  title_ua: string
+  title_pl: string
+  // Multilingual Intros
+  intro_en: string
+  intro_ua: string
+  intro_pl: string
+  // Multilingual Content (Rich Text / HTML)
+  content_en: string
+  content_ua: string
+  content_pl: string
+  // Metadata
+  slug: string        // Unique URL identifier
+  photo: string       // Cover image URL
+  is_published: boolean
+  created_at: DateTime
+  Gallery: Gallery[]  // Relation to Gallery images
+}
+```
+
+### Video (video)
+
+```typescript
+Video {
+  id: string          // ObjectId
+  link: string        // YouTube/Vimeo link
+  title: string       // Video title
+  description_ua: string
+  description_en: string
+  description_pl: string
+  createdAt: DateTime
+}
+```
+
+### Gallery (gallery)
+
+```typescript
+Gallery {
+  id: string          // ObjectId
+  publicId: string    // Cloudinary public_id
+  postId?: string     // Relation to Posts (optional)
+  createdAt: DateTime
+}
+```
+
+### Entity Relationships
+
+-   `Posts` can have multiple `Gallery` items (one-to-many).
 ## 📝 License
 
 This project is private and belongs to the band HANNA.
 
 ---
+
+## 🚢 Deployment
+
+The project is optimized for deployment on **[Vercel](https://vercel.com/)**:
+
+1.  Connect the repository to Vercel
+2.  Add environment variables
+3.  Vercel will automatically build and deploy the project
+
+## 🙏 Acknowledgments
+
+Special thanks to:
+
+-   **Hanna** band members — for inspiration and support
+
+---
+
+<div align="center">
+
+**Made with ❤️ and Rock 'n' Roll 🤘**
+
+</div>
+
