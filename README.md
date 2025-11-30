@@ -54,6 +54,26 @@ Translations are located in the `messages/` folder:
 - **Carousel** — smooth event carousel
 ---
 
+## � Project Structure
+
+```
+hanna-bold/
+├── actions/              # Server actions
+├── app/                  # Next.js App Router
+│   └── [locale]/         # Internationalized routes
+├── components/           # React components
+├── constants/            # Global constants
+├── hooks/                # Custom React hooks
+├── i18n/                 # Internationalization setup
+├── lib/                  # Utility libraries
+├── messages/             # Translation files
+├── prisma/               # Database schema and migrations
+├── providers/            # Context providers
+├── public/               # Static assets
+├── types/                # TypeScript type definitions
+└── utils/                # Utility functions
+```
+
 ## 📝 License
 
 This project is private and belongs to the band HANNA.
