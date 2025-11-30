@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎸 HANNA — Official Website
 
-## Getting Started
+<div align="start">
 
-First, run the development server:
+[![Website](https://img.shields.io/badge/Website-vyrij.org-blue?style=for-the-badge)](https://hanna.gdn)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+</div>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Hanna** is a rock band based in Gdańsk, Poland, with a Polish-Ukrainian lineup. This repository contains the source code for their official website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+🌐 **Live Site**: [Hanna.gdn](https://hanna.gdn)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+###  About the Project
 
-## Learn More
+This is a modern, dynamic web application built with **Next.js 15** and **React 19**, designed to showcase the band's music, news, and events. It features a responsive design, smooth animations, and a content management system integration.
 
-To learn more about Next.js, take a look at the following resources:
+### 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+-   **Language:** TypeScript
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **UI Components:** [Shadcn UI](https://ui.shadcn.com/) (Radix UI)
+-   **Animations:** [Motion](https://motion.dev/) & [Lenis](https://lenis.studiofreight.com/) (Smooth Scrolling)
+-   **Database & ORM:** [Prisma](https://www.prisma.io/)
+-   **Authentication:** [Clerk](https://clerk.com/)
+-   **Internationalization:** [next-intl](https://next-intl-docs.vercel.app/)
+-   **CMS / Rich Text:** Tiptap
+-   **Media:** Cloudinary
+-   **Linting & Formatting:** [Biome](https://biomejs.dev/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌍 Multi-language Support
 
-## Deploy on Vercel
+The site supports three languages:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 🇺🇦 **Ukrainian** (ua) — primary language
+- 🇬🇧 **English** (en)
+- 🇵🇱 **Polish** (pl)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Translations are located in the `messages/` folder:
+- `messages/ua.json`
+- `messages/en.json`
+- `messages/pl.json`
+---
+
+## 🎨 Design Features
+
+- **Responsive Design** — optimized for all devices
+- **Dark Theme** — support via `next-themes`
+- **Smooth Animations** — using Motion (Framer Motion)
+- **Image Optimization** — automatic optimization via Next.js Image
+- **Gallery** — interactive
+- **Carousel** — smooth event carousel
+---
+
+## 📝 License
+
+This project is private and belongs to the band HANNA.
+
+---
